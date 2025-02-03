@@ -1,18 +1,28 @@
-
 const routes = [
+  // Home
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('/src/layouts/MainLayout.vue'),
+    meta: { requiresAuth: false },
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', name: 'home', component: () => import('/src/pages/auth/LoginPage.vue') },
+
+      // Not Found
+      { path: '/:catchAll(.*)*', component: () => import('/src/pages/ErrorNotFound.vue') }
     ]
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
+  // Dashboard
   {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue')
+    path: '/dashboard',
+    component: () => import('/src/layouts/DashboardLayout.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      { path: 'home', name: 'dashboard.home', component: () => import('/src/pages/dashboard/IndexDashboard.vue') },
+      { path: 'profile', name: 'dashboard.profile', component: () => import('/src/components/ProfileView.vue') },
+      { path: 'changepassword', name: 'dashboard.changepassword', component: () => import('/src/components/ChangePasswordView.vue') },
+      { path: 'setting', name: 'dashboard.setting', component: () => import('/src/pages/dashboard/setting/IndexSetting.vue') }
+    ]
   }
 ]
 

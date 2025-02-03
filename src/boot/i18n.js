@@ -1,14 +1,36 @@
-import { boot } from 'quasar/wrappers'
 import { createI18n } from 'vue-i18n'
-import messages from 'src/i18n'
 
-export default boot(({ app }) => {
-  const i18n = createI18n({
-    locale: 'en-US',
-    globalInjection: true,
-    messages
-  })
+// Languages
+import en from '/src/lang/en'
+import id from '/src/lang/id'
 
-  // Set i18n instance on app
-  app.use(i18n)
+// Get Language in localstorage
+const lang = localStorage.getItem('lang') || 'en'
+
+// Switch Language
+const languages = ['en', 'id']
+
+const languageNames = {
+  en: 'English',
+  id: 'Indonesia'
+}
+
+// Default Language
+const messages = {
+  en,
+  id
+}
+
+const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  locale: lang,
+  fallbackLocale: 'en',
+  messages
 })
+
+export default ({ app }) => {
+  app.use(i18n)
+}
+
+export { lang, messages, languages, languageNames }
