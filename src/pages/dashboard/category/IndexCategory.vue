@@ -10,7 +10,7 @@
       :grid="grid"
       :filter="filter"
       separator="cell"
-      :title="$t('dashboard.branch.titleText')"
+      :title="$t('dashboard.category.titleText')"
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
@@ -40,8 +40,8 @@
 
       <!-- Create -->
       <template v-slot:top-left>
-        <q-btn color="primary" :label="$t('dashboard.branch.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
-        <q-dialog v-model="createItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
+        <q-btn color="primary" :label="$t('dashboard.category.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
+        <q-dialog v-model="createItemDialog" persistent>
           <CreateItem @created="itemCreated" />
         </q-dialog>
       </template>
@@ -70,54 +70,11 @@
         </q-td>
       </template>
 
-      <!-- Branch Code -->
-      <template #body-cell-branch_code="props">
-        <q-td :props="props">
-          <div class="bg-blue-2 rounded-borders">
-            <div class="text-blue-8 text-bold q-pa-xs">{{ props.row.branch_code }}</div>
-          </div>
-        </q-td>
-      </template>
-
-      <!-- Image -->
-      <template #body-cell-image="props">
-        <q-td :props="props">
-          <q-responsive :ratio="4 / 3" class="col" style="width: 220px">
-            <img :src="url + '/branches/' + props.row.image" class="dashboard-image" />
-          </q-responsive>
-        </q-td>
-      </template>
-
       <!-- Name -->
       <template #body-cell-name="props">
         <q-td :props="props">
           <div class="text-h6 text-bold">{{ props.row.name }}</div>
-        </q-td>
-      </template>
-
-      <!-- Detail -->
-      <template #body-cell-detail="props">
-        <q-td :props="props">
-          <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.branch.data.email') }} :</span>
-            {{ props.row.email }}
-          </div>
-          <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.branch.data.phoneNumber') }} :</span>
-            {{ props.row.phone_number }}
-          </div>
-          <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.branch.data.address') }} :</span>
-            {{ props.row.address }}
-          </div>
-        </q-td>
-      </template>
-
-      <!-- Status -->
-      <template #body-cell-status="props">
-        <q-td :props="props">
-          <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.branch.data.statusActive')" />
-          <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.branch.data.statusInactive')" />
+          <div class="text-subtitle2">{{ props.row.slug }}</div>
         </q-td>
       </template>
 
@@ -125,7 +82,7 @@
       <template #body-cell-action="props">
         <q-td :props="props">
           <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
-            <q-dialog v-model="props.row.editItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
+            <q-dialog v-model="props.row.editItemDialog" persistent>
               <EditItem @edited="itemEdited(props.row)" :item="props.row" />
             </q-dialog>
           </q-btn>
@@ -137,45 +94,31 @@
       <template v-slot:item="props">
         <div class="dashboard-card q-pa-md col-xs-12 col-sm-4 col-md-4 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
           <q-card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
-            <!-- Image -->
-            <q-responsive :ratio="4 / 3" class="col" style="width: 100%">
-              <img :src="url + '/branches/' + props.row.image" class="dashboard-image" />
-            </q-responsive>
-
-            <!-- Name -->
-            <div class="text-h6 text-bold text-center">{{ props.row.name }}</div>
-
             <q-card-section class="q-pb-xl">
-              <!-- Email -->
-              <div>
-                <span class="text-bold">{{ $t('dashboard.branch.data.email') }} :</span>
-                {{ props.row.email }}
+              <!-- Name -->
+              <div class="text-body1 q-my-md">
+                <span class="text-bold">{{ $t('dashboard.category.data.name') }} :</span>
+                {{ props.row.name }}
               </div>
 
-              <!-- Phone Number -->
-              <div>
-                <span class="text-bold">{{ $t('dashboard.branch.data.phoneNumber') }} :</span>
-                {{ props.row.phone_number }}
+              <!-- Slug -->
+              <div class="text-body1 q-my-md">
+                <span class="text-bold">{{ $t('dashboard.category.data.slug') }} :</span>
+                {{ props.row.slug }}
               </div>
 
-              <!-- Address -->
-              <div>
-                <span class="text-bold">{{ $t('dashboard.branch.data.address') }} :</span>
-                {{ props.row.address }}
-              </div>
-
-              <!-- Status -->
-              <div class="absolute absolute-bottom-right">
-                <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.branch.data.statusActive')" />
-                <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.branch.data.statusInactive')" />
-              </div>
-
-              <!-- Action -->
-              <div class="absolute absolute-bottom-left">
-                <q-btn :to="{ name: 'dashboard.event.edit', params: { slug: props.row.slug } }" color="warning" field="edit" icon="edit" class="q-mx-xs" dense round />
-                <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+              <!-- Description -->
+              <div class="text-body1 q-my-md">
+                <span class="text-bold">{{ $t('dashboard.category.data.description') }} :</span>
+                {{ props.row.description }}
               </div>
             </q-card-section>
+
+            <!-- Action -->
+            <div class="absolute absolute-bottom-right q-pa-md">
+              <q-btn :to="{ name: 'dashboard.event.edit', params: { slug: props.row.slug } }" color="warning" field="edit" icon="edit" class="q-mx-xs" dense round />
+              <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+            </div>
           </q-card>
         </div>
       </template>
@@ -189,10 +132,9 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
-import { url } from '/src/boot/axios'
-import { useBranchStore } from '/src/stores/branch-store'
-import CreateItem from './CreateBranch.vue'
-import EditItem from './EditBranch.vue'
+import { useCategoryStore } from '/src/stores/category-store'
+import CreateItem from './CreateCategory.vue'
+import EditItem from './EditCategory.vue'
 
 const $q = useQuasar()
 const { t } = useI18n()
@@ -202,7 +144,7 @@ const router = useRouter()
 const items = ref([])
 const getItem = async () => {
   try {
-    const res = await useBranchStore().all()
+    const res = await useCategoryStore().all()
 
     items.value = res.data.data
   } catch (error) {
@@ -239,14 +181,14 @@ const deleteItemDialog = (row) => {
     persistent: true
   }).onOk(async () => {
     try {
-      await useBranchStore().delete(row.id)
+      await useCategoryStore().delete(row.id)
 
-      toast.success(t('dashboard.branch.successDeleteMsg'))
+      toast.success(t('dashboard.category.successDeleteMsg'))
       getItem()
     } catch (error) {
       console.error('Error submitting form:', error)
 
-      toast.error(error.response.data.message || t('dashboard.branch.failedDeleteMsg'))
+      toast.error(error.response.data.message || t('dashboard.category.failedDeleteMsg'))
     }
   })
 }
@@ -261,37 +203,17 @@ const currencyColumns = [
     align: 'center'
   },
   {
-    name: 'branch_code',
-    field: 'branch_code',
-    label: t('dashboard.branch.data.branchCode'),
-    align: 'center',
-    sortable: true
-  },
-  {
-    name: 'image',
-    field: 'image',
-    label: t('dashboard.branch.data.image'),
-    align: 'center'
-  },
-  {
     name: 'name',
     field: 'name',
-    label: t('dashboard.branch.data.name'),
+    label: t('dashboard.category.data.name'),
     align: 'center',
     sortable: true
   },
   {
-    name: 'detail',
-    field: 'detail',
-    label: t('dashboard.branch.data.detail'),
+    name: 'description',
+    field: 'description',
+    label: t('dashboard.category.data.description'),
     align: 'left'
-  },
-  {
-    name: 'status',
-    field: 'status',
-    label: t('dashboard.branch.data.status'),
-    align: 'center',
-    sortable: true
   },
   {
     name: 'action',

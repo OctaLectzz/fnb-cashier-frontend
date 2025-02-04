@@ -164,6 +164,8 @@ createQuasarApp(createApp, quasarUserOptions)
       
       import('boot/lowercase'),
       
+      import('boot/uppercase'),
+      
       import('boot/viewer'),
       
       import('boot/rupiah'),

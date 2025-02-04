@@ -21,6 +21,8 @@ const routes = [
       { path: 'profile', name: 'dashboard.profile', component: () => import('/src/components/ProfileView.vue') },
       { path: 'changepassword', name: 'dashboard.changepassword', component: () => import('/src/components/ChangePasswordView.vue') },
       { path: 'branch', name: 'dashboard.branch', component: () => import('/src/pages/dashboard/branch/IndexBranch.vue') },
+      { path: 'category', name: 'dashboard.category', component: () => import('/src/pages/dashboard/category/IndexCategory.vue') },
+      { path: 'product', name: 'dashboard.product', component: () => import('/src/pages/dashboard/product/IndexProduct.vue') },
       { path: 'setting', name: 'dashboard.setting', component: () => import('/src/pages/dashboard/setting/IndexSetting.vue') }
     ]
   }

@@ -141,12 +141,12 @@
             <q-item-section>{{ $t('dashboard.sidebar.categoryMenu') }}</q-item-section>
           </q-item>
 
-          <!-- Menu -->
-          <q-item :to="{ name: 'dashboard.menu' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+          <!-- Product -->
+          <q-item :to="{ name: 'dashboard.product' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
             <q-item-section avatar>
               <q-icon name="restaurant_menu" size="20px" />
             </q-item-section>
-            <q-item-section>{{ $t('dashboard.sidebar.menuMenu') }}</q-item-section>
+            <q-item-section>{{ $t('dashboard.sidebar.productMenu') }}</q-item-section>
           </q-item>
 
           <!-- OTHER -->

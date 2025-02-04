@@ -49,7 +49,7 @@
 
                 <q-card-section class="q-pa-sm">
                   <div class="row justify-center">
-                    <!-- Username -->
+                    <!-- Name -->
                     <div class="col-md-5 col-xs-10 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.branch.data.name') }}
@@ -64,7 +64,7 @@
                         {{ $t('dashboard.branch.data.email') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
                       </div>
-                      <q-input v-model="data.email" type="email" placeholder="email@example.com" :rules="rules.email" v-lowercase outlined dense required />
+                      <q-input v-model="data.email" type="email" placeholder="email@example.com" :rules="rules.email" v-lowercase outlined dense />
                     </div>
 
                     <!-- Phone Number -->
@@ -154,8 +154,8 @@ const imageChange = async (e) => {
 
 // Validate
 const rules = ref({
-  name: [(v) => !!v || t('auth.validate.nameRequired'), (v) => v.length <= 50 || t('auth.validate.nameMaxLength')],
-  email: [(v) => /.+@.+/.test(v) || t('auth.validate.emailFormat')]
+  name: [(v) => !!v || t('dashboard.branch.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.branch.validate.nameMaxLength')],
+  email: [(v) => /.+@.+/.test(v) || t('dashboard.branch.validate.emailFormat')]
 })
 
 // Disabled Button

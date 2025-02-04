@@ -83,7 +83,7 @@ export default {
       branchMenu: 'Branch',
       userMenu: 'Users',
       categoryMenu: 'Categories',
-      menuMenu: 'Menu List',
+      productMenu: 'Products',
       contactMenu: 'Contact',
       settingMenu: 'Setting',
       backMenu: 'Return to Main Menu'
@@ -111,6 +111,75 @@ export default {
         status: 'Status',
         statusActive: 'Active',
         statusInactive: 'Inactive'
+      },
+      validate: {
+        nameRequired: 'Name must be filled in',
+        nameMaxLength: 'Maximum Name is 255 characters',
+        emailFormat: 'Invalid Email'
+      }
+    },
+    category: {
+      titleText: 'Category',
+      createText: 'Create Category',
+      editText: 'Edit Category',
+      successCreateMsg: 'Category created successfully',
+      failedCreateMsg: 'Category failed to create, Please try again later',
+      successEditMsg: 'Category edited successfully',
+      failedEditMsg: 'Category failed to edit, Please try again later',
+      successDeleteMsg: 'Category deleted successfully',
+      failedDeleteMsg: 'Category failed to delete, please try again later',
+      data: {
+        name: 'Name',
+        slug: 'Slug',
+        description: 'Description'
+      },
+      validate: {
+        nameRequired: 'Name must be filled in',
+        nameMaxLength: 'Maximum Name is 50 characters',
+        nameAlready: 'Name already exists'
+      }
+    },
+    product: {
+      titleText: 'Product',
+      createText: 'Create Product',
+      editText: 'Edit Product',
+      detailCard: 'Details',
+      successCreateMsg: 'Product created successfully',
+      failedCreateMsg: 'Product failed to create, Please try again later',
+      successEditMsg: 'Product edited successfully',
+      failedEditMsg: 'Product failed to edit, Please try again later',
+      successDeleteMsg: 'Product deleted successfully',
+      failedDeleteMsg: 'Product failed to delete, please try again later',
+      data: {
+        sku: 'SKU',
+        image: 'Product Photo',
+        name: 'Name',
+        category: 'Category',
+        price: 'Price',
+        minPurchase: 'Min Purchase',
+        sellingPrice: 'Selling Purchase',
+        purchasePrice: 'Purchase Price',
+        volume: 'Volume',
+        volumeDetail: '(Length x Width x Height)',
+        unit: 'Unit',
+        weight: 'Weight',
+        length: 'Length',
+        width: 'Width',
+        height: 'Height',
+        status: 'Status',
+        statusActive: 'Active',
+        statusInactive: 'Inactive'
+      },
+      validate: {
+        nameRequired: 'Name must be filled in',
+        nameMaxLength: 'Maximum Name is 255 characters',
+        categoryRequired: 'Category must be filled in',
+        skuRequired: 'SKU must be filled in',
+        skuMaxLength: 'Maximum SKU is 10 characters',
+        skuAlready: 'SKU already exists',
+        purchasePriceRequired: 'Purchase Price must be filled in',
+        unitRequired: 'Unit must be filled in',
+        unitMaxLength: 'Maximum Unit is 255 characters'
       }
     },
     setting: {
