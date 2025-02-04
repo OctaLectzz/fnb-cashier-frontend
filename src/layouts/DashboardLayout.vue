@@ -119,18 +119,34 @@
             <q-item-section>{{ $t('dashboard.sidebar.homeMenu') }}</q-item-section>
           </q-item>
 
+          <!-- Home -->
+          <q-item :to="{ name: 'dashboard.branch' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+            <q-item-section avatar>
+              <q-icon name="business" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.sidebar.branchMenu') }}</q-item-section>
+          </q-item>
+
           <!-- MANAGEMENT -->
           <q-separator class="q-mb-md q-mt-sm" />
           <div class="menu-text-header q-mx-md q-mb-sm" style="font-size: 11px">
             <span v-if="!miniState">{{ $t('dashboard.sidebar.managementGroup') }}</span>
           </div>
 
-          <!-- Event -->
-          <q-item :to="{ name: 'dashboard.event' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+          <!-- Category -->
+          <q-item :to="{ name: 'dashboard.category' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
             <q-item-section avatar>
-              <q-icon name="event" size="20px" />
+              <q-icon name="category" size="20px" />
             </q-item-section>
-            <q-item-section>{{ $t('dashboard.sidebar.eventMenu') }}</q-item-section>
+            <q-item-section>{{ $t('dashboard.sidebar.categoryMenu') }}</q-item-section>
+          </q-item>
+
+          <!-- Menu -->
+          <q-item :to="{ name: 'dashboard.menu' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+            <q-item-section avatar>
+              <q-icon name="restaurant_menu" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.sidebar.menuMenu') }}</q-item-section>
           </q-item>
 
           <!-- OTHER -->

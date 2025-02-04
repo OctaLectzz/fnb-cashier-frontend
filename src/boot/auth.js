@@ -6,11 +6,14 @@ export default ({ router }) => {
     if (to.meta.requiresAuth) {
       if (!token) {
         // Redirect to login page if no token
-        next({ name: 'home' })
+        next({ name: 'home.login' })
       } else {
         // Continue navigation if token exists
         next()
       }
+    } else if (to.name === 'home.login' && token) {
+      // If the user already has a token, redirect from the login page
+      next({ name: 'dashboard.home' })
     } else {
       // If the route does not require authentication, continue navigating
       next()
