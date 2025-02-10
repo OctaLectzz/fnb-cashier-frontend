@@ -172,7 +172,11 @@
 
               <!-- Action -->
               <div class="absolute absolute-bottom-left">
-                <q-btn :to="{ name: 'dashboard.event.edit', params: { slug: props.row.slug } }" color="warning" field="edit" icon="edit" class="q-mx-xs" dense round />
+                <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+                  <q-dialog v-model="props.row.editItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
+                    <EditItem @edited="itemEdited(props.row)" :item="props.row" />
+                  </q-dialog>
+                </q-btn>
                 <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
               </div>
             </q-card-section>

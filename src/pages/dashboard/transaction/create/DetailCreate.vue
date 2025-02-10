@@ -70,9 +70,7 @@
                   <div class="row q-my-sm">
                     <div class="col-5 text-body1 text-bold">{{ $t('dashboard.transaction.data.totalPrice') }}</div>
                     <div class="col-2">:</div>
-                    <div class="col-5">
-                      {{ rupiah(data.total_price) }}
-                    </div>
+                    <div class="col-5">{{ rupiah(data.total_price) }}</div>
                   </div>
 
                   <!-- Discount -->
@@ -175,10 +173,6 @@
                     <q-item>
                       <q-item-section>{{ t('dashboard.transaction.data.changeAmount') }}</q-item-section>
                       <q-item-section side>{{ rupiah(data.change_amount) }}</q-item-section>
-                    </q-item>
-                    <q-item v-if="data.notes">
-                      <q-item-section>{{ t('dashboard.transaction.data.notes') }}</q-item-section>
-                      <q-item-section side>{{ data.notes }}</q-item-section>
                     </q-item>
                   </q-list>
 
@@ -309,22 +303,25 @@ const printReceipt = () => {
   const printWindow = window.open('', '', 'width=80mm,height=auto')
 
   printWindow.document.write(`
-    <html>
-      <head>
-        <title>Print Receipt</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quasar/dist/quasar.min.css">
-        <style>
-          @page { size: 80mm auto; margin: 0; }
-          body { margin: 0; font-family: Arial, sans-serif; }
-          .receipt-print { width: 80mm; padding: 10px; }
-        </style>
-      </head>
-      <body>
-        ${receiptContent}
-      </body>
-    </html>
-  `)
+  <html>
+    <head>
+      <title>Print Receipt</title>
+      <link href="https://cdn.jsdelivr.net/npm/quasar@latest/dist/quasar.min.css" rel="stylesheet">
+      <style>
+        @page { size: 80mm auto; margin: 0; }
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .receipt-print { width: 80mm; padding: 10px; }
+      </style>
+    </head>
+    <body>
+      ${receiptContent}
+    </body>
+  </html>
+`)
 
-  printWindow.print()
+  printWindow.document.close()
+  printWindow.onload = () => {
+    printWindow.print()
+  }
 }
 </script>

@@ -150,7 +150,7 @@
           </q-item>
 
           <!-- Tax & Discount -->
-          <q-item :to="{ name: 'dashboard.tax-discount' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+          <q-item :to="{ name: 'dashboard.taxdiscount' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
             <q-item-section avatar>
               <q-icon name="discount" size="20px" />
             </q-item-section>
@@ -172,7 +172,7 @@
           </q-item>
 
           <!-- Transaction History -->
-          <q-item :to="{ name: 'dashboard.transaction-history' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+          <q-item :to="{ name: 'dashboard.transactionhistory' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
             <q-item-section avatar>
               <q-icon name="receipt_long" size="20px" />
             </q-item-section>
@@ -180,7 +180,7 @@
           </q-item>
 
           <!-- Sales Report -->
-          <q-item :to="{ name: 'dashboard.sales-report' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+          <q-item :to="{ name: 'dashboard.salesreport' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
             <q-item-section avatar>
               <q-icon name="pie_chart" size="20px" />
             </q-item-section>

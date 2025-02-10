@@ -104,12 +104,12 @@ const editData = async () => {
   try {
     await useCategoryStore().edit(data.value)
 
-    toast.success(t('dashboard.categoryx`.successEditMsg'))
+    toast.success(t('dashboard.category.successEditMsg'))
     emits('edited')
   } catch (error) {
     console.error('Error submitting form:', error)
 
-    toast.error(error.response.data.message || t('dashboard.categoryx`.failedEditMsg'))
+    toast.error(error.response.data.message || t('dashboard.category.failedEditMsg'))
   }
   loading.value = false
 }

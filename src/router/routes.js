@@ -23,7 +23,8 @@ const routes = [
       { path: 'branch', name: 'dashboard.branch', component: () => import('/src/pages/dashboard/branch/IndexBranch.vue') },
       { path: 'category', name: 'dashboard.category', component: () => import('/src/pages/dashboard/category/IndexCategory.vue') },
       { path: 'product', name: 'dashboard.product', component: () => import('/src/pages/dashboard/product/IndexProduct.vue') },
-      { path: 'transaction', name: 'dashboard.transaction', component: () => import('/src/pages/dashboard/transaction/IndexTransaction.vue') },
+      { path: 'transaction', name: 'dashboard.transaction', component: () => import('/src/pages/dashboard/transaction/create/IndexCreate.vue') },
+      { path: 'transaction-history', name: 'dashboard.transactionhistory', component: () => import('/src/pages/dashboard/transaction/history/IndexHistory.vue') },
       { path: 'setting', name: 'dashboard.setting', component: () => import('/src/pages/dashboard/setting/IndexSetting.vue') }
     ]
   }

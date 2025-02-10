@@ -118,7 +118,7 @@ import { useQuasar } from 'quasar'
 import { url } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useCategoryStore } from '/src/stores/category-store'
-import DetailTransaction from './DetailTransaction.vue'
+import DetailTransaction from './DetailCreate.vue'
 
 const $q = useQuasar()
 const { t } = useI18n()

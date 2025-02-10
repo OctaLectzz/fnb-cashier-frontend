@@ -14,7 +14,9 @@ export default {
     logoutText: 'Logout',
     imageType: 'JPG or PNG no larger than 5 MB',
     uploadBtn: 'Upload a new Image',
-    viewsText: 'k'
+    viewsText: 'k',
+    showMore: 'Show More',
+    showLess: 'Show Less'
   },
   auth: {
     welcomeMsg: 'Welcome to',
@@ -190,6 +192,8 @@ export default {
       }
     },
     transaction: {
+      titleText: 'Transaction',
+      editText: 'Edit Transaction',
       noProductText: 'Product not available.',
       checkoutBtn: 'Checkout',
       resetBtn: 'Reset',
@@ -207,8 +211,10 @@ export default {
       successDeleteMsg: 'Transaction deleted successfully',
       failedDeleteMsg: 'Transaction failed to delete, please try again later',
       data: {
+        invoice: 'Invoice',
         name: 'Name',
         namePlaceholder: 'Customer 1',
+        price: 'Price',
         paymentType: 'Payment Type',
         paymentTypePlaceholder: 'Select an option',
         cash: 'Cash',
@@ -219,7 +225,14 @@ export default {
         paymentAmount: 'Payment Amount',
         moneyAmount: 'Money Amount',
         changeAmount: 'Change Amount',
-        notes: 'Notes'
+        notes: 'Notes',
+        transactiondetails: 'Products',
+        createdAt: 'Date'
+      },
+      validate: {
+        nameRequired: 'Name must be filled in',
+        nameMaxLength: 'Maximum Name is 255 characters',
+        paymentTypeRequired: 'Payment Type must be filled in'
       }
     },
     setting: {

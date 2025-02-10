@@ -78,6 +78,13 @@
         </q-td>
       </template>
 
+      <!-- Description -->
+      <template #body-cell-description="props">
+        <q-td :props="props">
+          <div class="text-long">{{ props.row.description }}</div>
+        </q-td>
+      </template>
+
       <!-- Action -->
       <template #body-cell-action="props">
         <q-td :props="props">
@@ -110,13 +117,17 @@
               <!-- Description -->
               <div class="text-body1 q-my-md">
                 <span class="text-bold">{{ $t('dashboard.category.data.description') }} :</span>
-                {{ props.row.description }}
+                <span class="text-long">{{ props.row.description }}</span>
               </div>
             </q-card-section>
 
             <!-- Action -->
             <div class="absolute absolute-bottom-right q-pa-md">
-              <q-btn :to="{ name: 'dashboard.event.edit', params: { slug: props.row.slug } }" color="warning" field="edit" icon="edit" class="q-mx-xs" dense round />
+              <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+                <q-dialog v-model="props.row.editItemDialog" persistent>
+                  <EditItem @edited="itemEdited(props.row)" :item="props.row" />
+                </q-dialog>
+              </q-btn>
               <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
             </div>
           </q-card>

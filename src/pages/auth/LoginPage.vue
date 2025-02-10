@@ -43,13 +43,13 @@
       <div class="q-mt-lg text-center text-grey-7" style="font-size: 11px">
         <div>{{ $t('auth.permissionText1') }}</div>
         <div>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="permission-link text-primary">{{ $t('auth.termsText') }}</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="text-link text-primary">{{ $t('auth.termsText') }}</a>
           {{ $t('auth.permissionText2') }}
         </div>
         <div>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="permission-link text-primary">{{ $t('auth.privacyText') }}</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="text-link text-primary">{{ $t('auth.privacyText') }}</a>
           .
-          <a href="#" target="_blank" rel="noopener noreferrer" class="permission-link text-primary">{{ $t('auth.noticeText') }}</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="text-link text-primary">{{ $t('auth.noticeText') }}</a>
           .
         </div>
       </div>
