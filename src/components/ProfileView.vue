@@ -36,8 +36,8 @@
               <q-avatar size="100px" class="q-my-md">
                 <img ref="avatar" :src="url + '/avatars/' + data.avatar" />
               </q-avatar>
-              <div class="text-subtitle2 text-grey-7">{{ $t('profile.imageType') }}</div>
-              <q-btn color="primary" class="q-my-md" :label="$t('profile.uploadBtn')" @click="$refs.avatarInput.click()" no-caps />
+              <div class="text-subtitle2 text-grey-7">{{ $t('public.imageType') }}</div>
+              <q-btn color="primary" class="q-my-md" :label="$t('public.uploadBtn')" @click="$refs.avatarInput.click()" no-caps />
               <input type="file" ref="avatarInput" id="avatarInput" style="display: none" accept="image/*" @change="avatarChange" />
             </q-card-section>
           </q-card>

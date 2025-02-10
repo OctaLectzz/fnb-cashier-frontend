@@ -12,7 +12,7 @@
 
         <q-card-section class="scroll" style="max-height: 77vh">
           <!-- Name -->
-          <div class="col-10 q-pa-sm">
+          <div class="col-md-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.category.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -21,7 +21,7 @@
           </div>
 
           <!-- Description -->
-          <div class="col-10 q-pa-sm">
+          <div class="col-md-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.category.data.description') }}
               <span class="text-grey">{{ $t('public.optionalText') }}</span>

@@ -13,7 +13,7 @@
         <q-card-section class="scroll" style="height: 77vh">
           <div class="row justify-center">
             <!-- Image card -->
-            <div class="col-md-3 q-pa-md">
+            <div class="col-lg-2 col-md-3 q-pa-md">
               <q-card class="q-pb-xl">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
                   <div class="text-body1 text-bold">{{ $t('dashboard.product.data.image') }}</div>
@@ -39,7 +39,7 @@
             </div>
 
             <!-- Details card -->
-            <div class="col-md-8 q-pa-md">
+            <div class="col-lg-9 col-md-8 q-pa-md">
               <q-card class="q-pb-xl" style="height: 100%">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
                   <div class="text-body1 text-bold">{{ $t('dashboard.product.detailCard') }}</div>
@@ -55,7 +55,7 @@
                         {{ $t('dashboard.product.data.name') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
-                      <q-input v-model="data.name" placeholder="Chocolate Cake" :rules="rules.name" outlined dense required autofocus />
+                      <q-input v-model="data.name" :placeholder="$t('public.exampleText') + 'Chocolate Cake'" :rules="rules.name" outlined dense required autofocus />
                     </div>
 
                     <!-- Category -->
@@ -73,7 +73,7 @@
                         {{ $t('dashboard.product.data.sku') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
-                      <q-input v-model="data.sku" placeholder="CS0001" :rules="rules.sku" v-uppercase outlined dense required />
+                      <q-input v-model="data.sku" :placeholder="$t('public.exampleText') + 'CS0001'" :rules="rules.sku" v-uppercase outlined dense required />
                     </div>
 
                     <!-- Min Purchase -->
@@ -131,7 +131,7 @@
                     </div>
 
                     <!-- Unit -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-md-4 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.product.data.unit') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>

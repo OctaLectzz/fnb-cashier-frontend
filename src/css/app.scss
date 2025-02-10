@@ -161,7 +161,28 @@ tbody {
   border-radius: 10px;
 }
 
+.dashboard-transaction-image {
+  border-radius: 10px;
+}
+.dashboard-transaction-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.dashboard-transaction-card:hover {
+  transform: scale(1.01);
+}
+
 .text-long {
   word-wrap: break-word;
   white-space: normal;
+}
+
+.separator-text {
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0;
 }

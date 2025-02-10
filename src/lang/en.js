@@ -3,6 +3,7 @@ export default {
     loadingText: 'Loading...',
     requiredText: '*',
     optionalText: '(optional)',
+    exampleText: 'Example : ',
     createText: 'Create',
     editText: 'Edit',
     saveText: 'Save',
@@ -78,13 +79,19 @@ export default {
     sidebar: {
       mainGroup: 'MAIN',
       managementGroup: 'MANAGEMENT',
-      otherGroup: 'OTHER',
+      cashierGroup: 'CASHIER',
+      employeeManagementGroup: 'EMPLOYEE MANAGEMENT',
+      companyGroup: 'COMPANY',
       homeMenu: 'Home',
       branchMenu: 'Branch',
       userMenu: 'Users',
       categoryMenu: 'Categories',
       productMenu: 'Products',
       contactMenu: 'Contact',
+      taxDiscountMenu: 'Tax & Discount',
+      transactionMenu: 'Transactions',
+      transactionHistoryMenu: 'Transaction Histories',
+      salesReportMenu: 'Sales Reports',
       settingMenu: 'Setting',
       backMenu: 'Return to Main Menu'
     },
@@ -182,6 +189,39 @@ export default {
         unitMaxLength: 'Maximum Unit is 255 characters'
       }
     },
+    transaction: {
+      noProductText: 'Product not available.',
+      checkoutBtn: 'Checkout',
+      resetBtn: 'Reset',
+      totalPrice: 'Total',
+      detailText: 'Transaction Detail',
+      detailCard: 'Details',
+      paymentDetailsCard: 'Payment Details',
+      noteCard: 'Note',
+      printNotaBtn: 'Print Nota',
+      thankYouMsg: 'Thank You :)',
+      successCreateMsg: 'Transaction created successfully',
+      failedCreateMsg: 'Transaction failed to create, Please try again later',
+      successEditMsg: 'Transaction edited successfully',
+      failedEditMsg: 'Transaction failed to edit, Please try again later',
+      successDeleteMsg: 'Transaction deleted successfully',
+      failedDeleteMsg: 'Transaction failed to delete, please try again later',
+      data: {
+        name: 'Name',
+        namePlaceholder: 'Customer 1',
+        paymentType: 'Payment Type',
+        paymentTypePlaceholder: 'Select an option',
+        cash: 'Cash',
+        qris: 'QRIS',
+        others: 'Others',
+        totalPrice: 'Product Subtotal',
+        discount: 'Discount',
+        paymentAmount: 'Payment Amount',
+        moneyAmount: 'Money Amount',
+        changeAmount: 'Change Amount',
+        notes: 'Notes'
+      }
+    },
     setting: {
       titleText: 'Settings',
       photoCard: 'Photos',
@@ -193,13 +233,12 @@ export default {
         bigLogo: 'Big Logo',
         settingName: 'Name',
         description: 'Description',
+        address: 'Address',
         aboutUs: 'About Us'
       },
       validate: {
         titleRequired: 'Title must be filled in',
-        descriptionRequired: 'Description is required',
-        logoSizeRequired: 'Logo size must be filled in',
-        aboutRequired: 'About Us is required'
+        logoSizeRequired: 'Logo size must be filled in'
       }
     }
   }

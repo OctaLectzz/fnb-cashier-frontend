@@ -8,7 +8,7 @@
 
         <q-separator />
 
-        <q-card-section class="scroll" style="max-height: 77vh">
+        <q-card-section class="scroll" style="max-height: 70vh">
           <div class="row justify-between">
             <div class="col-sm-4 col-xs-10 q-pa-md">
               <q-card class="q-pb-xl">
@@ -25,12 +25,12 @@
                     <img ref="logo" :src="url + '/settings/' + data.logo" :style="'width:' + data.logo_size + 'px'" style="height: auto" />
                   </div>
 
-                  <div class="text-subtitle2 text-grey-7">{{ $t('profile.imageType') }}</div>
-                  <q-btn color="primary" class="q-my-md" :label="$t('profile.uploadBtn')" @click="$refs.logoInput.click()" no-caps />
+                  <div class="text-subtitle2 text-grey-7">{{ $t('public.imageType') }}</div>
+                  <q-btn color="primary" class="q-my-md" :label="$t('public.uploadBtn')" @click="$refs.logoInput.click()" no-caps />
                   <input type="file" ref="logoInput" id="logoInput" style="display: none" accept="image/*" @change="logoChange" />
                 </q-card-section>
 
-                <!-- Title -->
+                <!-- Logo Size -->
                 <q-card-section class="q-pa-lg">
                   <div class="col-5 q-pa-sm">
                     <div class="text-bold">{{ $t('dashboard.setting.data.bigLogo') }}</div>
@@ -63,13 +63,19 @@
                   <!-- Description -->
                   <div class="col-10 q-pa-sm">
                     <div class="text-bold">{{ $t('dashboard.setting.data.description') }}</div>
-                    <q-input type="textarea" v-model="data.description" :rules="rules.description" outlined dense />
+                    <q-input type="textarea" v-model="data.description" outlined dense />
+                  </div>
+
+                  <!-- Address -->
+                  <div class="col-10 q-pa-sm">
+                    <div class="text-bold">{{ $t('dashboard.setting.data.address') }}</div>
+                    <q-input type="textarea" v-model="data.address" outlined dense />
                   </div>
 
                   <!-- About -->
                   <div class="col-10 q-pa-sm">
                     <div class="text-bold">{{ $t('dashboard.setting.data.aboutUs') }}</div>
-                    <q-editor v-model="data.about" :toolbar="toolbar" :fonts="fonts" :rules="rules.about" style="width: 100%; min-height: 470px" />
+                    <q-editor v-model="data.about" :toolbar="toolbar" :fonts="fonts" style="width: 100%; min-height: 470px" />
                   </div>
                 </q-card-section>
               </q-card>
@@ -108,6 +114,7 @@ const data = ref({
   id: 1,
   title: '',
   description: '',
+  address: '',
   logo: '',
   logo_size: null,
   about: ''
@@ -196,9 +203,7 @@ const logoChange = async (e) => {
 // Validate
 const rules = ref({
   title: [(v) => !!v || t('dashboard.setting.validate.titleRequired')],
-  description: [(v) => !!v || t('dashboard.setting.validate.descriptionRequired')],
-  logo_size: [(v) => !!v || t('dashboard.setting.validate.logoSizeRequired')],
-  about: [(v) => !!v || t('dashboard.setting.validate.aboutRequired')]
+  logo_size: [(v) => !!v || t('dashboard.setting.validate.logoSizeRequired')]
 })
 
 // Disabled Button
