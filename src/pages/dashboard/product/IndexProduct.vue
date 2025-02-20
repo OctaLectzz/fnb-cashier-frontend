@@ -81,7 +81,7 @@
       <!-- Image -->
       <template #body-cell-image="props">
         <q-td :props="props">
-          <q-responsive :ratio="1 / 1" class="col" style="width: 120px" v-viewer>
+          <q-responsive :ratio="1 / 1" style="width: 120px" v-viewer>
             <img :src="url + '/products/' + props.row.image" class="dashboard-image" />
           </q-responsive>
         </q-td>
@@ -156,7 +156,7 @@
         <div class="dashboard-card q-pa-md col-xs-12 col-sm-4 col-md-4 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
           <q-card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
             <!-- Image -->
-            <q-responsive :ratio="1 / 1" class="col" style="width: 100%" v-viewer>
+            <q-responsive :ratio="1 / 1" style="width: 100%" v-viewer>
               <img :src="url + '/products/' + props.row.image" class="dashboard-image" />
             </q-responsive>
 

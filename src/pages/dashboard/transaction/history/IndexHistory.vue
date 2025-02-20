@@ -65,8 +65,8 @@
       <!-- Invoice -->
       <template #body-cell-invoice="props">
         <q-td :props="props">
-          <div class="bg-blue-2 rounded-borders">
-            <div class="text-blue-8 text-bold q-pa-xs">{{ props.row.invoice }}</div>
+          <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-blue-10' : 'bg-blue-2'">
+            <div class="text-bold q-pa-xs" :class="$q.dark.isActive ? 'text-blue-2' : 'text-blue-8'">{{ props.row.invoice }}</div>
           </div>
         </q-td>
       </template>
@@ -115,8 +115,8 @@
       <!-- Created At -->
       <template #body-cell-created_at="props">
         <q-td :props="props">
-          <div class="bg-yellow-3 rounded-borders">
-            <div class="text-yellow-9 text-bold q-pa-xs">{{ props.row.created_at }}</div>
+          <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-yellow-10' : 'bg-yellow-3'">
+            <div class="text-bold q-pa-xs" :class="$q.dark.isActive ? 'text-yellow-2' : 'text-yellow-9'">{{ props.row.created_at }}</div>
           </div>
         </q-td>
       </template>
@@ -213,7 +213,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'

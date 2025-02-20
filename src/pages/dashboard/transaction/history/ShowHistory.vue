@@ -11,7 +11,7 @@
 
       <q-card-section class="scroll" style="height: 77vh">
         <div class="row justify-center">
-          <div class="col-md-8 q-pa-md">
+          <div class="col-lg-8 col-md-7 col-xs-12 q-pa-md">
             <!-- Details card -->
             <q-card class="q-mb-md">
               <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
@@ -72,8 +72,8 @@
                   <div class="col-5 flex items-center text-h6 text-bold">{{ $t('dashboard.transaction.data.paymentAmount') }}</div>
                   <div class="col-2 flex items-center">:</div>
                   <div class="col-5">
-                    <div class="bg-blue-2 rounded-borders">
-                      <div class="text-blue-8 text-h5 text-bold text-center q-pa-sm">{{ rupiah(data.payment_amount) }}</div>
+                    <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-blue-10' : 'bg-blue-2'">
+                      <div class="text-h5 text-bold text-center q-pa-sm" :class="$q.dark.isActive ? 'text-blue-2' : 'text-blue-8'">{{ rupiah(data.payment_amount) }}</div>
                     </div>
                   </div>
                 </div>
@@ -83,8 +83,8 @@
                   <div class="col-5 flex items-center text-h6 text-bold">{{ $t('dashboard.transaction.data.changeAmount') }}</div>
                   <div class="col-2 flex items-center">:</div>
                   <div class="col-5">
-                    <div class="bg-green-2 rounded-borders">
-                      <div class="text-green-8 text-h5 text-bold text-center q-pa-sm">{{ rupiah(data.change_amount) }}</div>
+                    <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-green-10' : 'bg-green-2'">
+                      <div class="text-h5 text-bold text-center q-pa-sm" :class="$q.dark.isActive ? 'text-green-2' : 'text-green-8'">{{ rupiah(data.change_amount) }}</div>
                     </div>
                   </div>
                 </div>
@@ -99,7 +99,7 @@
             </q-card>
           </div>
 
-          <div class="col-md-3 q-pa-md">
+          <div class="col-lg-3 col-md-4 col-xs-12 q-pa-md">
             <!-- Note card -->
             <q-card class="q-pb-xl" style="height: 100%">
               <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
@@ -121,6 +121,14 @@
                 <!-- Customer -->
                 <q-list dense>
                   <q-item>
+                    <q-item-section>{{ t('dashboard.transaction.data.invoice') }}</q-item-section>
+                    <q-item-section class="text-subtitle2" side>{{ data.invoice }}</q-item-section>
+                  </q-item>
+                  <q-item>
+                    <q-item-section>{{ t('dashboard.transaction.data.createdAt') }}</q-item-section>
+                    <q-item-section class="text-subtitle2" side>{{ data.created_at }}</q-item-section>
+                  </q-item>
+                  <q-item>
                     <q-item-section>{{ t('dashboard.transaction.data.name') }}</q-item-section>
                     <q-item-section side>{{ data.name }}</q-item-section>
                   </q-item>
@@ -137,8 +145,7 @@
                   <q-item v-for="detail in data.transactiondetails" :key="detail.id" class="column">
                     <q-item-section class="text-bold">{{ detail.product_name }}</q-item-section>
                     <div class="row">
-                      <div class="col text-grey text-left">{{ rupiah(detail.product_price) }}</div>
-                      <div class="col text-grey text-center">x{{ detail.quantity }}</div>
+                      <div class="col text-grey text-left">{{ rupiah(detail.product_price) }} x {{ detail.quantity }}</div>
                       <div class="col text-grey text-right">{{ rupiah(detail.total_price) }}</div>
                     </div>
                   </q-item>
@@ -204,6 +211,7 @@ const { t } = useI18n()
 const { item } = defineProps(['item'])
 const emits = defineEmits(['created'])
 const data = ref({
+  invoice: item.invoice,
   name: item.name,
   payment_type: item.payment_type,
   total_price: item.total_price,
@@ -212,6 +220,7 @@ const data = ref({
   money_amount: item.money_amount,
   change_amount: item.change_amount,
   notes: item.notes,
+  created_at: item.created_at,
   transactiondetails: item.transactiondetails
 })
 

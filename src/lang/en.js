@@ -90,7 +90,7 @@ export default {
       categoryMenu: 'Categories',
       productMenu: 'Products',
       contactMenu: 'Contact',
-      taxDiscountMenu: 'Tax & Discount',
+      discountMenu: 'Discount',
       transactionMenu: 'Transactions',
       transactionHistoryMenu: 'Transaction Histories',
       salesReportMenu: 'Sales Reports',

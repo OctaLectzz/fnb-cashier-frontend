@@ -12,7 +12,7 @@
 
         <q-card-section class="scroll" style="height: 77vh">
           <div class="row justify-center">
-            <div class="col-md-8 q-pa-md">
+            <div class="col-lg-8 col-md-7 col-xs-12 q-pa-md">
               <!-- Details card -->
               <q-card class="q-mb-md">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
@@ -105,7 +105,7 @@
               </q-card>
             </div>
 
-            <div class="col-md-3 q-pa-md">
+            <div class="col-lg-3 col-md-4 col-xs-12 q-pa-md">
               <!-- Note card -->
               <q-card class="q-pb-xl" style="height: 100%">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
@@ -143,8 +143,7 @@
                     <q-item v-for="detail in data.transactiondetails" :key="detail.id" class="column">
                       <q-item-section class="text-bold">{{ detail.name }}</q-item-section>
                       <div class="row">
-                        <div class="col text-grey text-left">{{ rupiah(detail.purchase_price) }}</div>
-                        <div class="col text-grey text-center">x{{ detail.quantity }}</div>
+                        <div class="col text-grey text-left">{{ rupiah(detail.product_price) }} x{{ detail.quantity }}</div>
                         <div class="col text-grey text-right">{{ rupiah(detail.total_price) }}</div>
                       </div>
                     </q-item>

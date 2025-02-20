@@ -4,7 +4,7 @@
       <q-card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
         <div class="row justify-center">
           <!-- Name -->
-          <div class="col-md-6 col-xs-12 q-pr-md">
+          <div class="col-md-6 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.transaction.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -13,7 +13,7 @@
           </div>
 
           <!-- Payment Type -->
-          <div class="col-md-6 col-xs-12 q-pl-md">
+          <div class="col-md-6 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.transaction.data.paymentType') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -33,14 +33,16 @@
               required
             />
           </div>
-        </div>
 
-        <!-- Checkout Button -->
-        <q-btn color="primary" :label="t('dashboard.transaction.checkoutBtn')" :disable="disabledButton" class="full-width q-my-md" @click="detailItemDialog = true" no-caps>
-          <q-dialog v-model="detailItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
-            <DetailTransaction @created="itemCreated" :item="data" />
-          </q-dialog>
-        </q-btn>
+          <div class="col-12 q-pa-sm">
+            <!-- Checkout Button -->
+            <q-btn color="primary" :label="t('dashboard.transaction.checkoutBtn')" :disable="disabledButton" class="full-width q-my-md" @click="detailItemDialog = true" no-caps>
+              <q-dialog v-model="detailItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
+                <DetailTransaction @created="itemCreated" :item="data" />
+              </q-dialog>
+            </q-btn>
+          </div>
+        </div>
 
         <div v-for="item in items" :key="item.id" class="q-my-sm">
           <!-- Category Name -->
@@ -48,7 +50,7 @@
 
           <!-- Products -->
           <div class="row">
-            <div v-for="product in item.products" :key="product.id" class="dashboard-card q-pa-sm col-xs-4 col-sm-3 col-md-2 col-lg-2 grid-style-transition" @click="addToCart(product)">
+            <div v-for="product in item.products" :key="product.id" class="dashboard-card q-pa-sm col-xs-6 col-sm-3 col-md-3 col-lg-3 grid-style-transition" @click="addToCart(product)">
               <q-card :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'" class="dashboard-transaction-card q-pa-sm" flat bordered>
                 <!-- Image -->
                 <q-responsive :ratio="1 / 1" style="width: 100%">

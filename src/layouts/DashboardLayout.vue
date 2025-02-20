@@ -149,12 +149,12 @@
             <q-item-section>{{ $t('dashboard.sidebar.productMenu') }}</q-item-section>
           </q-item>
 
-          <!-- Tax & Discount -->
-          <q-item :to="{ name: 'dashboard.taxdiscount' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
+          <!-- Discount -->
+          <q-item :to="{ name: 'dashboard.discount' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text q-py-md">
             <q-item-section avatar>
               <q-icon name="discount" size="20px" />
             </q-item-section>
-            <q-item-section>{{ $t('dashboard.sidebar.taxDiscountMenu') }}</q-item-section>
+            <q-item-section>{{ $t('dashboard.sidebar.discountMenu') }}</q-item-section>
           </q-item>
 
           <!-- CASHIER -->

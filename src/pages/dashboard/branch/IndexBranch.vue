@@ -73,8 +73,8 @@
       <!-- Branch Code -->
       <template #body-cell-branch_code="props">
         <q-td :props="props">
-          <div class="bg-blue-2 rounded-borders">
-            <div class="text-blue-8 text-bold q-pa-xs">{{ props.row.branch_code }}</div>
+          <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-blue-10' : 'bg-blue-2'">
+            <div class="text-bold q-pa-xs" :class="$q.dark.isActive ? 'text-blue-2' : 'text-blue-8'">{{ props.row.branch_code }}</div>
           </div>
         </q-td>
       </template>
@@ -82,7 +82,7 @@
       <!-- Image -->
       <template #body-cell-image="props">
         <q-td :props="props">
-          <q-responsive :ratio="4 / 3" class="col" style="width: 220px">
+          <q-responsive :ratio="4 / 3" style="width: 220px">
             <img :src="url + '/branches/' + props.row.image" class="dashboard-image" />
           </q-responsive>
         </q-td>
@@ -136,9 +136,9 @@
       <!-- Grid -->
       <template v-slot:item="props">
         <div class="dashboard-card q-pa-md col-xs-12 col-sm-4 col-md-4 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
-          <q-card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
+          <q-card card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
             <!-- Image -->
-            <q-responsive :ratio="4 / 3" class="col" style="width: 100%">
+            <q-responsive :ratio="4 / 3" style="width: 100%">
               <img :src="url + '/branches/' + props.row.image" class="dashboard-image" />
             </q-responsive>
 
@@ -147,19 +147,19 @@
 
             <q-card-section class="q-pb-xl">
               <!-- Email -->
-              <div>
+              <div class="text-body1 q-ma-sm">
                 <span class="text-bold">{{ $t('dashboard.branch.data.email') }} :</span>
                 {{ props.row.email }}
               </div>
 
               <!-- Phone Number -->
-              <div>
+              <div class="text-body1 q-ma-sm">
                 <span class="text-bold">{{ $t('dashboard.branch.data.phoneNumber') }} :</span>
                 {{ props.row.phone_number }}
               </div>
 
               <!-- Address -->
-              <div>
+              <div class="text-body1 q-ma-sm">
                 <span class="text-bold">{{ $t('dashboard.branch.data.address') }} :</span>
                 {{ props.row.address }}
               </div>
