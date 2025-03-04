@@ -3,7 +3,7 @@
     <q-form @submit="editData">
       <q-card style="min-width: 400px">
         <q-card-section class="row items-center q-py-sm">
-          <div class="text-h6">{{ $t('dashboard.product.editText') }}</div>
+          <div class="text-h6">{{ $t('dashboard.main.product.editText') }}</div>
           <q-space />
           <q-btn icon="close" flat round dense v-close-popup />
         </q-card-section>
@@ -16,7 +16,7 @@
             <div class="col-lg-2 col-md-3 q-pa-md">
               <q-card class="q-pb-xl">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
-                  <div class="text-body1 text-bold">{{ $t('dashboard.product.data.image') }}</div>
+                  <div class="text-body1 text-bold">{{ $t('dashboard.main.product.data.image') }}</div>
                 </q-card-section>
 
                 <q-separator />
@@ -42,7 +42,7 @@
             <div class="col-lg-9 col-md-8 q-pa-md">
               <q-card class="q-pb-xl" style="height: 100%">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
-                  <div class="text-body1 text-bold">{{ $t('dashboard.product.detailCard') }}</div>
+                  <div class="text-body1 text-bold">{{ $t('dashboard.main.product.detailCard') }}</div>
                 </q-card-section>
 
                 <q-separator />
@@ -52,7 +52,7 @@
                     <!-- Name -->
                     <div class="col-12 q-pa-sm">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.name') }}
+                        {{ $t('dashboard.main.product.data.name') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
                       <q-input v-model="data.name" :placeholder="$t('public.exampleText') + 'Chocolate Cake'" :rules="rules.name" outlined dense required autofocus />
@@ -61,7 +61,7 @@
                     <!-- Category -->
                     <div class="col-md-6 col-xs-12 q-pa-sm">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.category') }}
+                        {{ $t('dashboard.main.product.data.category') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
                       <q-select v-model="data.category" :options="categoryOptions" @filter="categoryFilter" input-debounce="0" use-input fill-input emit-value hide-selected outlined dense required />
@@ -70,7 +70,7 @@
                     <!-- SKU -->
                     <div class="col-md-6 col-xs-12 q-pa-sm">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.sku') }}
+                        {{ $t('dashboard.main.product.data.sku') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
                       <q-input v-model="data.sku" :placeholder="$t('public.exampleText') + 'CS0001'" :rules="rules.sku" v-uppercase outlined dense required />
@@ -79,7 +79,7 @@
                     <!-- Min Purchase -->
                     <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.minPurchase') }}
+                        {{ $t('dashboard.main.product.data.minPurchase') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
                       </div>
                       <q-input v-model="data.min_purchase" type="number" placeholder="Default : 1" mask="####" outlined dense />
@@ -88,7 +88,7 @@
                     <!-- Selling Price -->
                     <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.sellingPrice') }}
+                        {{ $t('dashboard.main.product.data.sellingPrice') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
                       </div>
                       <q-input v-model="format.selling_price" @input="updateRupiah('selling_price')" outlined dense />
@@ -97,7 +97,7 @@
                     <!-- Purchase Price -->
                     <div class="col-md-4 col-xs-12 q-pa-sm">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.purchasePrice') }}
+                        {{ $t('dashboard.main.product.data.purchasePrice') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
                       <q-input v-model="format.purchase_price" :rules="rules.purchase_price" @input="updateRupiah('purchase_price')" outlined dense required />
@@ -106,7 +106,7 @@
                     <!-- Length -->
                     <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.length') }}(cm)
+                        {{ $t('dashboard.main.product.data.length') }}(cm)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
                       </div>
                       <q-input v-model="data.length" type="number" placeholder="20 cm" mask="###" outlined dense />
@@ -115,7 +115,7 @@
                     <!-- Width -->
                     <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.width') }}(cm)
+                        {{ $t('dashboard.main.product.data.width') }}(cm)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
                       </div>
                       <q-input v-model="data.width" type="number" placeholder="20 cm" mask="###" outlined dense />
@@ -124,7 +124,7 @@
                     <!-- Height -->
                     <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.height') }}(cm)
+                        {{ $t('dashboard.main.product.data.height') }}(cm)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
                       </div>
                       <q-input v-model="data.height" type="number" placeholder="20 cm" mask="###" outlined dense />
@@ -133,7 +133,7 @@
                     <!-- Unit -->
                     <div class="col-md-4 col-xs-12 q-pa-sm">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.unit') }}
+                        {{ $t('dashboard.main.product.data.unit') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
                       <q-input v-model="data.unit" :rules="rules.unit" placeholder="Porsi" outlined dense required />
@@ -142,7 +142,7 @@
                     <!-- Weight -->
                     <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.weight') }}(gram)
+                        {{ $t('dashboard.main.product.data.weight') }}(gram)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
                       </div>
                       <q-input v-model="data.weight" type="number" placeholder="20 gram" mask="###" outlined dense />
@@ -151,11 +151,11 @@
                     <!-- Status -->
                     <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
-                        {{ $t('dashboard.product.data.status') }}
+                        {{ $t('dashboard.main.product.data.status') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
-                      <q-btn v-model="data.status" color="green" :label="$t('dashboard.product.data.statusActive')" :outline="data.status == 0" class="q-mx-xs" @click="data.status = 1" />
-                      <q-btn v-model="data.status" color="red" :label="$t('dashboard.product.data.statusInactive')" :outline="data.status == 1" class="q-mx-xs" @click="data.status = 0" />
+                      <q-btn v-model="data.status" color="green" :label="$t('dashboard.main.product.data.statusActive')" :outline="data.status == 0" class="q-mx-xs" @click="data.status = 1" />
+                      <q-btn v-model="data.status" color="red" :label="$t('dashboard.main.product.data.statusInactive')" :outline="data.status == 1" class="q-mx-xs" @click="data.status = 0" />
                     </div>
                   </div>
                 </q-card-section>
@@ -271,22 +271,24 @@ const imageChange = async (e) => {
 
 // Validate
 const rules = ref({
-  name: [(v) => !!v || t('dashboard.product.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.product.validate.nameMaxLength')],
-  category: [(v) => !!v || t('dashboard.product.validate.categoryRequired')],
+  name: [(v) => !!v || t('dashboard.main.product.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.main.product.validate.nameMaxLength')],
+  category: [(v) => !!v || t('dashboard.main.product.validate.categoryRequired')],
   sku: [
-    (v) => !!v || t('dashboard.product.validate.skuRequired'),
-    (v) => v.length <= 10 || t('dashboard.product.validate.skuMaxLength'),
+    (v) => !!v || t('dashboard.main.product.validate.skuRequired'),
+    (v) => v.length <= 10 || t('dashboard.main.product.validate.skuMaxLength'),
     (v) => {
       if (typeof v === 'string') {
         if (products.value) {
-          return !products.value.some((product) => product.sku.toLowerCase() === v.toLowerCase() && product.sku.toLowerCase() !== item.sku.toLowerCase()) || t('dashboard.product.validate.skuAlready')
+          return (
+            !products.value.some((product) => product.sku.toLowerCase() === v.toLowerCase() && product.sku.toLowerCase() !== item.sku.toLowerCase()) || t('dashboard.main.product.validate.skuAlready')
+          )
         }
       }
       return true
     }
   ],
-  purchase_price: [(v) => !!v || t('dashboard.product.validate.purchasePriceRequired')],
-  unit: [(v) => !!v || t('dashboard.product.validate.unitRequired'), (v) => v.length <= 10 || t('dashboard.product.validate.unitMaxLength')]
+  purchase_price: [(v) => !!v || t('dashboard.main.product.validate.purchasePriceRequired')],
+  unit: [(v) => !!v || t('dashboard.main.product.validate.unitRequired'), (v) => v.length <= 10 || t('dashboard.main.product.validate.unitMaxLength')]
 })
 
 // Disabled Button
@@ -303,12 +305,12 @@ const editData = async () => {
 
     await useProductStore().edit(data.value)
 
-    toast.success(t('dashboard.product.successEditMsg'))
+    toast.success(t('dashboard.main.product.successEditMsg'))
     emits('edited')
   } catch (error) {
     console.error('Error submitting form:', error)
 
-    toast.error(error.response.data.message || t('dashboard.product.failedEditMsg'))
+    toast.error(error.response.data.message || t('dashboard.main.product.failedEditMsg'))
   }
   loading.value = false
 }

@@ -2,7 +2,7 @@ const routes = [
   // Home
   {
     path: '/',
-    component: () => import('/src/layouts/MainLayout.vue'),
+    component: () => import('/src/layouts/LandingLayout.vue'),
     children: [
       { path: '', name: 'home', component: () => import('/src/pages/landing/IndexPage.vue') },
       { path: '/login', name: 'home.login', component: () => import('/src/pages/auth/LoginPage.vue') },
@@ -12,21 +12,31 @@ const routes = [
     ]
   },
 
-  // Dashboard
+  // Main
   {
-    path: '/dashboard',
-    component: () => import('/src/layouts/DashboardLayout.vue'),
+    path: '/main',
+    component: () => import('/src/layouts/MainLayout.vue'),
     meta: { requiresAuth: true },
     children: [
-      { path: 'home', name: 'dashboard.home', component: () => import('/src/pages/dashboard/IndexDashboard.vue') },
-      { path: 'profile', name: 'dashboard.profile', component: () => import('/src/components/ProfileView.vue') },
-      { path: 'changepassword', name: 'dashboard.changepassword', component: () => import('/src/components/ChangePasswordView.vue') },
-      { path: 'branch', name: 'dashboard.branch', component: () => import('/src/pages/dashboard/branch/IndexBranch.vue') },
-      { path: 'category', name: 'dashboard.category', component: () => import('/src/pages/dashboard/category/IndexCategory.vue') },
-      { path: 'product', name: 'dashboard.product', component: () => import('/src/pages/dashboard/product/IndexProduct.vue') },
-      { path: 'transaction', name: 'dashboard.transaction', component: () => import('/src/pages/dashboard/transaction/create/IndexCreate.vue') },
-      { path: 'transaction-history', name: 'dashboard.transactionhistory', component: () => import('/src/pages/dashboard/transaction/history/IndexHistory.vue') },
-      { path: 'setting', name: 'dashboard.setting', component: () => import('/src/pages/dashboard/setting/IndexSetting.vue') }
+      { path: 'home', name: 'main.home', component: () => import('/src/pages/dashboard/main/IndexMain.vue') },
+      { path: 'profile', name: 'main.profile', component: () => import('/src/pages/dashboard/ProfilePage.vue') },
+      { path: 'changepassword', name: 'main.changepassword', component: () => import('/src/pages/dashboard/ChangePasswordPage.vue') },
+      { path: 'branch', name: 'main.branch', component: () => import('/src/pages/dashboard/main/branch/IndexBranch.vue') },
+      { path: 'category', name: 'main.category', component: () => import('/src/pages/dashboard/main/category/IndexCategory.vue') },
+      { path: 'product', name: 'main.product', component: () => import('/src/pages/dashboard/main/product/IndexProduct.vue') },
+      { path: 'transaction', name: 'main.transaction', component: () => import('/src/pages/dashboard/main/transaction/create/IndexCreate.vue') },
+      { path: 'transaction-history', name: 'main.transactionhistory', component: () => import('/src/pages/dashboard/main/transaction/history/IndexHistory.vue') },
+      { path: 'setting', name: 'main.setting', component: () => import('/src/pages/dashboard/main/setting/IndexSetting.vue') }
+    ]
+  },
+
+  // Employee
+  {
+    path: '/employee',
+    component: () => import('/src/layouts/EmployeeLayout.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      { path: 'home', name: 'employee.home', component: () => import('/src/pages/dashboard/employee/IndexEmployee.vue') }
     ]
   }
 ]

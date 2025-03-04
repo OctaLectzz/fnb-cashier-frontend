@@ -3,7 +3,7 @@
     <q-form @submit="createData">
       <q-card style="min-width: 400px">
         <q-card-section class="row items-center q-py-sm">
-          <div class="text-h6">{{ $t('dashboard.category.createText') }}</div>
+          <div class="text-h6">{{ $t('dashboard.main.category.createText') }}</div>
           <q-space />
           <q-btn icon="close" flat round dense v-close-popup />
         </q-card-section>
@@ -14,7 +14,7 @@
           <!-- Name -->
           <div class="col-md-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
-              {{ $t('dashboard.category.data.name') }}
+              {{ $t('dashboard.main.category.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </div>
             <q-input v-model="data.name" placeholder="Makanan" :rules="rules.name" outlined dense required autofocus />
@@ -23,7 +23,7 @@
           <!-- Description -->
           <div class="col-md-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
-              {{ $t('dashboard.category.data.description') }}
+              {{ $t('dashboard.main.category.data.description') }}
               <span class="text-grey">{{ $t('public.optionalText') }}</span>
             </div>
             <q-input v-model="data.description" type="textarea" outlined dense />
@@ -76,12 +76,12 @@ onMounted(() => {
 // Validate
 const rules = ref({
   name: [
-    (v) => !!v || t('dashboard.category.validate.nameRequired'),
-    (v) => v.length <= 50 || t('dashboard.category.validate.nameMaxLength'),
+    (v) => !!v || t('dashboard.main.category.validate.nameRequired'),
+    (v) => v.length <= 50 || t('dashboard.main.category.validate.nameMaxLength'),
     (v) => {
       if (typeof v === 'string') {
         if (categories.value) {
-          return !categories.value.some((category) => category.name.toLowerCase() === v.toLowerCase()) || t('dashboard.category.validate.nameAlready')
+          return !categories.value.some((category) => category.name.toLowerCase() === v.toLowerCase()) || t('dashboard.main.category.validate.nameAlready')
         }
       }
       return true
@@ -99,12 +99,12 @@ const createData = async () => {
   try {
     await useCategoryStore().create(data.value)
 
-    toast.success(t('dashboard.category.successCreateMsg'))
+    toast.success(t('dashboard.main.category.successCreateMsg'))
     emits('created')
   } catch (error) {
     console.error('Error submitting form:', error)
 
-    toast.error(error.response.data.message || t('dashboard.category.failedCreateMsg'))
+    toast.error(error.response.data.message || t('dashboard.main.category.failedCreateMsg'))
   }
   loading.value = false
 }

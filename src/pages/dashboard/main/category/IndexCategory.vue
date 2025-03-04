@@ -10,7 +10,7 @@
       :grid="grid"
       :filter="filter"
       separator="cell"
-      :title="$t('dashboard.category.titleText')"
+      :title="$t('dashboard.main.category.titleText')"
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
@@ -40,7 +40,7 @@
 
       <!-- Create -->
       <template v-slot:top-left>
-        <q-btn color="primary" :label="$t('dashboard.category.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
+        <q-btn color="primary" :label="$t('dashboard.main.category.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
         <q-dialog v-model="createItemDialog" persistent>
           <CreateItem @created="itemCreated" />
         </q-dialog>
@@ -104,19 +104,19 @@
             <q-card-section class="q-pb-xl">
               <!-- Name -->
               <div class="text-body1 q-my-md">
-                <span class="text-bold">{{ $t('dashboard.category.data.name') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.category.data.name') }} :</span>
                 {{ props.row.name }}
               </div>
 
               <!-- Slug -->
               <div class="text-body1 q-my-md">
-                <span class="text-bold">{{ $t('dashboard.category.data.slug') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.category.data.slug') }} :</span>
                 {{ props.row.slug }}
               </div>
 
               <!-- Description -->
               <div class="text-body1 q-my-md">
-                <span class="text-bold">{{ $t('dashboard.category.data.description') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.category.data.description') }} :</span>
                 <span class="text-long">{{ props.row.description }}</span>
               </div>
             </q-card-section>
@@ -194,12 +194,12 @@ const deleteItemDialog = (row) => {
     try {
       await useCategoryStore().delete(row.id)
 
-      toast.success(t('dashboard.category.successDeleteMsg'))
+      toast.success(t('dashboard.main.category.successDeleteMsg'))
       getItem()
     } catch (error) {
       console.error('Error submitting form:', error)
 
-      toast.error(error.response.data.message || t('dashboard.category.failedDeleteMsg'))
+      toast.error(error.response.data.message || t('dashboard.main.category.failedDeleteMsg'))
     }
   })
 }
@@ -216,14 +216,14 @@ const currencyColumns = [
   {
     name: 'name',
     field: 'name',
-    label: t('dashboard.category.data.name'),
+    label: t('dashboard.main.category.data.name'),
     align: 'center',
     sortable: true
   },
   {
     name: 'description',
     field: 'description',
-    label: t('dashboard.category.data.description'),
+    label: t('dashboard.main.category.data.description'),
     align: 'left'
   },
   {

@@ -2,7 +2,7 @@
   <div>
     <q-card style="min-width: 400px">
       <q-card-section class="row items-center q-py-sm">
-        <div class="text-h6">{{ $t('dashboard.transaction.detailText') }}</div>
+        <div class="text-h6">{{ $t('dashboard.main.transaction.detailText') }}</div>
         <q-space />
         <q-btn icon="close" flat round dense v-close-popup />
       </q-card-section>
@@ -15,14 +15,14 @@
             <!-- Details card -->
             <q-card class="q-mb-md">
               <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
-                <div class="text-body1 text-bold">{{ $t('dashboard.transaction.detailCard') }}</div>
+                <div class="text-body1 text-bold">{{ $t('dashboard.main.transaction.detailCard') }}</div>
               </q-card-section>
 
               <q-separator />
 
               <q-card-section class="q-pa-md">
                 <!-- Transaction Details -->
-                <div class="text-body1 text-bold">{{ $t('dashboard.transaction.data.transactiondetails') }}</div>
+                <div class="text-body1 text-bold">{{ $t('dashboard.main.transaction.data.transactiondetails') }}</div>
                 <div class="row">
                   <div v-for="(item, index) in data.transactiondetails" :key="index" class="col-md-6 col-xs-12 q-pa-xs">
                     <q-card :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'" class="q-my-xs" style="border-radius: 8px" flat>
@@ -47,7 +47,7 @@
             <!-- Payment Details card -->
             <q-card class="q-mt-md">
               <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
-                <div class="text-body1 text-bold">{{ $t('dashboard.transaction.paymentDetailsCard') }}</div>
+                <div class="text-body1 text-bold">{{ $t('dashboard.main.transaction.paymentDetailsCard') }}</div>
               </q-card-section>
 
               <q-separator />
@@ -55,21 +55,21 @@
               <q-card-section class="q-pa-md">
                 <!-- Total Price -->
                 <div class="row q-my-sm">
-                  <div class="col-5 text-body1 text-bold">{{ $t('dashboard.transaction.data.totalPrice') }}</div>
+                  <div class="col-5 text-body1 text-bold">{{ $t('dashboard.main.transaction.data.totalPrice') }}</div>
                   <div class="col-2">:</div>
                   <div class="col-5">{{ rupiah(data.total_price) }}</div>
                 </div>
 
                 <!-- Discount -->
                 <div class="row q-my-sm">
-                  <div class="col-5 text-body1 text-bold">{{ $t('dashboard.transaction.data.discount') }}</div>
+                  <div class="col-5 text-body1 text-bold">{{ $t('dashboard.main.transaction.data.discount') }}</div>
                   <div class="col-2">:</div>
                   <div class="col-5">{{ data.discount + '%' }}</div>
                 </div>
 
                 <!-- Payment Amount -->
                 <div class="row q-my-md">
-                  <div class="col-5 flex items-center text-h6 text-bold">{{ $t('dashboard.transaction.data.paymentAmount') }}</div>
+                  <div class="col-5 flex items-center text-h6 text-bold">{{ $t('dashboard.main.transaction.data.paymentAmount') }}</div>
                   <div class="col-2 flex items-center">:</div>
                   <div class="col-5">
                     <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-blue-10' : 'bg-blue-2'">
@@ -80,7 +80,7 @@
 
                 <!-- Change Amount -->
                 <div class="row q-my-md">
-                  <div class="col-5 flex items-center text-h6 text-bold">{{ $t('dashboard.transaction.data.changeAmount') }}</div>
+                  <div class="col-5 flex items-center text-h6 text-bold">{{ $t('dashboard.main.transaction.data.changeAmount') }}</div>
                   <div class="col-2 flex items-center">:</div>
                   <div class="col-5">
                     <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-green-10' : 'bg-green-2'">
@@ -91,7 +91,7 @@
 
                 <!-- Notes -->
                 <div class="row q-my-md">
-                  <div class="col-5 text-text-body1 text-bold">{{ $t('dashboard.transaction.data.notes') }}</div>
+                  <div class="col-5 text-text-body1 text-bold">{{ $t('dashboard.main.transaction.data.notes') }}</div>
                   <div class="col-2">:</div>
                   <div class="col-5">{{ data.notes ?? '-' }}</div>
                 </div>
@@ -103,7 +103,7 @@
             <!-- Note card -->
             <q-card class="q-pb-xl" style="height: 100%">
               <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
-                <div class="text-body1 text-bold">{{ $t('dashboard.transaction.noteCard') }}</div>
+                <div class="text-body1 text-bold">{{ $t('dashboard.main.transaction.noteCard') }}</div>
               </q-card-section>
 
               <q-separator />
@@ -121,19 +121,19 @@
                 <!-- Customer -->
                 <q-list dense>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.invoice') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.invoice') }}</q-item-section>
                     <q-item-section class="text-subtitle2" side>{{ data.invoice }}</q-item-section>
                   </q-item>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.createdAt') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.createdAt') }}</q-item-section>
                     <q-item-section class="text-subtitle2" side>{{ data.created_at }}</q-item-section>
                   </q-item>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.name') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.name') }}</q-item-section>
                     <q-item-section side>{{ data.name }}</q-item-section>
                   </q-item>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.paymentType') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.paymentType') }}</q-item-section>
                     <q-item-section side>{{ data.payment_type }}</q-item-section>
                   </q-item>
                 </q-list>
@@ -156,30 +156,30 @@
                 <!-- Pricing -->
                 <q-list dense>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.totalPrice') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.totalPrice') }}</q-item-section>
                     <q-item-section side>{{ rupiah(data.total_price) }}</q-item-section>
                   </q-item>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.discount') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.discount') }}</q-item-section>
                     <q-item-section side>{{ data.discount }}%</q-item-section>
                   </q-item>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.paymentAmount') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.paymentAmount') }}</q-item-section>
                     <q-item-section side>{{ rupiah(data.payment_amount) }}</q-item-section>
                   </q-item>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.moneyAmount') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.moneyAmount') }}</q-item-section>
                     <q-item-section side>{{ rupiah(data.money_amount) }}</q-item-section>
                   </q-item>
                   <q-item>
-                    <q-item-section>{{ t('dashboard.transaction.data.changeAmount') }}</q-item-section>
+                    <q-item-section>{{ t('dashboard.main.transaction.data.changeAmount') }}</q-item-section>
                     <q-item-section side>{{ rupiah(data.change_amount) }}</q-item-section>
                   </q-item>
                 </q-list>
 
                 <q-separator class="q-my-md" />
 
-                <div class="text-center text-caption text-grey">{{ t('dashboard.transaction.thankYouMsg') }}</div>
+                <div class="text-center text-caption text-grey">{{ t('dashboard.main.transaction.thankYouMsg') }}</div>
               </q-card-section>
             </q-card>
           </div>
@@ -190,7 +190,7 @@
 
       <q-card-actions align="right" class="text-primary">
         <q-btn color="primary" :label="t('public.cancelText')" flat v-close-popup />
-        <q-btn color="primary" :label="t('dashboard.transaction.printNotaBtn')" @click="printReceipt" no-caps>
+        <q-btn color="primary" :label="t('dashboard.main.transaction.printNotaBtn')" @click="printReceipt" no-caps>
           <template v-slot:loading>
             <q-spinner-gears />
           </template>

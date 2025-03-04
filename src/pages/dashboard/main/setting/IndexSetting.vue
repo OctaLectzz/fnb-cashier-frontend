@@ -3,7 +3,7 @@
     <q-form @submit="editData">
       <q-card flat>
         <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-2'" class="q-py-md">
-          <div class="text-h6 text-bold text-center">{{ $t('dashboard.setting.titleText') }}</div>
+          <div class="text-h6 text-bold text-center">{{ $t('dashboard.main.setting.titleText') }}</div>
         </q-card-section>
 
         <q-separator />
@@ -13,14 +13,14 @@
             <div class="col-sm-4 col-xs-10 q-pa-md">
               <q-card class="q-pb-xl">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-9' : 'bg-blue-grey-1'">
-                  <div class="text-body1 text-bold text-center">{{ $t('dashboard.setting.photoCard') }}</div>
+                  <div class="text-body1 text-bold text-center">{{ $t('dashboard.main.setting.photoCard') }}</div>
                 </q-card-section>
 
                 <q-separator />
 
                 <!-- Logo -->
                 <q-card-section class="text-center q-pa-lg">
-                  <div class="text-body1 text-bold">{{ $t('dashboard.setting.data.logo') }}</div>
+                  <div class="text-body1 text-bold">{{ $t('dashboard.main.setting.data.logo') }}</div>
                   <div class="q-pa-md q-my-sm" style="border: 1px solid var(--q-primary); border-radius: 20px">
                     <img ref="logo" :src="url + '/settings/' + data.logo" :style="'width:' + data.logo_size + 'px'" style="height: auto" />
                   </div>
@@ -33,7 +33,7 @@
                 <!-- Logo Size -->
                 <q-card-section class="q-pa-lg">
                   <div class="col-5 q-pa-sm">
-                    <div class="text-bold">{{ $t('dashboard.setting.data.bigLogo') }}</div>
+                    <div class="text-bold">{{ $t('dashboard.main.setting.data.bigLogo') }}</div>
                     <q-input v-model="data.logo_size" type="number" :rules="rules.logo_size" outlined dense>
                       <template #append>
                         <div class="text-h6 text-bold">px</div>
@@ -48,7 +48,7 @@
             <div class="col-sm-8 col-xs-10 q-pa-md">
               <q-card class="q-pb-xl" style="height: 100%">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-9' : 'bg-blue-grey-1'">
-                  <div class="text-body1 text-bold text-center">{{ $t('dashboard.setting.headerCard') }}</div>
+                  <div class="text-body1 text-bold text-center">{{ $t('dashboard.main.setting.headerCard') }}</div>
                 </q-card-section>
 
                 <q-separator />
@@ -56,25 +56,25 @@
                 <q-card-section class="q-pa-md">
                   <!-- Title -->
                   <div class="col-10 q-pa-sm">
-                    <div class="text-bold">{{ $t('dashboard.setting.data.settingName') }}</div>
+                    <div class="text-bold">{{ $t('dashboard.main.setting.data.settingName') }}</div>
                     <q-input v-model="data.title" :rules="rules.title" outlined dense />
                   </div>
 
                   <!-- Description -->
                   <div class="col-10 q-pa-sm">
-                    <div class="text-bold">{{ $t('dashboard.setting.data.description') }}</div>
+                    <div class="text-bold">{{ $t('dashboard.main.setting.data.description') }}</div>
                     <q-input type="textarea" v-model="data.description" outlined dense />
                   </div>
 
                   <!-- Address -->
                   <div class="col-10 q-pa-sm">
-                    <div class="text-bold">{{ $t('dashboard.setting.data.address') }}</div>
+                    <div class="text-bold">{{ $t('dashboard.main.setting.data.address') }}</div>
                     <q-input type="textarea" v-model="data.address" outlined dense />
                   </div>
 
                   <!-- About -->
                   <div class="col-10 q-pa-sm">
-                    <div class="text-bold">{{ $t('dashboard.setting.data.aboutUs') }}</div>
+                    <div class="text-bold">{{ $t('dashboard.main.setting.data.aboutUs') }}</div>
                     <q-editor v-model="data.about" :toolbar="toolbar" :fonts="fonts" style="width: 100%; min-height: 470px" />
                   </div>
                 </q-card-section>
@@ -202,8 +202,8 @@ const logoChange = async (e) => {
 
 // Validate
 const rules = ref({
-  title: [(v) => !!v || t('dashboard.setting.validate.titleRequired')],
-  logo_size: [(v) => !!v || t('dashboard.setting.validate.logoSizeRequired')]
+  title: [(v) => !!v || t('dashboard.main.setting.validate.titleRequired')],
+  logo_size: [(v) => !!v || t('dashboard.main.setting.validate.logoSizeRequired')]
 })
 
 // Disabled Button
@@ -216,11 +216,11 @@ const editData = async () => {
   try {
     await useSettingStore().edit(data.value)
 
-    toast.success(t('dashboard.setting.successEditMsg'))
+    toast.success(t('dashboard.main.setting.successEditMsg'))
   } catch (error) {
     console.error('Error submitting form:', error)
 
-    toast.error(error.response.data.message || t('dashboard.setting.failedEditMsg'))
+    toast.error(error.response.data.message || t('dashboard.main.setting.failedEditMsg'))
   }
   loading.value = false
 }

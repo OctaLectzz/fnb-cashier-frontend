@@ -10,7 +10,7 @@
       :grid="grid"
       :filter="filter"
       separator="cell"
-      :title="$t('dashboard.transaction.titleText')"
+      :title="$t('dashboard.main.transaction.titleText')"
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
@@ -84,10 +84,10 @@
           <div class="text-subtitle2">
             {{
               props.row.payment_type == 'cash'
-                ? $t('dashboard.transaction.data.cash')
+                ? $t('dashboard.main.transaction.data.cash')
                 : props.row.payment_type == 'qris'
-                ? $t('dashboard.transaction.data.qris')
-                : $t('dashboard.transaction.data.others')
+                ? $t('dashboard.main.transaction.data.qris')
+                : $t('dashboard.main.transaction.data.others')
             }}
           </div>
         </q-td>
@@ -145,37 +145,37 @@
             <q-card-section class="q-pb-xl">
               <!-- Invoice -->
               <div class="text-body1 q-my-sm">
-                <span class="text-bold">{{ $t('dashboard.transaction.data.invoice') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.transaction.data.invoice') }} :</span>
                 {{ props.row.invoice }}
               </div>
 
               <!-- Name -->
               <div class="text-body1 q-my-sm">
-                <span class="text-bold">{{ $t('dashboard.transaction.data.name') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.transaction.data.name') }} :</span>
                 {{ props.row.name }}
               </div>
 
               <!-- Price -->
               <div class="text-body1 q-my-sm">
-                <span class="text-bold">{{ $t('dashboard.transaction.data.price') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.transaction.data.price') }} :</span>
                 {{ rupiah(props.row.payment_amount) }}
               </div>
 
               <!-- Payment Type -->
               <div class="text-body1 q-my-sm">
-                <span class="text-bold">{{ $t('dashboard.transaction.data.paymentType') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.transaction.data.paymentType') }} :</span>
                 {{
                   props.row.payment_type == 'cash'
-                    ? $t('dashboard.transaction.data.cash')
+                    ? $t('dashboard.main.transaction.data.cash')
                     : props.row.payment_type == 'qris'
-                    ? $t('dashboard.transaction.data.qris')
-                    : $t('dashboard.transaction.data.others')
+                    ? $t('dashboard.main.transaction.data.qris')
+                    : $t('dashboard.main.transaction.data.others')
                 }}
               </div>
 
               <!-- Notes -->
               <div class="text-body1 q-my-sm">
-                <span class="text-bold">{{ $t('dashboard.transaction.data.notes') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.transaction.data.notes') }} :</span>
                 <span class="text-long">
                   {{ isExpanded[props.row.id] ? props.row.notes : truncatedText(props.row.notes) }}
                   <span v-if="wordCount(props.row.notes) > 10" class="cursor-pointer text-primary text-link" @click="toggleExpand(props.row.id)">
@@ -186,7 +186,7 @@
 
               <!-- Created At -->
               <div class="text-body1 q-my-sm">
-                <span class="text-bold">{{ $t('dashboard.transaction.data.createdAt') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.transaction.data.createdAt') }} :</span>
                 {{ props.row.created_at }}
               </div>
             </q-card-section>
@@ -263,12 +263,12 @@ const deleteItemDialog = (row) => {
     try {
       await useTransactionStore().delete(row.id)
 
-      toast.success(t('dashboard.transaction.successDeleteMsg'))
+      toast.success(t('dashboard.main.transaction.successDeleteMsg'))
       getItem()
     } catch (error) {
       console.error('Error submitting form:', error)
 
-      toast.error(error.response.data.message || t('dashboard.transaction.failedDeleteMsg'))
+      toast.error(error.response.data.message || t('dashboard.main.transaction.failedDeleteMsg'))
     }
   })
 }
@@ -285,42 +285,42 @@ const currencyColumns = [
   {
     name: 'invoice',
     field: 'invoice',
-    label: t('dashboard.transaction.data.invoice'),
+    label: t('dashboard.main.transaction.data.invoice'),
     align: 'center',
     sortable: true
   },
   {
     name: 'name',
     field: 'name',
-    label: t('dashboard.transaction.data.name'),
+    label: t('dashboard.main.transaction.data.name'),
     align: 'center',
     sortable: true
   },
   {
     name: 'payment_type',
     field: 'payment_type',
-    label: t('dashboard.transaction.data.paymentType'),
+    label: t('dashboard.main.transaction.data.paymentType'),
     align: 'center',
     sortable: true
   },
   {
     name: 'price',
     field: 'payment_amount',
-    label: t('dashboard.transaction.data.price'),
+    label: t('dashboard.main.transaction.data.price'),
     align: 'left',
     sortable: true
   },
   {
     name: 'notes',
     field: 'notes',
-    label: t('dashboard.transaction.data.notes'),
+    label: t('dashboard.main.transaction.data.notes'),
     align: 'left',
     sortable: true
   },
   {
     name: 'created_at',
     field: 'created_at',
-    label: t('dashboard.transaction.data.createdAt'),
+    label: t('dashboard.main.transaction.data.createdAt'),
     align: 'center',
     sortable: true
   },

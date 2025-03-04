@@ -6,22 +6,22 @@
           <!-- Name -->
           <div class="col-md-6 col-xs-12 q-pa-sm">
             <div class="text-bold">
-              {{ $t('dashboard.transaction.data.name') }}
+              {{ $t('dashboard.main.transaction.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </div>
-            <q-input v-model="data.name" :placeholder="$t('dashboard.transaction.data.namePlaceholder')" outlined dense required autofocus />
+            <q-input v-model="data.name" :placeholder="$t('dashboard.main.transaction.data.namePlaceholder')" outlined dense required autofocus />
           </div>
 
           <!-- Payment Type -->
           <div class="col-md-6 col-xs-12 q-pa-sm">
             <div class="text-bold">
-              {{ $t('dashboard.transaction.data.paymentType') }}
+              {{ $t('dashboard.main.transaction.data.paymentType') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </div>
             <q-select
               v-model="data.payment_type"
               :options="paymentTypeOptions"
-              :placeholder="$t('dashboard.transaction.data.paymentTypePlaceholder')"
+              :placeholder="$t('dashboard.main.transaction.data.paymentTypePlaceholder')"
               @filter="paymentTypeFilter"
               input-debounce="0"
               use-input
@@ -36,7 +36,7 @@
 
           <div class="col-12 q-pa-sm">
             <!-- Checkout Button -->
-            <q-btn color="primary" :label="t('dashboard.transaction.checkoutBtn')" :disable="disabledButton" class="full-width q-my-md" @click="detailItemDialog = true" no-caps>
+            <q-btn color="primary" :label="t('dashboard.main.transaction.checkoutBtn')" :disable="disabledButton" class="full-width q-my-md" @click="detailItemDialog = true" no-caps>
               <q-dialog v-model="detailItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
                 <DetailTransaction @created="itemCreated" :item="data" />
               </q-dialog>
@@ -67,7 +67,7 @@
 
             <!-- Product not available -->
             <div v-if="item.products.length == 0">
-              <div class="text-h6 text-grey text-bold">{{ $t('dashboard.transaction.noProductText') }}</div>
+              <div class="text-h6 text-grey text-bold">{{ $t('dashboard.main.transaction.noProductText') }}</div>
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@
     <div class="col-md-4 col-xs-12 q-pa-sm">
       <q-card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
         <!-- Reset Button -->
-        <q-btn color="red" :label="t('dashboard.transaction.resetBtn')" :disable="data.transactiondetails == 0" class="full-width q-my-sm" no-caps @click="resetCart" />
+        <q-btn color="red" :label="t('dashboard.main.transaction.resetBtn')" :disable="data.transactiondetails == 0" class="full-width q-my-sm" no-caps @click="resetCart" />
 
         <!-- Transaction Details -->
         <q-card v-for="(item, index) in data.transactiondetails" :key="index" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'" class="q-my-xs" style="border-radius: 8px" flat>
@@ -105,7 +105,7 @@
         <!-- Payment Amount -->
         <div class="text-h6 text-bold text-center q-my-md" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
           <q-separator />
-          <div class="q-py-sm">{{ t('dashboard.transaction.totalPrice') }}: {{ rupiah(data.total_price) }}</div>
+          <div class="q-py-sm">{{ t('dashboard.main.transaction.totalPrice') }}: {{ rupiah(data.total_price) }}</div>
         </div>
       </q-card>
     </div>
@@ -153,15 +153,15 @@ onMounted(() => {
 // Payment Type
 const paymentType = ref([
   {
-    label: t('dashboard.transaction.data.cash'),
+    label: t('dashboard.main.transaction.data.cash'),
     value: 'cash'
   },
   {
-    label: t('dashboard.transaction.data.qris'),
+    label: t('dashboard.main.transaction.data.qris'),
     value: 'qris'
   },
   {
-    label: t('dashboard.transaction.data.others'),
+    label: t('dashboard.main.transaction.data.others'),
     value: 'others'
   }
 ])

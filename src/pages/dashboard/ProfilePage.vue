@@ -280,7 +280,7 @@ const editProfile = async () => {
   try {
     await useProfileStore().editprofile(data.value)
 
-    toast.success(t('auth.successProfileEditMsg'))
+    toast.success(t('profile.successProfileEditMsg'))
     router.back()
     setTimeout(() => {
       window.location.reload()
@@ -288,7 +288,7 @@ const editProfile = async () => {
   } catch (error) {
     console.error('Error submitting form:', error)
 
-    toast.success(t('auth.successProfileEditMsg'))
+    toast.success(t('profile.successProfileEditMsg'))
   }
   saveloading.value = false
 }

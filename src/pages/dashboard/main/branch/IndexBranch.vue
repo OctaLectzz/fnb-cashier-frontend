@@ -10,7 +10,7 @@
       :grid="grid"
       :filter="filter"
       separator="cell"
-      :title="$t('dashboard.branch.titleText')"
+      :title="$t('dashboard.main.branch.titleText')"
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
@@ -40,7 +40,7 @@
 
       <!-- Create -->
       <template v-slot:top-left>
-        <q-btn color="primary" :label="$t('dashboard.branch.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
+        <q-btn color="primary" :label="$t('dashboard.main.branch.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
         <q-dialog v-model="createItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
           <CreateItem @created="itemCreated" />
         </q-dialog>
@@ -99,15 +99,15 @@
       <template #body-cell-detail="props">
         <q-td :props="props">
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.branch.data.email') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.branch.data.email') }} :</span>
             {{ props.row.email }}
           </div>
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.branch.data.phoneNumber') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.branch.data.phoneNumber') }} :</span>
             {{ props.row.phone_number }}
           </div>
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.branch.data.address') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.branch.data.address') }} :</span>
             {{ props.row.address }}
           </div>
         </q-td>
@@ -116,8 +116,8 @@
       <!-- Status -->
       <template #body-cell-status="props">
         <q-td :props="props">
-          <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.branch.data.statusActive')" />
-          <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.branch.data.statusInactive')" />
+          <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.main.branch.data.statusActive')" />
+          <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.main.branch.data.statusInactive')" />
         </q-td>
       </template>
 
@@ -148,26 +148,26 @@
             <q-card-section class="q-pb-xl">
               <!-- Email -->
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.branch.data.email') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.branch.data.email') }} :</span>
                 {{ props.row.email }}
               </div>
 
               <!-- Phone Number -->
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.branch.data.phoneNumber') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.branch.data.phoneNumber') }} :</span>
                 {{ props.row.phone_number }}
               </div>
 
               <!-- Address -->
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.branch.data.address') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.branch.data.address') }} :</span>
                 {{ props.row.address }}
               </div>
 
               <!-- Status -->
               <div class="absolute absolute-bottom-right">
-                <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.branch.data.statusActive')" />
-                <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.branch.data.statusInactive')" />
+                <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.main.branch.data.statusActive')" />
+                <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.main.branch.data.statusInactive')" />
               </div>
 
               <!-- Action -->
@@ -245,12 +245,12 @@ const deleteItemDialog = (row) => {
     try {
       await useBranchStore().delete(row.id)
 
-      toast.success(t('dashboard.branch.successDeleteMsg'))
+      toast.success(t('dashboard.main.branch.successDeleteMsg'))
       getItem()
     } catch (error) {
       console.error('Error submitting form:', error)
 
-      toast.error(error.response.data.message || t('dashboard.branch.failedDeleteMsg'))
+      toast.error(error.response.data.message || t('dashboard.main.branch.failedDeleteMsg'))
     }
   })
 }
@@ -267,33 +267,33 @@ const currencyColumns = [
   {
     name: 'branch_code',
     field: 'branch_code',
-    label: t('dashboard.branch.data.branchCode'),
+    label: t('dashboard.main.branch.data.branchCode'),
     align: 'center',
     sortable: true
   },
   {
     name: 'image',
     field: 'image',
-    label: t('dashboard.branch.data.image'),
+    label: t('dashboard.main.branch.data.image'),
     align: 'center'
   },
   {
     name: 'name',
     field: 'name',
-    label: t('dashboard.branch.data.name'),
+    label: t('dashboard.main.branch.data.name'),
     align: 'center',
     sortable: true
   },
   {
     name: 'detail',
     field: 'detail',
-    label: t('dashboard.branch.data.detail'),
+    label: t('dashboard.main.branch.data.detail'),
     align: 'left'
   },
   {
     name: 'status',
     field: 'status',
-    label: t('dashboard.branch.data.status'),
+    label: t('dashboard.main.branch.data.status'),
     align: 'center',
     sortable: true
   },

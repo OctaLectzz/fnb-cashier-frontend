@@ -10,7 +10,7 @@
       :grid="grid"
       :filter="filter"
       separator="cell"
-      :title="$t('dashboard.product.titleText')"
+      :title="$t('dashboard.main.product.titleText')"
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
@@ -39,7 +39,7 @@
 
       <!-- Create -->
       <template v-slot:top-left>
-        <q-btn color="primary" :label="$t('dashboard.product.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
+        <q-btn color="primary" :label="$t('dashboard.main.product.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
         <q-dialog v-model="createItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
           <CreateItem @created="itemCreated" />
         </q-dialog>
@@ -99,15 +99,15 @@
       <template #body-cell-price="props">
         <q-td :props="props">
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.product.data.minPurchase') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.product.data.minPurchase') }} :</span>
             {{ props.row.min_purchase }}
           </div>
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.product.data.sellingPrice') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.product.data.sellingPrice') }} :</span>
             {{ rupiah(props.row.selling_price) ?? '-' }}
           </div>
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.product.data.purchasePrice') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.product.data.purchasePrice') }} :</span>
             {{ rupiah(props.row.purchase_price) }}
           </div>
         </q-td>
@@ -117,15 +117,15 @@
       <template #body-cell-volume="props">
         <q-td :props="props">
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.product.data.unit') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.product.data.unit') }} :</span>
             {{ props.row.unit }}
           </div>
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.product.data.weight') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.product.data.weight') }} :</span>
             {{ props.row.weight ?? '-' }}
           </div>
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.product.data.volume') }} {{ $t('dashboard.product.data.volumeDetail') }} :</span>
+            <span class="text-bold">{{ $t('dashboard.main.product.data.volume') }} {{ $t('dashboard.main.product.data.volumeDetail') }} :</span>
             {{ props.row.length ?? '-' }}cm x {{ props.row.width ?? '-' }}cm x {{ props.row.height ?? '-' }}cm
           </div>
         </q-td>
@@ -134,8 +134,8 @@
       <!-- Status -->
       <template #body-cell-status="props">
         <q-td :props="props">
-          <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.product.data.statusActive')" />
-          <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.product.data.statusInactive')" />
+          <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.main.product.data.statusActive')" />
+          <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.main.product.data.statusInactive')" />
         </q-td>
       </template>
 
@@ -169,36 +169,36 @@
             <q-card-section class="q-pb-xl">
               <!-- Price -->
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.product.data.minPurchase') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.product.data.minPurchase') }} :</span>
                 {{ rupiah(props.row.min_purchase) }}
               </div>
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.product.data.sellingPrice') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.product.data.sellingPrice') }} :</span>
                 {{ rupiah(props.row.selling_price) ?? '-' }}
               </div>
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.product.data.purchasePrice') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.product.data.purchasePrice') }} :</span>
                 {{ rupiah(props.row.purchase_price) }}
               </div>
 
               <!-- Volume -->
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.product.data.unit') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.product.data.unit') }} :</span>
                 {{ props.row.unit }}
               </div>
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.product.data.weight') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.product.data.weight') }} :</span>
                 {{ props.row.weight ?? '-' }}
               </div>
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.product.data.volumeDetail') }} :</span>
+                <span class="text-bold">{{ $t('dashboard.main.product.data.volumeDetail') }} :</span>
                 {{ props.row.length ?? '-' }}cm x {{ props.row.width ?? '-' }}cm x {{ props.row.height ?? '-' }}cm
               </div>
 
               <!-- Status -->
               <div class="absolute absolute-bottom-right">
-                <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.product.data.statusActive')" />
-                <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.product.data.statusInactive')" />
+                <q-chip v-if="props.row.status == 1" color="green" text-color="white" icon="task_alt" :label="$t('dashboard.main.product.data.statusActive')" />
+                <q-chip v-if="props.row.status == 0" color="red" text-color="white" icon="warning" :label="$t('dashboard.main.product.data.statusInactive')" />
               </div>
 
               <!-- Action -->
@@ -277,12 +277,12 @@ const deleteItemDialog = (row) => {
     try {
       await useProductStore().delete(row.id)
 
-      toast.success(t('dashboard.product.successDeleteMsg'))
+      toast.success(t('dashboard.main.product.successDeleteMsg'))
       getItem()
     } catch (error) {
       console.error('Error submitting form:', error)
 
-      toast.error(error.response.data.message || t('dashboard.product.failedDeleteMsg'))
+      toast.error(error.response.data.message || t('dashboard.main.product.failedDeleteMsg'))
     }
   })
 }
@@ -299,39 +299,39 @@ const currencyColumns = [
   {
     name: 'sku',
     field: 'sku',
-    label: t('dashboard.product.data.sku'),
+    label: t('dashboard.main.product.data.sku'),
     align: 'center',
     sortable: true
   },
   {
     name: 'image',
     field: 'image',
-    label: t('dashboard.product.data.image'),
+    label: t('dashboard.main.product.data.image'),
     align: 'center'
   },
   {
     name: 'name',
     field: 'name',
-    label: t('dashboard.product.data.name'),
+    label: t('dashboard.main.product.data.name'),
     align: 'left',
     sortable: true
   },
   {
     name: 'price',
     field: 'price',
-    label: t('dashboard.product.data.price'),
+    label: t('dashboard.main.product.data.price'),
     align: 'left'
   },
   {
     name: 'volume',
     field: 'volume',
-    label: t('dashboard.product.data.volume'),
+    label: t('dashboard.main.product.data.volume'),
     align: 'left'
   },
   {
     name: 'status',
     field: 'status',
-    label: t('dashboard.product.data.status'),
+    label: t('dashboard.main.product.data.status'),
     align: 'center',
     sortable: true
   },

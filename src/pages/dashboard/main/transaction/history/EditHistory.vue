@@ -3,7 +3,7 @@
     <q-form @submit="editData">
       <q-card style="min-width: 400px">
         <q-card-section class="row items-center q-py-sm">
-          <div class="text-h6">{{ $t('dashboard.transaction.editText') }}</div>
+          <div class="text-h6">{{ $t('dashboard.main.transaction.editText') }}</div>
           <q-space />
           <q-btn icon="close" flat round dense v-close-popup />
         </q-card-section>
@@ -14,7 +14,7 @@
           <!-- Name -->
           <div class="col-md-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
-              {{ $t('dashboard.transaction.data.name') }}
+              {{ $t('dashboard.main.transaction.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </div>
             <q-input v-model="data.name" placeholder="Makanan" :rules="rules.name" outlined dense required autofocus />
@@ -23,13 +23,13 @@
           <!-- Payment Type -->
           <div class="col-md-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
-              {{ $t('dashboard.transaction.data.paymentType') }}
+              {{ $t('dashboard.main.transaction.data.paymentType') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </div>
             <q-select
               v-model="data.payment_type"
               :options="paymentTypeOptions"
-              :placeholder="$t('dashboard.transaction.data.paymentTypePlaceholder')"
+              :placeholder="$t('dashboard.main.transaction.data.paymentTypePlaceholder')"
               @filter="paymentTypeFilter"
               input-debounce="0"
               use-input
@@ -45,7 +45,7 @@
           <!-- Notes -->
           <div class="col-md-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
-              {{ $t('dashboard.transaction.data.notes') }}
+              {{ $t('dashboard.main.transaction.data.notes') }}
               <span class="text-grey">{{ $t('public.optionalText') }}</span>
             </div>
             <q-input v-model="data.notes" type="textarea" outlined dense />
@@ -86,15 +86,15 @@ const data = ref({
 // Payment Type
 const paymentType = ref([
   {
-    label: t('dashboard.transaction.data.cash'),
+    label: t('dashboard.main.transaction.data.cash'),
     value: 'cash'
   },
   {
-    label: t('dashboard.transaction.data.qris'),
+    label: t('dashboard.main.transaction.data.qris'),
     value: 'qris'
   },
   {
-    label: t('dashboard.transaction.data.others'),
+    label: t('dashboard.main.transaction.data.others'),
     value: 'others'
   }
 ])
@@ -110,8 +110,8 @@ const paymentTypeFilter = (val, update, abort) => {
 
 // Validate
 const rules = ref({
-  name: [(v) => !!v || t('dashboard.transaction.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.transaction.validate.nameMaxLength')],
-  payment_type: [(v) => !!v || t('dashboard.transaction.validate.paymentTypeRequired')]
+  name: [(v) => !!v || t('dashboard.main.transaction.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.main.transaction.validate.nameMaxLength')],
+  payment_type: [(v) => !!v || t('dashboard.main.transaction.validate.paymentTypeRequired')]
 })
 
 // Disabled Button
@@ -124,12 +124,12 @@ const editData = async () => {
   try {
     await useTransactionStore().edit(data.value)
 
-    toast.success(t('dashboard.transaction.successEditMsg'))
+    toast.success(t('dashboard.main.transaction.successEditMsg'))
     emits('edited')
   } catch (error) {
     console.error('Error submitting form:', error)
 
-    toast.error(error.response.data.message || t('dashboard.transaction.failedEditMsg'))
+    toast.error(error.response.data.message || t('dashboard.main.transaction.failedEditMsg'))
   }
   loading.value = false
 }

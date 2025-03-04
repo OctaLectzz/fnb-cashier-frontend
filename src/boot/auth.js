@@ -13,7 +13,7 @@ export default ({ router }) => {
       }
     } else if (to.name === 'home.login' && token) {
       // If the user already has a token, redirect from the login page
-      next({ name: 'dashboard.home' })
+      next({ name: 'main.home' })
     } else {
       // If the route does not require authentication, continue navigating
       next()
