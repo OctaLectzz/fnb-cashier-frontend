@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-sm">
+  <q-page class="q-pa-md">
     <q-table
       v-model:pagination="pagination"
       :rows-per-page-options="[10, 20, 30]"
@@ -143,7 +143,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
-import { useCategoryStore } from '/src/stores/category-store'
+import { useCategoryStore } from '/src/stores/main/category-store'
 import CreateItem from './CreateCategory.vue'
 import EditItem from './EditCategory.vue'
 

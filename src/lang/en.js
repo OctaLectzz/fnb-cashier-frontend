@@ -107,6 +107,21 @@ export default {
         settingMenu: 'Setting',
         backMenu: 'Return to Main Menu'
       },
+      home: {
+        dashboardText: 'Main Dashboard',
+        welcomeText: 'Welcome to',
+        productCountText: 'Number of Products',
+        todayTransactionText: 'Total Transaction Today',
+        categoryCountText: 'Number of Categories',
+        salesCard: 'Sales',
+        dayFilter: 'Day',
+        monthFilter: 'Month',
+        totalSalesText: 'Total Sales',
+        receptionText: 'Reception',
+        productText: 'Products Sold',
+        transactionText: 'Transaction',
+        salesChartText: 'Sales Chart'
+      },
       branch: {
         titleText: 'Branch',
         createText: 'Create Branch',

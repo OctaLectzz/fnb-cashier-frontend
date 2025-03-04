@@ -185,8 +185,8 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
-import { useProductStore } from '/src/stores/product-store'
-import { useCategoryStore } from '/src/stores/category-store'
+import { useProductStore } from '/src/stores/main/product-store'
+import { useCategoryStore } from '/src/stores/main/category-store'
 
 const { t } = useI18n()
 const { item } = defineProps(['item'])

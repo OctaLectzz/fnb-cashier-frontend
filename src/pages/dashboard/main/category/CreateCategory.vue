@@ -49,7 +49,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
-import { useCategoryStore } from '/src/stores/category-store'
+import { useCategoryStore } from '/src/stores/main/category-store'
 
 const { t } = useI18n()
 const emits = defineEmits(['created'])

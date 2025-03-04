@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-sm">
+  <q-page class="q-pa-md">
     <q-table
       v-model:pagination="pagination"
       :rows-per-page-options="[10, 20, 30]"
@@ -219,7 +219,7 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
 import { rupiah } from '/src/boot/rupiah'
-import { useTransactionStore } from '/src/stores/transaction-store'
+import { useTransactionStore } from '/src/stores/main/transaction-store'
 import EditItem from './EditHistory.vue'
 import ShowItem from './ShowHistory.vue'
 

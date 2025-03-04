@@ -1,142 +1,179 @@
 <template>
-  <!-- Loading -->
-  <q-page v-if="loading" class="q-pa-sm">
-    <q-card class="q-pa-md q-my-sm">
+  <q-page class="q-pa-md">
+    <div class="q-pa-md q-my-sm">
       <!-- Header Text -->
-      <q-card-section>
-        <div class="text-h5 text-bold">Dashboard</div>
-        <div class="text-body1">Selamat datang di {{ setting.title }}</div>
-      </q-card-section>
+      <div class="q-px-md">
+        <div class="text-h5 text-bold">{{ $t('dashboard.main.home.dashboardText') }}</div>
+        <div class="text-body1">{{ $t('dashboard.main.home.welcomeText') }} {{ setting.title }}</div>
+      </div>
 
-      <!-- Card -->
-      <q-card-section>
-        <div class="row justify-between">
-          <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
-            <q-skeleton height="220px" />
-          </div>
-          <div class="col-md-5 col-sm-12 col-xs-12 q-ma-sm">
-            <q-skeleton height="220px" />
-          </div>
-          <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
-            <q-skeleton height="220px" />
-          </div>
+      <!-- Loading -->
+      <div v-if="loading" class="row justify-between">
+        <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
+          <q-skeleton height="120px" />
         </div>
-      </q-card-section>
-    </q-card>
+        <div class="col-md-5 col-sm-12 col-xs-12 q-ma-sm">
+          <q-skeleton height="120px" />
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
+          <q-skeleton height="120px" />
+        </div>
+      </div>
+
+      <!-- Data Count -->
+      <div v-else class="row justify-center">
+        <!-- Product -->
+        <div class="col-md-3 col-sm-12 q-pa-sm">
+          <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
+            <q-item>
+              <q-item-section avatar>
+                <q-avatar text-color="white" icon="restaurant_menu" size="70px" class="badge-color" rounded />
+              </q-item-section>
+
+              <q-item-section>
+                <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.productCountText') }}</div>
+                <div class="text-h4 text-bold q-mt-xs">{{ item.total_products }}</div>
+              </q-item-section>
+            </q-item>
+          </q-card>
+        </div>
+
+        <!-- Transaction -->
+        <div class="col-md-6 col-sm-12 q-pa-sm">
+          <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
+            <q-item>
+              <q-item-section avatar>
+                <q-avatar text-color="white" icon="point_of_sale" size="70px" class="badge-color" rounded />
+              </q-item-section>
+
+              <q-item-section>
+                <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.todayTransactionText') }}</div>
+                <div class="text-h4 text-bold q-mt-xs">{{ rupiah(item.total_today) }}</div>
+              </q-item-section>
+            </q-item>
+          </q-card>
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-3 col-sm-12 q-pa-sm">
+          <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
+            <q-item>
+              <q-item-section avatar>
+                <q-avatar text-color="white" icon="category" size="70px" class="badge-color" rounded />
+              </q-item-section>
+
+              <q-item-section>
+                <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.categoryCountText') }}</div>
+                <div class="text-h4 text-bold q-mt-xs">{{ item.total_categories }}</div>
+              </q-item-section>
+            </q-item>
+          </q-card>
+        </div>
+      </div>
+    </div>
 
     <!-- Stats -->
-    <q-card class="q-pa-md q-my-sm">
-      <q-card-section>
-        <q-item>
-          <q-item-section avatar>
-            <q-icon color="primary" name="insert_chart" size="80px" />
-          </q-item-section>
-
-          <q-item-section>
-            <div class="text-h4 text-bold">Statistik</div>
-          </q-item-section>
-        </q-item>
-      </q-card-section>
-      <q-card-section>
-        <q-skeleton height="400px" />
-      </q-card-section>
-    </q-card>
-  </q-page>
-
-  <!-- Pages -->
-  <q-page v-else class="q-pa-sm">
-    <q-card class="q-pa-md q-my-sm">
-      <!-- Header Text -->
-      <q-card-section>
-        <div class="text-h5 text-bold">Dashboard</div>
-        <div class="text-body1">Selamat datang di Yaumi</div>
-      </q-card-section>
-
-      <!-- Card -->
-      <q-card-section>
-        <div v-if="loading" class="row justify-between">
-          <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
-            <q-skeleton height="220px" />
+    <div class="q-px-md">
+      <q-card class="dashboard-card q-pa-sm q-my-sm">
+        <q-card-section>
+          <!-- Title -->
+          <div class="text-h4 text-bold">{{ $t('dashboard.main.home.salesCard') }}</div>
+          <div class="text-body1 q-my-xs">
+            <q-icon name="today" size="23px" class="q-mr-sm" />
+            {{ todayDate }}
           </div>
-          <div class="col-md-5 col-sm-12 col-xs-12 q-ma-sm">
-            <q-skeleton height="220px" />
-          </div>
-          <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
-            <q-skeleton height="220px" />
-          </div>
-        </div>
-        <div v-else class="row justify-between">
-          <div class="col-md-3 col-sm-12 col-xs-12 bg-primary q-pa-sm q-ma-sm">
-            <q-item>
-              <q-item-section avatar>
-                <q-avatar text-color="white" icon="account_box" size="70px" class="badge-color" rounded />
-              </q-item-section>
 
-              <q-item-section>
-                <div class="text-h6 text-bold text-grey-5" style="line-height: 18px">TOTAL KARYAWAN</div>
-                <div class="text-h4 text-bold text-white q-mt-xs">{{ item.employee }}</div>
-              </q-item-section>
-            </q-item>
-            <q-icon name="badge" color="white" size="90px" class="q-pa-sm q-px-lg" />
+          <q-separator class="q-my-lg" />
+
+          <!-- Filter -->
+          <div class="row">
+            <q-select v-model="filter" :options="filteroptions" option-value="id" option-label="desc" class="col-md-4 col-sm-7 col-xs-12" outlined dense />
           </div>
-          <div class="col-md-5 col-sm-12 col-xs-12 bg-primary q-pa-sm q-ma-sm">
-            <q-item>
-              <q-item-section avatar>
-                <q-avatar text-color="white" icon="badge" size="70px" class="badge-color" rounded />
-              </q-item-section>
 
-              <q-item-section>
-                <div class="text-h6 text-bold text-grey-5" style="line-height: 18px">PERSENTASE TEPAT WAKTU</div>
-                <div class="text-h4 text-bold text-white q-mt-xs">{{ item.ontimePercentage }}%</div>
-              </q-item-section>
-            </q-item>
-            <q-icon name="alarm" color="white" size="90px" class="q-pa-sm q-px-lg" />
-            <!-- Percetage Circle -->
-            <q-circular-progress color="secondary" track-color="white" size="150px" :value="item.ontimePercentage" :thickness="0.15" class="float-right q-pa-md q-mx-lg" style="margin-top: -35px" />
+          <q-separator class="q-my-lg" />
+
+          <!-- Data -->
+          <div class="row items-center">
+            <!-- Total Sales -->
+            <div class="col-md-5 col-xs-10 q-pa-sm">
+              <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.totalSalesText') }}</div>
+              <div class="text-h4 text-bold q-mt-xs">{{ rupiah(item.total_today) }}</div>
+            </div>
+            <q-separator vertical />
+
+            <!-- Reception -->
+            <div class="col-md-2 col-xs-10 q-pa-sm">
+              <div class="text-body1 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.receptionText') }}</div>
+              <div class="text-subtitle1 text-bold q-mt-xs">{{ rupiah(item.total_today) }}</div>
+            </div>
+            <q-separator vertical />
+
+            <!-- Products Sold -->
+            <div class="col-md-2 col-xs-10 q-pa-sm">
+              <div class="text-body1 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.productText') }}</div>
+              <div class="text-subtitle1 text-bold q-mt-xs">{{ item.products_sold }}</div>
+            </div>
+
+            <!-- Transaction -->
+            <q-separator vertical />
+            <div class="col-md-2 col-xs-10 q-pa-sm">
+              <div class="text-body1 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.transactionText') }}</div>
+              <div class="text-subtitle1 text-bold q-mt-xs">{{ item.total_transactions }}</div>
+            </div>
           </div>
-          <div class="col-md-3 col-sm-12 col-xs-12 bg-primary q-pa-sm q-ma-sm">
-            <q-item>
-              <q-item-section avatar>
-                <q-avatar text-color="white" icon="person" size="70px" class="badge-color" rounded />
-              </q-item-section>
 
-              <q-item-section>
-                <div class="text-h6 text-bold text-grey-5" style="line-height: 18px">TOTAL PENGGUNA</div>
-                <div class="text-h4 text-bold text-white q-mt-xs">{{ item.user }}</div>
-              </q-item-section>
-            </q-item>
-            <q-icon name="group" color="white" size="90px" class="q-pa-sm q-px-lg" />
+          <q-separator class="q-my-lg" />
+
+          <!-- Sales Chart -->
+          <div class="text-body1 q-my-xs">
+            <q-icon name="analytics" size="30px" class="q-mr-sm" />
+            {{ $t('dashboard.main.home.salesChartText') }}
           </div>
-        </div>
-      </q-card-section>
-    </q-card>
+          <q-skeleton height="400px" />
+        </q-card-section>
 
-    <!-- Stats -->
-    <q-card class="q-pa-md q-my-sm">
-      <q-card-section>
-        <q-item>
-          <q-item-section avatar>
-            <q-icon color="primary" name="insert_chart" size="80px" />
-          </q-item-section>
-
-          <q-item-section>
-            <div class="text-h4 text-bold">Statistik Absensi</div>
-          </q-item-section>
-        </q-item>
-      </q-card-section>
-    </q-card>
+        <q-card-section></q-card-section>
+      </q-card>
+    </div>
   </q-page>
 </template>
 
 <script setup>
 import { ref, onMounted, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { rupiah } from '/src/boot/rupiah'
 import { useSettingStore } from '/src/stores/setting-store'
 import { useProfileStore } from '/src/stores/profile-store'
+import { useDashboardStore } from '/src/stores/dashboard-store'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 const loading = ref(true)
+
+// Get
+const item = ref({})
+const getItem = async () => {
+  loading.value = true
+  try {
+    const res = await useDashboardStore().main()
+
+    item.value = res.data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+
+    if (error.response.data.status === 'failed') {
+      router.push('/notfound')
+    }
+  }
+  loading.value = false
+}
+watchEffect(() => {
+  if (route.name == 'main.home') {
+    getItem()
+  }
+})
 
 // Get Setting
 const setting = ref({})
@@ -168,27 +205,22 @@ onMounted(() => {
   getProfile()
 })
 
-// Get
-// const item = ref({})
-// const getItem = async () => {
-//   loading.value = true
-//   try {
-//     const res = await useSettingStore().index()
+// Get Today Date
+const lang = localStorage.getItem('lang') || 'en'
+const todayDate = ref(new Intl.DateTimeFormat(lang, { dateStyle: 'full' }).format(new Date()))
 
-//     item.value = res.data
-//   } catch (error) {
-//     console.error('Error fetching data:', error)
-//     if (error.response.data.status === 'failed') {
-//       router.push('/notfound')
-//     }
-//   }
-//   loading.value = false
-// }
-// watchEffect(() => {
-//   if (route.name == 'dashboard.home') {
-//     getItem()
-//   }
-// })
+// Sales Filter
+const filter = ref('Day')
+const filteroptions = [
+  {
+    id: 'day',
+    desc: t('dashboard.main.home.dayFilter')
+  },
+  {
+    id: 'month',
+    desc: t('dashboard.main.home.monthFilter')
+  }
+]
 </script>
 
 <style>

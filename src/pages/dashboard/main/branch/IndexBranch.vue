@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-sm">
+  <q-page class="q-pa-md">
     <q-table
       v-model:pagination="pagination"
       :rows-per-page-options="[10, 20, 30]"
@@ -194,7 +194,7 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
 import { url } from '/src/boot/axios'
-import { useBranchStore } from '/src/stores/branch-store'
+import { useBranchStore } from '/src/stores/main/branch-store'
 import CreateItem from './CreateBranch.vue'
 import EditItem from './EditBranch.vue'
 

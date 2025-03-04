@@ -121,7 +121,7 @@ import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
-import { useBranchStore } from '/src/stores/branch-store'
+import { useBranchStore } from '/src/stores/main/branch-store'
 
 const { t } = useI18n()
 const emits = defineEmits(['created'])

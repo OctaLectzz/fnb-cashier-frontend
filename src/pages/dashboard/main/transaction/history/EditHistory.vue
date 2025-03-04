@@ -71,7 +71,7 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
-import { useTransactionStore } from '/src/stores/transaction-store'
+import { useTransactionStore } from '/src/stores/main/transaction-store'
 
 const { t } = useI18n()
 const { item } = defineProps(['item'])

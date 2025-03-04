@@ -206,7 +206,7 @@ import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useSettingStore } from '/src/stores/setting-store'
-import { useTransactionStore } from '/src/stores/transaction-store'
+import { useTransactionStore } from '/src/stores/main/transaction-store'
 
 const { t } = useI18n()
 const { item } = defineProps(['item'])

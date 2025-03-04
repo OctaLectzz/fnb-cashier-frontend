@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-sm">
+  <q-page class="q-pa-md">
     <q-table
       v-model:pagination="pagination"
       :rows-per-page-options="[10, 20, 30]"
@@ -226,7 +226,7 @@ import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
 import { url } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
-import { useProductStore } from '/src/stores/product-store'
+import { useProductStore } from '/src/stores/main/product-store'
 import CreateItem from './CreateProduct.vue'
 import EditItem from './EditProduct.vue'
 
