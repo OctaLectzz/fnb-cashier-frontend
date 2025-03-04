@@ -3,8 +3,8 @@ import { server, headers } from '/src/boot/axios'
 
 export const useAuthStore = defineStore('auth', {
   actions: {
-    async register(name, email, password, phone_number, avatar) {
-      return await server.post('api/auth/register', { name, email, password, phone_number, avatar })
+    async register(name, email, password, phone_number) {
+      return await server.post('api/auth/register', { name, email, password, phone_number })
     },
 
     async login(email, password) {

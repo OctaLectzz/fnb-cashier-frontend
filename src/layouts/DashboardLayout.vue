@@ -43,7 +43,7 @@
               <q-skeleton v-if="loading" type="QAvatar" size="30px" />
 
               <q-avatar v-else size="30px">
-                <img :src="url + '/avatars/' + profile.avatar" />
+                <img :src="url + '/users/avatars/' + profile.avatar" />
               </q-avatar>
             </template>
             <div>

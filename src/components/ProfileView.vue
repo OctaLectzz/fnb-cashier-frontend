@@ -4,19 +4,23 @@
     <q-form v-if="loading" @submit="editProfile">
       <div class="row justify-center">
         <!-- Avatar card -->
-        <div class="col-md-3 col-xs-12 q-ma-md">
-          <q-skeleton width="100%" height="500px" />
+        <div class="col-md-3 col-xs-11 q-pa-md">
+          <q-skeleton width="100%" height="400px" />
         </div>
 
-        <!-- Account details card -->
-        <div class="col-md-8 col-xs-12 q-ma-md">
+        <!-- Profile Account Information card -->
+        <div class="col-md-8 col-xs-11 q-pa-md">
+          <q-skeleton width="100%" height="400px" />
+        </div>
+
+        <!-- Personal Data Information card -->
+        <div class="col-md-11 col-xs-11 q-pa-md">
           <q-skeleton width="100%" height="500px" />
         </div>
       </div>
 
       <!-- Save -->
       <q-skeleton width="90px" height="38px" class="float-right q-mx-xl" />
-      <hr class="q-my-md" />
     </q-form>
 
     <!-- Form -->
@@ -34,7 +38,7 @@
             <q-card-section class="text-center q-pa-md">
               <!-- Avatar -->
               <q-avatar size="100px" class="q-my-md">
-                <img ref="avatar" :src="url + '/avatars/' + data.avatar" />
+                <img ref="avatar" :src="url + '/users/avatars/' + data.avatar" />
               </q-avatar>
               <div class="text-subtitle2 text-grey-7">{{ $t('public.imageType') }}</div>
               <q-btn color="primary" class="q-my-md" :label="$t('public.uploadBtn')" @click="$refs.avatarInput.click()" no-caps />
@@ -43,11 +47,11 @@
           </q-card>
         </div>
 
-        <!-- Account details card -->
+        <!-- Profile Account Information card -->
         <div class="col-md-8 col-xs-11 q-pa-md">
           <q-card class="q-pb-xl" style="height: 100%">
             <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
-              <div class="text-body1 text-bold">{{ $t('profile.accountDetailsCard') }}</div>
+              <div class="text-body1 text-bold">{{ $t('profile.profileAccountInformationCard') }}</div>
             </q-card-section>
 
             <q-separator />
@@ -55,7 +59,7 @@
             <q-card-section class="q-pa-sm">
               <div class="row justify-center">
                 <!-- Name -->
-                <div class="col-10 q-pa-sm">
+                <div class="col-11 q-pa-sm">
                   <div class="text-bold">
                     {{ $t('auth.nameForm') }}
                     <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -64,7 +68,7 @@
                 </div>
 
                 <!-- Email -->
-                <div class="col-10 q-pa-sm">
+                <div class="col-11 q-pa-sm">
                   <div class="text-bold">
                     {{ $t('auth.emailForm') }}
                     <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -73,9 +77,62 @@
                 </div>
 
                 <!-- Phone Number -->
-                <div class="col-10 q-pa-sm">
+                <div class="col-11 q-pa-sm">
                   <div class="text-bold">{{ $t('auth.phoneNumberForm') }}</div>
                   <q-input v-model="data.phone_number" placeholder="0897 - 1234 - 4444" mask="#### - #### - ######" outlined dense />
+                </div>
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+
+        <!-- Personal Data Information Card -->
+        <div class="col-11 q-pa-md">
+          <q-card class="q-pb-xl" style="height: 100%">
+            <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
+              <div class="text-body1 text-bold">{{ $t('profile.personalDataInformationCard') }}</div>
+            </q-card-section>
+
+            <q-separator />
+
+            <q-card-section class="q-pa-sm">
+              <div class="row justify-center">
+                <!-- ktp -->
+                <div class="col-md-5 col-xs-11 q-pa-sm">
+                  <div class="text-bold">
+                    {{ $t('auth.ktpForm') }}
+                  </div>
+                  <q-input v-model="data.ktp" :placeholder="$t('public.exampleText') + '3311040404040004'" mask="################" outlined dense />
+                </div>
+
+                <!-- npwp -->
+                <div class="col-md-5 col-xs-11 q-pa-sm">
+                  <div class="text-bold">
+                    {{ $t('auth.npwpForm') }}
+                  </div>
+                  <q-input v-model="data.npwp" :placeholder="$t('public.exampleText') + '11.111.111.1.111'" mask="##.###.###.#.###" outlined dense />
+                </div>
+
+                <!-- KTP Image -->
+                <div class="col-md-5 col-xs-11 text-center q-pa-sm">
+                  <div class="text-bold q-mt-md">
+                    {{ $t('auth.ktpPhotoForm') }}
+                  </div>
+                  <img ref="ktp_image" :src="url + '/users/ktps/' + data.ktp_image" width="200" />
+                  <div class="text-subtitle2 text-grey-7">{{ $t('public.imageType') }}</div>
+                  <q-btn color="primary" class="q-my-md" :label="$t('public.uploadBtn')" @click="$refs.ktpInput.click()" no-caps />
+                  <input type="file" ref="ktpInput" id="ktpInput" style="display: none" accept="image/*" @change="ktpChange" />
+                </div>
+
+                <!-- NPWP Image -->
+                <div class="col-md-5 col-xs-11 text-center q-pa-sm">
+                  <div class="text-bold q-mt-md">
+                    {{ $t('auth.npwpPhotoForm') }}
+                  </div>
+                  <img ref="npwp_image" :src="url + '/users/npwps/' + data.npwp_image" width="200" />
+                  <div class="text-subtitle2 text-grey-7">{{ $t('public.imageType') }}</div>
+                  <q-btn color="primary" class="q-my-md" :label="$t('public.uploadBtn')" @click="$refs.npwpInput.click()" no-caps />
+                  <input type="file" ref="npwpInput" id="npwpInput" style="display: none" accept="image/*" @change="npwpChange" />
                 </div>
               </div>
             </q-card-section>
@@ -84,12 +141,11 @@
       </div>
 
       <!-- Save -->
-      <q-btn type="submit" :label="t('public.saveText')" color="primary" class="float-right q-mx-xl" :loading="saveloading" :disable="disabledButton">
+      <q-btn type="submit" :label="t('public.saveText')" color="primary" class="float-right q-mx-xl q-mb-xl" :loading="saveloading" :disable="disabledButton">
         <template v-slot:loading>
           <q-spinner-gears />
         </template>
       </q-btn>
-      <hr class="q-my-md" />
     </q-form>
   </q-page>
 </template>
@@ -111,7 +167,11 @@ const data = ref({
   avatar: '',
   name: '',
   email: '',
-  phone_number: ''
+  phone_number: '',
+  ktp: '',
+  ktp_image: '',
+  npwp: '',
+  npwp_image: ''
 })
 
 // Profile
@@ -158,6 +218,38 @@ const avatarChange = async (e) => {
       avatar.value.src = reader.result
     }
     reader.readAsDataURL(avatarImage)
+  }
+}
+
+// KTP
+const ktp_image = ref(null)
+const ktpChange = async (e) => {
+  e.preventDefault()
+
+  const ktpImage = e.target.files[0]
+  data.value.ktp_image = ktpImage
+  if (ktpImage) {
+    const reader = new FileReader()
+    reader.onload = () => {
+      ktp_image.value.src = reader.result
+    }
+    reader.readAsDataURL(ktpImage)
+  }
+}
+
+// NPWP
+const npwp_image = ref(null)
+const npwpChange = async (e) => {
+  e.preventDefault()
+
+  const npwpImage = e.target.files[0]
+  data.value.npwp_image = npwpImage
+  if (npwpImage) {
+    const reader = new FileReader()
+    reader.onload = () => {
+      npwp_image.value.src = reader.result
+    }
+    reader.readAsDataURL(npwpImage)
   }
 }
 

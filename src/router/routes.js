@@ -4,7 +4,8 @@ const routes = [
     path: '/',
     component: () => import('/src/layouts/MainLayout.vue'),
     children: [
-      { path: '', name: 'home.login', component: () => import('/src/pages/auth/LoginPage.vue') },
+      { path: '', name: 'home', component: () => import('/src/pages/landing/IndexPage.vue') },
+      { path: '/login', name: 'home.login', component: () => import('/src/pages/auth/LoginPage.vue') },
 
       // Not Found
       { path: '/:catchAll(.*)*', component: () => import('/src/pages/ErrorNotFound.vue') }
