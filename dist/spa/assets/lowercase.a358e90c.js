@@ -1,0 +1,1 @@
+var l=({app:a})=>{a.directive("lowercase",{mounted(r){r.addEventListener("input",t=>{const e=t.target.value.toLowerCase();if(t.target.value!==e){if(t.target.value=e,t.target.type!=="email"){const o=t.target.selectionStart,i=t.target.selectionEnd;t.target.setSelectionRange(o,i)}const s=new Event("input",{bubbles:!0});t.target.dispatchEvent(s)}})}})};export{l as default};

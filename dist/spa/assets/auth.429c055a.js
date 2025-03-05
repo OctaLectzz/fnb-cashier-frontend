@@ -1,0 +1,1 @@
+import{token as o}from"./axios.afd0666a.js";import"./index.199a5e3f.js";var h=({router:a})=>{a.beforeEach((m,i,e)=>{m.meta.requiresAuth?o?e():e({name:"home.login"}):m.name==="home.login"&&o?e({name:"main.home"}):e()})};export{h as default};

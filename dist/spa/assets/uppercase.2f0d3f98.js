@@ -1,0 +1,1 @@
+var r=({app:a})=>{a.directive("uppercase",{mounted(u){u.addEventListener("input",e=>{const t=e.target.value.toUpperCase();if(e.target.value!==t){e.target.value=t;const p=new Event("input",{bubbles:!0});e.target.dispatchEvent(p)}})}})};export{r as default};
