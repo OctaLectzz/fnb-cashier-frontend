@@ -5,26 +5,27 @@
         <img :src="url + '/settings/' + setting.logo" :style="'width:' + setting.logo_size + 'px'" />
       </div>
 
-      <div class="text-h5 text-bold text-center q-mb-lg">{{ $t('auth.welcomeMsg') }} {{ setting.title }}</div>
+      <div class="text-h5 text-bold text-center">{{ $t('auth.employeeWelcomeMsg') }}</div>
+      <div class="text-body1 text-center q-mb-lg">{{ $t('auth.employeeDescriptionMsg') }}</div>
 
       <q-form @submit="submitForm">
         <div class="row justify-center">
-          <!-- Email -->
+          <!-- NIP -->
           <div class="col-sm-8 col-xs-11">
-            <label for="email">
-              {{ $t('auth.emailForm') }}
+            <label for="nip">
+              {{ $t('auth.nipForm') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </label>
-            <q-input type="email" v-model="email" placeholder="email@example.com" :rules="rules.email" v-lowercase outlined dense required autofocus />
+            <q-input v-model="nip" placeholder="1234567890" :rules="rules.nip" mask="##########" outlined dense required autofocus />
           </div>
 
-          <!-- Password -->
+          <!-- PIN -->
           <div class="col-sm-8 col-xs-11">
-            <label for="password">
-              {{ $t('auth.passwordForm') }}
+            <label for="pin">
+              {{ $t('auth.pinForm') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </label>
-            <q-input type="password" v-model="password" placeholder="********" :rules="rules.password" outlined dense required />
+            <q-input type="password" v-model="pin" placeholder="********" :rules="rules.pin" mask="######" outlined dense required />
           </div>
 
           <!-- Submit -->
@@ -85,13 +86,13 @@ onMounted(() => {
 })
 
 // Data
-const email = ref('')
-const password = ref('')
+const nip = ref('')
+const pin = ref('')
 
 // Validate
 const rules = {
-  email: [(v) => !!v || t('auth.validate.emailRequired'), (v) => /.+@.+/.test(v) || t('auth.validate.emailFormat')],
-  password: [(v) => !!v || t('auth.validate.passwordRequired'), (v) => v.length >= 8 || t('auth.validate.passwordMinLength')]
+  nip: [(v) => !!v || t('auth.validate.nipRequired')],
+  pin: [(v) => !!v || t('auth.validate.pinRequired')]
 }
 
 // Login
@@ -99,14 +100,14 @@ const loginloading = ref(false)
 const submitForm = async () => {
   loginloading.value = true
   try {
-    await useAuthStore().login(email.value, password.value)
+    await useAuthStore().employee(nip.value, pin.value)
 
-    toast.success(t('auth.successLoginMsg'))
+    toast.success(t('auth.successEmployeeLoginMsg'))
     window.location.reload()
   } catch (error) {
     console.error('Error submitting form:', error)
 
-    toast.error(t('auth.failedLoginMsg'))
+    toast.error(t('auth.failedEmployeeLoginMsg'))
   }
   loginloading.value = false
 }

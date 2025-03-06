@@ -7,6 +7,7 @@ const server = axios.create({ baseURL: url })
 
 // Get Token
 const token = localStorage.getItem('token')
+const employeetoken = localStorage.getItem('employeetoken')
 
 // Headers
 const headers = {
@@ -32,4 +33,4 @@ export default boot(({ app }) => {
   app.config.globalProperties.$server = server
 })
 
-export { axios, server, url, token, headers, headersImage }
+export { axios, server, url, token, employeetoken, headers, headersImage }

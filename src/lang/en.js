@@ -20,7 +20,9 @@ export default {
   },
   auth: {
     welcomeMsg: 'Welcome to',
-    nameForm: 'Name',
+    employeeWelcomeMsg: 'Employee Login',
+    employeeDescriptionMsg: 'Enter your NIP and PIN',
+    nameForm: 'Store Name',
     emailForm: 'Email',
     phoneNumberForm: 'Phone Number',
     ktpForm: 'KTP',
@@ -32,6 +34,8 @@ export default {
     currentPasswordForm: 'Current Password',
     newPasswordForm: 'New password',
     confirmNewPasswordForm: 'Confirm New Password',
+    nipForm: 'NIP',
+    pinForm: 'PIN',
     loginText: 'Login',
     registerText: 'Register',
     permissionText1: 'By continuing, you agree to',
@@ -41,6 +45,8 @@ export default {
     noticeText: 'Notice at collection',
     successLoginMsg: 'Login successfully',
     failedLoginMsg: 'Incorrect email or password, please try again',
+    successEmployeeLoginMsg: 'Employee login successfully',
+    failedEmployeeLoginMsg: 'Incorrect NIP or PIN, please try again',
     expiredMsg: 'Session Expired',
     confirmLogoutText: 'Are you sure?',
     successLogoutMsg: 'Logout Successfuly',
@@ -58,7 +64,9 @@ export default {
       currentPasswordRequired: 'Current Password is required',
       currentPasswordMinLength: 'The Current Password must be a minimum of 8 characters',
       newPasswordRequired: 'New Password is required',
-      newPasswordMinLength: 'The New Password must be a minimum of 8 characters'
+      newPasswordMinLength: 'The New Password must be a minimum of 8 characters',
+      nipRequired: 'NIP must be filled in',
+      pinRequired: 'PIN must be filled in'
     }
   },
   profile: {
@@ -110,9 +118,9 @@ export default {
       home: {
         dashboardText: 'Main Dashboard',
         welcomeText: 'Welcome to',
-        productCountText: 'Number of Products',
-        todayTransactionText: 'Total Transaction Today',
-        categoryCountText: 'Number of Categories',
+        productCountText: 'Products',
+        todayTransactionText: 'Transaction Today',
+        categoryCountText: 'Categories',
         salesCard: 'Sales',
         dayFilter: 'Day',
         monthFilter: 'Month',

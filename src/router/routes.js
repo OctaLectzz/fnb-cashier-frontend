@@ -6,6 +6,7 @@ const routes = [
     children: [
       { path: '', name: 'home', component: () => import('/src/pages/landing/IndexPage.vue') },
       { path: '/login', name: 'home.login', component: () => import('/src/pages/auth/LoginPage.vue') },
+      { path: '/employeelogin', name: 'home.employeelogin', component: () => import('/src/pages/auth/EmployeeLoginPage.vue') },
 
       // Not Found
       { path: '/:catchAll(.*)*', component: () => import('/src/pages/ErrorNotFound.vue') }

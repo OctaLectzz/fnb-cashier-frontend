@@ -9,13 +9,13 @@
 
       <!-- Loading -->
       <div v-if="loading" class="row justify-between">
-        <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
+        <div class="col-md-4 col-sm-12 col-xs-12 q-ma-sm">
           <q-skeleton height="120px" />
         </div>
-        <div class="col-md-5 col-sm-12 col-xs-12 q-ma-sm">
+        <div class="col-md-4 col-sm-12 col-xs-12 q-ma-sm">
           <q-skeleton height="120px" />
         </div>
-        <div class="col-md-3 col-sm-12 col-xs-12 q-ma-sm">
+        <div class="col-md-4 col-sm-12 col-xs-12 q-ma-sm">
           <q-skeleton height="120px" />
         </div>
       </div>
@@ -23,7 +23,7 @@
       <!-- Data Count -->
       <div v-else class="row justify-center">
         <!-- Product -->
-        <div class="col-md-3 col-sm-12 q-pa-sm">
+        <div class="col-md-4 col-sm-12 q-pa-sm">
           <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
             <q-item>
               <q-item-section avatar>
@@ -32,14 +32,14 @@
 
               <q-item-section>
                 <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.productCountText') }}</div>
-                <div class="text-h4 text-bold q-mt-xs">{{ item.total_products }}</div>
+                <div class="text-h5 text-bold q-mt-xs">{{ item.total_products }}</div>
               </q-item-section>
             </q-item>
           </q-card>
         </div>
 
         <!-- Transaction -->
-        <div class="col-md-6 col-sm-12 q-pa-sm">
+        <div class="col-md-4 col-sm-12 q-pa-sm">
           <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
             <q-item>
               <q-item-section avatar>
@@ -48,14 +48,14 @@
 
               <q-item-section>
                 <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.todayTransactionText') }}</div>
-                <div class="text-h4 text-bold q-mt-xs">{{ rupiah(item.total_today) }}</div>
+                <div class="text-h5 text-bold q-mt-xs">{{ rupiah(item.total_today) }}</div>
               </q-item-section>
             </q-item>
           </q-card>
         </div>
 
         <!-- Category -->
-        <div class="col-md-3 col-sm-12 q-pa-sm">
+        <div class="col-md-4 col-sm-12 q-pa-sm">
           <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
             <q-item>
               <q-item-section avatar>
@@ -64,7 +64,7 @@
 
               <q-item-section>
                 <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.categoryCountText') }}</div>
-                <div class="text-h4 text-bold q-mt-xs">{{ item.total_categories }}</div>
+                <div class="text-h5 text-bold q-mt-xs">{{ item.total_categories }}</div>
               </q-item-section>
             </q-item>
           </q-card>
@@ -118,7 +118,7 @@
             <q-separator vertical />
             <div class="col-md-2 col-xs-10 q-pa-sm">
               <div class="text-body1 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.transactionText') }}</div>
-              <div class="text-subtitle1 text-bold q-mt-xs">{{ item.total_transactions }}</div>
+              <div class="text-subtitle1 text-bold q-mt-xs">{{ item.transactions_today }}</div>
             </div>
           </div>
 
