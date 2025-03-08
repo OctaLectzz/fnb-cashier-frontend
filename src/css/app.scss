@@ -170,6 +170,7 @@ tbody {
 }
 
 .text-long {
+  min-width: 300px;
   word-wrap: break-word;
   white-space: normal;
 }
@@ -178,4 +179,51 @@ tbody {
   text-align: center;
   font-weight: bold;
   margin: 10px 0;
+}
+
+// Dropzone Image
+.squareDropzone {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--q-primary);
+  border-radius: 30px;
+  transition: 0.3s ease all;
+
+  input {
+    display: none;
+  }
+}
+.rectangleDropzone {
+  width: 350px;
+  height: calc(350px * 9 / 16);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--q-primary);
+  border-radius: 30px;
+  transition: 0.3s ease all;
+
+  input {
+    display: none;
+  }
+}
+.active-dropzone {
+  color: #fff;
+  background-color: #2732b049;
+
+  label {
+    color: var(--q-primary);
+    background-color: #fff;
+  }
+}
+.dropzone.dropzone-image {
+  padding: 20px;
+}
+.active-dropzone.dropzone-image {
+  color: var(--q-primary);
 }

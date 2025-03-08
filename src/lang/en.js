@@ -4,6 +4,7 @@ export default {
     requiredText: '*',
     optionalText: '(optional)',
     exampleText: 'Example : ',
+    defaultText: 'Default : ',
     createText: 'Create',
     editText: 'Edit',
     saveText: 'Save Change',
@@ -16,7 +17,12 @@ export default {
     uploadBtn: 'Upload a new Image',
     viewsText: 'k',
     showMore: 'Show More',
-    showLess: 'Show Less'
+    showLess: 'Show Less',
+    chooseFile: 'Choose a file or drag and drop it here',
+    recomendedFile: 'We recomended using high quality .jpg files less than 5mb',
+    squareRatio: ' and 1:1 ratio',
+    rectangleRatio: ' and 16:9 ratio',
+    imageType: 'Please upload a valid image file (JPEG, PNG, JPG)'
   },
   auth: {
     welcomeMsg: 'Welcome to',
@@ -177,8 +183,7 @@ export default {
         },
         validate: {
           nameRequired: 'Name must be filled in',
-          nameMaxLength: 'Maximum Name is 50 characters',
-          nameAlready: 'Name already exists'
+          nameMaxLength: 'Maximum Name is 50 characters'
         }
       },
       product: {
@@ -218,7 +223,6 @@ export default {
           categoryRequired: 'Category must be filled in',
           skuRequired: 'SKU must be filled in',
           skuMaxLength: 'Maximum SKU is 10 characters',
-          skuAlready: 'SKU already exists',
           purchasePriceRequired: 'Purchase Price must be filled in',
           unitRequired: 'Unit must be filled in',
           unitMaxLength: 'Maximum Unit is 255 characters'
@@ -343,9 +347,80 @@ export default {
         validate: {
           nameRequired: 'Name must be filled in',
           nameMaxLength: 'Maximum Name is 50 characters',
-          nameAlready: 'Name already exists',
           startTimeRequired: 'Start Time must be filled in',
           endTimeRequired: 'End Time must be filled in'
+        }
+      },
+      employee: {
+        titleText: 'Employee',
+        createText: 'Create Employee',
+        editText: 'Edit Employee',
+        successCreateMsg: 'Employee created successfully',
+        failedCreateMsg: 'Employee failed to create, Please try again later',
+        successEditMsg: 'Employee edited successfully',
+        failedEditMsg: 'Employee failed to edit, Please try again later',
+        successEditStatusMsg: 'Status edited successfully',
+        failedEditStatusMsg: 'Status failed to edit, Please try again later',
+        successDeleteMsg: 'Employee deleted successfully',
+        failedDeleteMsg: 'Employee failed to delete, please try again later',
+        activeText: 'Are you sure you want to activate this employee?',
+        unactiveText: 'Are you sure you want to disable this employee?',
+        step1: 'Main Data',
+        step2: 'Personal Data',
+        step3: 'Employee Data',
+        continueBtn: 'Continue',
+        backBtn: 'Back',
+        data: {
+          nip: 'NIP (Nomor Induk Pegawai)',
+          avatar: 'Employee Photo',
+          name: 'Name',
+          email: 'Email',
+          phoneNumber: 'Phone Number',
+          position: 'Position',
+          role: 'Access Right',
+          pin: 'PIN',
+          branch: 'Branch',
+          schedule: 'Schedule',
+          ktp: 'NIK (Nomor Induk Kependudukan)',
+          ktpImage: 'KTP Image (Kartu Tanda Penduduk)',
+          dob: 'Date of Birth',
+          gender: 'Gender',
+          maleGender: 'Male',
+          femaleGender: 'Female',
+          otherGender: 'Other',
+          domicile: 'Domicile',
+          address: 'Address',
+          employmentStatus: 'Employment Status',
+          permanentEmploymentStatus: 'Permanent',
+          contractEmploymentStatus: 'Contract',
+          freelanceEmploymentStatus: 'Freelance',
+          dateJoined: 'Date Joined',
+          endDate: 'End of Employment Period',
+          bpjsTkNumber: 'Employment BPJS Number',
+          bpjsTkCard: 'BPJS Employment Card Photo',
+          bpjsHealthNumber: 'Health BPJS Number',
+          bpjsHealthCard: 'BPJS Health Card Photo',
+          bankName: 'Bank Name',
+          bankAccountNumber: 'Bank Account Number',
+          accountHolderName: 'Account Owner Name',
+          status: 'Status',
+          statusPlaceholder: 'Employees actively working in the company'
+        },
+        validate: {
+          nameRequired: 'Name must be filled in',
+          nipMaxLength: 'Maximum NIP is 20 characters',
+          nipRequired: 'NIP must be filled in',
+          nameMaxLength: 'Maximum Name is 50 characters',
+          emailRequired: 'Email must be filled in',
+          emailFormat: 'Invalid Email',
+          phoneNumberRequired: 'Phone Number must be filled in',
+          positionRequired: 'Position must be filled in',
+          roleRequired: 'Role must be filled in',
+          pinRequired: 'PIN must be filled in',
+          branchRequired: 'Branch must be filled in',
+          scheduleRequired: 'Schedule must be filled in',
+          employmentStatusRequired: 'Employment Status must be filled in',
+          dateJoinedRequired: 'Date Joined must be filled in',
         }
       }
     }

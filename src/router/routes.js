@@ -39,7 +39,8 @@ const routes = [
     children: [
       { path: 'home', name: 'employee.home', component: () => import('/src/pages/dashboard/employee/IndexEmployee.vue') },
       { path: 'role', name: 'employee.role', component: () => import('/src/pages/dashboard/employee/role/IndexRole.vue') },
-      { path: 'schedule', name: 'employee.schedule', component: () => import('/src/pages/dashboard/employee/schedule/IndexSchedule.vue') }
+      { path: 'schedule', name: 'employee.schedule', component: () => import('/src/pages/dashboard/employee/schedule/IndexSchedule.vue') },
+      { path: 'employee', name: 'employee.employee', component: () => import('/src/pages/dashboard/employee/employee/IndexEmployee.vue') }
     ]
   }
 ]
