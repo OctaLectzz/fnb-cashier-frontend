@@ -30,7 +30,7 @@
 
           <!-- Submit -->
           <div class="col-sm-8 col-xs-11 q-mt-sm">
-            <q-btn type="submit" color="primary" :label="$t('auth.loginText')" class="full-width q-mt-sm" :loading="loginloading" :disable="loginloading" @click="submitForm">
+            <q-btn type="submit" color="primary" :label="$t('auth.signInText')" class="full-width q-mt-sm" :loading="loginloading" :disable="loginloading" @click="submitForm">
               <template v-slot:loading>
                 <q-spinner-hourglass class="on-left" />
                 {{ $t('public.loadingText') }}

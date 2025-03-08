@@ -37,6 +37,7 @@ export default {
     nipForm: 'NIP',
     pinForm: 'PIN',
     loginText: 'Login',
+    signInText: 'Sign In',
     registerText: 'Register',
     permissionText1: 'By continuing, you agree to',
     permissionText2: 'and realize that you have read',
@@ -297,6 +298,30 @@ export default {
         employeeMenu: 'Employee',
         backMenu: 'Return to Main Menu'
       },
+      schedule: {
+        titleText: 'Schedule',
+        createText: 'Create Schedule',
+        editText: 'Edit Schedule',
+        successCreateMsg: 'Schedule created successfully',
+        failedCreateMsg: 'Schedule failed to create, Please try again later',
+        successEditMsg: 'Schedule edited successfully',
+        failedEditMsg: 'Schedule failed to edit, Please try again later',
+        successDeleteMsg: 'Schedule deleted successfully',
+        failedDeleteMsg: 'Schedule failed to delete, please try again later',
+        data: {
+          name: 'Name',
+          namePlaceholder: ' Morning Shift',
+          startTime: 'Start Time',
+          endTime: 'End Time'
+        },
+        validate: {
+          nameRequired: 'Name must be filled in',
+          nameMaxLength: 'Maximum Name is 50 characters',
+          nameAlready: 'Name already exists',
+          startTimeRequired: 'Start Time must be filled in',
+          endTimeRequired: 'End Time must be filled in'
+        }
+      }
     }
   }
 }

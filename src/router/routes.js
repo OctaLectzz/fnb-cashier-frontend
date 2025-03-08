@@ -37,7 +37,8 @@ const routes = [
     component: () => import('/src/layouts/EmployeeLayout.vue'),
     meta: { requiresAuth: true },
     children: [
-      { path: 'home', name: 'employee.home', component: () => import('/src/pages/dashboard/employee/IndexEmployee.vue') }
+      { path: 'home', name: 'employee.home', component: () => import('/src/pages/dashboard/employee/IndexEmployee.vue') },
+      { path: 'schedule', name: 'employee.schedule', component: () => import('/src/pages/dashboard/employee/schedule/IndexSchedule.vue') }
     ]
   }
 ]

@@ -9,14 +9,14 @@
 
       <!-- Loading -->
       <div v-if="loading" class="row justify-between">
-        <div class="col-md-4 col-sm-12 col-xs-12 q-ma-sm">
-          <q-skeleton height="120px" />
+        <div class="col-md-4 col-sm-12 col-xs-12 q-pa-sm">
+          <q-skeleton height="100px" />
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 q-ma-sm">
-          <q-skeleton height="120px" />
+        <div class="col-md-4 col-sm-12 col-xs-12 q-pa-sm">
+          <q-skeleton height="100px" />
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 q-ma-sm">
-          <q-skeleton height="120px" />
+        <div class="col-md-4 col-sm-12 col-xs-12 q-pa-sm">
+          <q-skeleton height="100px" />
         </div>
       </div>
 
