@@ -17,7 +17,7 @@
               {{ $t('dashboard.employee.schedule.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </div>
-            <q-input v-model="data.name" :placeholder="$t('dashboard.employee.schedule.data.namePlaceholder')" :rules="rules.name" outlined dense required autofocus />
+            <q-input v-model="data.name" :placeholder="$t('public.exampleText') + $t('dashboard.employee.schedule.data.namePlaceholder')" :rules="rules.name" outlined dense required autofocus />
           </div>
 
           <div class="col-md-10 col-xs-12 q-pa-sm">
@@ -83,7 +83,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useScheduleStore } from '/src/stores/employee/schedule-store'

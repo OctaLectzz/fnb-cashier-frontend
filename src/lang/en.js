@@ -104,8 +104,7 @@ export default {
         cashierGroup: 'CASHIER',
         companyGroup: 'COMPANY',
         homeMenu: 'Main Dashboard',
-        branchMenu: 'Branch',
-        userMenu: 'Users',
+        branchMenu: 'Branches',
         categoryMenu: 'Categories',
         productMenu: 'Products',
         contactMenu: 'Contact',
@@ -311,14 +310,18 @@ export default {
         failedDeleteMsg: 'Access Right failed to delete, please try again later',
         data: {
           name: 'Name',
-          namePlaceholder: ' Morning Shift',
-          startTime: 'Start Time',
-          endTime: 'End Time'
+          namePlaceholder: 'Manager',
+          permissions: 'Permissions',
+          permissionsPlaceholder: 'Enables/Disables all Permissions for this role',
+          selectAll: 'Select All',
+          viewText: 'view',
+          createText: 'create',
+          editText: 'edit',
+          deleteText: 'delete'
         },
         validate: {
           nameRequired: 'Name must be filled in',
-          nameMaxLength: 'Maximum Name is 50 characters',
-          nameAlready: 'Name already exists'
+          nameMaxLength: 'Maximum Name is 50 characters'
         }
       },
       schedule: {
@@ -333,7 +336,7 @@ export default {
         failedDeleteMsg: 'Schedule failed to delete, please try again later',
         data: {
           name: 'Name',
-          namePlaceholder: ' Morning Shift',
+          namePlaceholder: 'Morning Shift',
           startTime: 'Start Time',
           endTime: 'End Time'
         },

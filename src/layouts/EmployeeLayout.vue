@@ -47,14 +47,6 @@
             <q-item-section>{{ $t('dashboard.employee.sidebar.scheduleMenu') }}</q-item-section>
           </q-item>
 
-          <!-- Schedule -->
-          <q-item :to="{ name: 'employee.schedule' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
-            <q-item-section avatar>
-              <q-icon name="schedule" size="20px" />
-            </q-item-section>
-            <q-item-section>{{ $t('dashboard.employee.sidebar.scheduleMenu') }}</q-item-section>
-          </q-item>
-
           <!-- Employee -->
           <q-item :to="{ name: 'employee.employee' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>

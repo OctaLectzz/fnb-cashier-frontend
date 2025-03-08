@@ -72,8 +72,8 @@
       <!-- SKU -->
       <template #body-cell-sku="props">
         <q-td :props="props">
-          <div class="bg-blue-2 rounded-borders">
-            <div class="text-blue-8 text-bold q-pa-xs">{{ props.row.sku }}</div>
+          <div class="rounded-borders" :class="$q.dark.isActive ? 'bg-blue-10' : 'bg-blue-2'">
+            <div class="text-bold q-pa-xs" :class="$q.dark.isActive ? 'text-blue-2' : 'text-blue-8'">{{ props.row.sku }}</div>
           </div>
         </q-td>
       </template>

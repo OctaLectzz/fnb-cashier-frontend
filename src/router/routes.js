@@ -38,6 +38,7 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       { path: 'home', name: 'employee.home', component: () => import('/src/pages/dashboard/employee/IndexEmployee.vue') },
+      { path: 'role', name: 'employee.role', component: () => import('/src/pages/dashboard/employee/role/IndexRole.vue') },
       { path: 'schedule', name: 'employee.schedule', component: () => import('/src/pages/dashboard/employee/schedule/IndexSchedule.vue') }
     ]
   }
