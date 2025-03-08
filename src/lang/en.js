@@ -294,9 +294,32 @@ export default {
         mainGroup: 'MAIN',
         managementGroup: 'MANAGEMENT',
         homeMenu: 'Employee Dashboard',
-        scheduleMenu: 'Schedule',
-        employeeMenu: 'Employee',
+        roleMenu: 'Access Rights',
+        scheduleMenu: 'Schedules',
+        employeeMenu: 'Employees',
         backMenu: 'Return to Main Menu'
+      },
+      role: {
+        titleText: 'Access Right',
+        createText: 'Create Access Right',
+        editText: 'Edit Access Right',
+        successCreateMsg: 'Access Right created successfully',
+        failedCreateMsg: 'Access Right failed to create, Please try again later',
+        successEditMsg: 'Access Right edited successfully',
+        failedEditMsg: 'Access Right failed to edit, Please try again later',
+        successDeleteMsg: 'Access Right deleted successfully',
+        failedDeleteMsg: 'Access Right failed to delete, please try again later',
+        data: {
+          name: 'Name',
+          namePlaceholder: ' Morning Shift',
+          startTime: 'Start Time',
+          endTime: 'End Time'
+        },
+        validate: {
+          nameRequired: 'Name must be filled in',
+          nameMaxLength: 'Maximum Name is 50 characters',
+          nameAlready: 'Name already exists'
+        }
       },
       schedule: {
         titleText: 'Schedule',

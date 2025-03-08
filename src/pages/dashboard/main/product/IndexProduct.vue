@@ -103,12 +103,12 @@
             {{ props.row.min_purchase }}
           </div>
           <div class="text-body1 q-ma-sm">
-            <span class="text-bold">{{ $t('dashboard.main.product.data.sellingPrice') }} :</span>
-            {{ rupiah(props.row.selling_price) ?? '-' }}
-          </div>
-          <div class="text-body1 q-ma-sm">
             <span class="text-bold">{{ $t('dashboard.main.product.data.purchasePrice') }} :</span>
             {{ rupiah(props.row.purchase_price) }}
+          </div>
+          <div class="text-body1 q-ma-sm">
+            <span class="text-bold">{{ $t('dashboard.main.product.data.sellingPrice') }} :</span>
+            {{ rupiah(props.row.selling_price) ?? '-' }}
           </div>
         </q-td>
       </template>
@@ -173,12 +173,12 @@
                 {{ rupiah(props.row.min_purchase) }}
               </div>
               <div class="text-body1 q-ma-sm">
-                <span class="text-bold">{{ $t('dashboard.main.product.data.sellingPrice') }} :</span>
-                {{ rupiah(props.row.selling_price) ?? '-' }}
-              </div>
-              <div class="text-body1 q-ma-sm">
                 <span class="text-bold">{{ $t('dashboard.main.product.data.purchasePrice') }} :</span>
                 {{ rupiah(props.row.purchase_price) }}
+              </div>
+              <div class="text-body1 q-ma-sm">
+                <span class="text-bold">{{ $t('dashboard.main.product.data.sellingPrice') }} :</span>
+                {{ rupiah(props.row.selling_price) ?? '-' }}
               </div>
 
               <!-- Volume -->

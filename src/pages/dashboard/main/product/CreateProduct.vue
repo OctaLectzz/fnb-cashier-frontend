@@ -207,21 +207,6 @@ const data = ref({
   status: 1
 })
 
-// Get Product
-const products = ref([])
-const getProduct = async () => {
-  try {
-    const res = await useProductStore().all()
-
-    products.value = res.data.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-onMounted(() => {
-  getProduct()
-})
-
 // Category
 const categories = ref([])
 const categoryOptions = ref([])
@@ -271,18 +256,7 @@ const imageChange = async (e) => {
 const rules = ref({
   name: [(v) => !!v || t('dashboard.main.product.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.main.product.validate.nameMaxLength')],
   category: [(v) => !!v || t('dashboard.main.product.validate.categoryRequired')],
-  sku: [
-    (v) => !!v || t('dashboard.main.product.validate.skuRequired'),
-    (v) => v.length <= 10 || t('dashboard.main.product.validate.skuMaxLength'),
-    (v) => {
-      if (typeof v === 'string') {
-        if (products.value) {
-          return !products.value.some((product) => product.sku.toLowerCase() === v.toLowerCase()) || t('dashboard.main.product.validate.skuAlready')
-        }
-      }
-      return true
-    }
-  ],
+  sku: [(v) => !!v || t('dashboard.main.product.validate.skuRequired'), (v) => v.length <= 10 || t('dashboard.main.product.validate.skuMaxLength')],
   purchase_price: [(v) => !!v || t('dashboard.main.product.validate.purchasePriceRequired')],
   unit: [(v) => !!v || t('dashboard.main.product.validate.unitRequired'), (v) => v.length <= 10 || t('dashboard.main.product.validate.unitMaxLength')]
 })

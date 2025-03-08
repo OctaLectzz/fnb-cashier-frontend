@@ -16,7 +16,7 @@
               {{ $t('auth.nipForm') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
             </label>
-            <q-input v-model="nip" placeholder="1234567890" :rules="rules.nip" mask="##########" outlined dense required autofocus />
+            <q-input v-model="nip" placeholder="1234567890" :rules="rules.nip" mask="####################" outlined dense required autofocus />
           </div>
 
           <!-- PIN -->

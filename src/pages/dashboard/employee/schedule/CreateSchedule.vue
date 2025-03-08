@@ -96,35 +96,9 @@ const data = ref({
   end_time: ''
 })
 
-// Get Schedule
-const schedules = ref([])
-const getSchedule = async () => {
-  try {
-    const res = await useScheduleStore().all()
-
-    schedules.value = res.data.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-onMounted(() => {
-  getSchedule()
-})
-
 // Validate
 const rules = ref({
-  name: [
-    (v) => !!v || t('dashboard.employee.schedule.validate.nameRequired'),
-    (v) => v.length <= 50 || t('dashboard.employee.schedule.validate.nameMaxLength'),
-    (v) => {
-      if (typeof v === 'string') {
-        if (schedules.value) {
-          return !schedules.value.some((schedule) => schedule.name.toLowerCase() === v.toLowerCase()) || t('dashboard.employee.schedule.validate.nameAlready')
-        }
-      }
-      return true
-    }
-  ],
+  name: [(v) => !!v || t('dashboard.employee.schedule.validate.nameRequired'), (v) => v.length <= 50 || t('dashboard.employee.schedule.validate.nameMaxLength')],
   start_time: [(v) => !!v || t('dashboard.employee.schedule.validate.startTimeRequired')],
   end_time: [(v) => !!v || t('dashboard.employee.schedule.validate.endTimeRequired')]
 })

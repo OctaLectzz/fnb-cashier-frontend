@@ -31,6 +31,22 @@
             <q-item-section>{{ $t('dashboard.employee.sidebar.homeMenu') }}</q-item-section>
           </q-item>
 
+          <!-- Role -->
+          <q-item :to="{ name: 'employee.role' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+            <q-item-section avatar>
+              <q-icon name="switch_access_shortcut" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.employee.sidebar.roleMenu') }}</q-item-section>
+          </q-item>
+
+          <!-- Schedule -->
+          <q-item :to="{ name: 'employee.schedule' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+            <q-item-section avatar>
+              <q-icon name="schedule" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.employee.sidebar.scheduleMenu') }}</q-item-section>
+          </q-item>
+
           <!-- Schedule -->
           <q-item :to="{ name: 'employee.schedule' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>

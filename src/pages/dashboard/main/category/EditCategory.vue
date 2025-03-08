@@ -60,38 +60,9 @@ const data = ref({
   description: item.description
 })
 
-// Get Category
-const categories = ref([])
-const getCategory = async () => {
-  try {
-    const res = await useCategoryStore().all()
-
-    categories.value = res.data.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-onMounted(() => {
-  getCategory()
-})
-
 // Validate
 const rules = ref({
-  name: [
-    (v) => !!v || t('dashboard.main.category.validate.nameRequired'),
-    (v) => v.length <= 50 || t('dashboard.main.category.validate.nameMaxLength'),
-    (v) => {
-      if (typeof v === 'string') {
-        if (categories.value) {
-          return (
-            !categories.value.some((category) => category.name.toLowerCase() === v.toLowerCase() && category.name.toLowerCase() !== item.name.toLowerCase()) ||
-            t('dashboard.main.category.validate.nameAlready')
-          )
-        }
-      }
-      return true
-    }
-  ]
+  name: [(v) => !!v || t('dashboard.main.category.validate.nameRequired'), (v) => v.length <= 50 || t('dashboard.main.category.validate.nameMaxLength')]
 })
 
 // Disabled Button
