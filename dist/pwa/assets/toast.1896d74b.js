@@ -1,0 +1,1 @@
+import{l as a,m as r}from"./index.820023a3.js";import"./index.4b455d6d.js";var i=async({app:t})=>{const o=(localStorage.getItem("darkmode")||"false")==="true"?"dark":"light",e={autoClose:3e3,position:a.POSITION.TOP_RIGHT,theme:o};t.use(r,e)};export{i as default};
