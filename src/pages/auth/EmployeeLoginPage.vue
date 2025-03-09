@@ -64,10 +64,32 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
 import { useAuthStore } from '/src/stores/auth-store'
+import { useProfileStore } from '/src/stores/profile-store'
 import { useSettingStore } from '/src/stores/setting-store'
 
 const { t } = useI18n()
 const loading = ref(true)
+
+// Profile
+const profile = ref({})
+const getProfile = async () => {
+  try {
+    const res = await useProfileStore().profile()
+
+    profile.value = res.data.data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+
+    toast.error(t('auth.expiredMsg'))
+    localStorage.removeItem('token')
+    localStorage.removeItem('employeetoken')
+    localStorage.removeItem('branch')
+    window.location.reload()
+  }
+}
+onMounted(() => {
+  getProfile()
+})
 
 // Get Setting
 const setting = ref({})

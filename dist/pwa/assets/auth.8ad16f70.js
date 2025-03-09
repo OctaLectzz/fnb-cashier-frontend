@@ -1,1 +1,0 @@
-import{token as o,employeetoken as a}from"./axios.7d27b938.js";import"./index.4b455d6d.js";var n=({router:i})=>{i.beforeEach((m,l,e)=>{m.meta.requiresAuth?o?a?e():e({name:"home.employeelogin"}):e({name:"home.login"}):m.name==="home.login"&&o?e({name:"main.home"}):m.name==="home.employeelogin"&&a?e({name:"main.home"}):e()})};export{n as default};

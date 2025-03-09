@@ -1,0 +1,1 @@
+import{u as o}from"./vue-i18n.runtime.b7fd988f.js";import"./index.c5c224d7.js";var n=({app:t})=>{t.config.globalProperties.$formatViews=r=>{const{t:e}=o();return r>=1e3?(r/1e3).toFixed(1).replace(".0","")+e("public.viewsText"):r.toString()}};export{n as default};

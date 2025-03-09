@@ -7,12 +7,15 @@ export default ({ router }) => {
       if (!token) {
         // Redirect to login page if no token
         next({ name: 'home.login' })
-      } else if (!employeetoken) {
+      } else if (!employeetoken && token) {
         next({ name: 'home.employeelogin' })
       } else {
         // Continue navigation if token exists
         next()
       }
+    } else if (to.name === 'home.employeelogin' && !token) {
+      // If the user already has a token, redirect from the login page
+      next({ name: 'home.login' })
     } else if (to.name === 'home.login' && token) {
       // If the user already has a token, redirect from the login page
       next({ name: 'main.home' })
