@@ -1,10 +1,14 @@
 import { defineStore } from 'pinia'
-import { server, headers, headersImage } from '/src/boot/axios'
+import { server, headers, employeeHeaders, headersImage } from '/src/boot/axios'
 
 export const useEmployeeStore = defineStore('employee', {
   actions: {
     async all() {
       return await server.get('api/employee', { headers })
+    },
+
+    async profile() {
+      return await server.get('api/employee/profile', { headers: employeeHeaders })
     },
 
     async show(id) {

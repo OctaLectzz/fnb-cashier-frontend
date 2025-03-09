@@ -1,18 +1,41 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header :class="$q.dark.isActive ? 'bg-dark text-white' : ''" class="text-dark q-py-sm" style="background-color: #ececf1" elevated>
-      <NavbarComponent @sidebar="toggleDrawer" />
+      <NavbarComponent :profile="profile" :loading="loading" @sidebar="toggleDrawer" />
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" :mini="miniState" :width="250" :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-10'" class="text-white" bordered show-if-above>
       <q-list>
-        <!-- Brand -->
-        <q-item class="row justify-center">
-          <q-item-section avatar>
-            <div v-if="!miniState" class="text-h4 text-center text-bold text-uppercase q-py-lg" style="letter-spacing: 5px">{{ setting.title }}</div>
-            <img v-if="miniState" :src="url + '/settings/' + setting.logo" width="50" class="q-pa-xs" />
-          </q-item-section>
-        </q-item>
+        <!-- Branch -->
+        <div class="flex flex-center q-pa-sm">
+          <q-btn-dropdown rounded dense flat push no-caps>
+            <template v-slot:label>
+              <q-avatar icon="store" text-color="white" class="q-mx-sm" />
+
+              <div class="text-left q-mx-sm">
+                <div style="font-size: 11px">{{ $t('dashboard.outletText') }}</div>
+                <div>{{ selectedBranch.length > 14 ? selectedBranch.slice(0, 14) + '...' : selectedBranch }}</div>
+              </div>
+            </template>
+            <div class="q-pa-md">
+              <!-- Title -->
+              <div class="text-h6">{{ $t('dashboard.outletListText') }}</div>
+
+              <!-- Search Branch -->
+              <q-input v-model="branchFilter" :placeholder="$t('public.searchText')" class="q-my-sm" debounce="300" outlined dense>
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+
+              <q-separator class="q-my-md" />
+              <!-- Branch List -->
+              <div v-for="branch in branches" :key="branch.id">
+                <q-radio v-model="selectBranch" :val="branch.id" :label="branch.name" @click="changeBranch(branch)" />
+              </div>
+            </div>
+          </q-btn-dropdown>
+        </div>
 
         <q-separator dark />
 
@@ -98,20 +121,6 @@
             </q-item-section>
             <q-item-section>{{ $t('dashboard.main.sidebar.salesReportMenu') }}</q-item-section>
           </q-item> -->
-
-          <!-- COMPANY -->
-          <q-separator class="q-mb-md q-mt-sm" />
-          <div class="menu-text-header q-mx-md q-mb-sm" style="font-size: 11px">
-            <span v-if="!miniState">{{ $t('dashboard.main.sidebar.companyGroup') }}</span>
-          </div>
-
-          <!-- Setting -->
-          <q-item :to="{ name: 'main.setting' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
-            <q-item-section avatar>
-              <q-icon name="language" size="20px" />
-            </q-item-section>
-            <q-item-section>{{ $t('dashboard.main.sidebar.settingMenu') }}</q-item-section>
-          </q-item>
         </q-scroll-area>
       </q-list>
     </q-drawer>
@@ -128,9 +137,39 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { url } from '/src/boot/axios'
+import { useI18n } from 'vue-i18n'
+import { toast } from 'vue3-toastify'
+import { currentbranch } from '/src/boot/axios'
 import NavbarComponent from '/src/components/NavbarComponent.vue'
+import { useEmployeeStore } from '/src/stores/employee/employee-store'
 import { useSettingStore } from '/src/stores/setting-store'
+import { useBranchStore } from '/src/stores/main/branch-store'
+
+const { t } = useI18n()
+
+// Profile
+const profile = ref({})
+const loading = ref(false)
+const getProfile = async () => {
+  loading.value = true
+  try {
+    const res = await useEmployeeStore().profile()
+
+    profile.value = res.data.data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+
+    toast.error(t('auth.expiredMsg'))
+    localStorage.removeItem('token')
+    localStorage.removeItem('employeetoken')
+    localStorage.removeItem('branch')
+    window.location.reload()
+  }
+  loading.value = false
+}
+onMounted(() => {
+  getProfile()
+})
 
 // Get Setting
 const setting = ref({})
@@ -168,4 +207,28 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', detectDesktop)
 })
+
+// Branch
+const branchFilter = ref('')
+const selectBranch = ref(currentbranch)
+const selectedBranch = ref('')
+const branches = ref([])
+const getBranch = async () => {
+  try {
+    const res = await useBranchStore().all()
+
+    branches.value = res.data.data.filter((branch) => branch.status === 1)
+    selectedBranch.value = branches.value.find((branch) => branch.id === currentbranch).name
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
+onMounted(() => {
+  getBranch()
+})
+const changeBranch = (branch) => {
+  localStorage.setItem('branch', branch.id)
+  selectedBranch.value = branch.name
+  window.location.reload()
+}
 </script>

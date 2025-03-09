@@ -7,6 +7,10 @@ export const useTransactionStore = defineStore('transaction', {
       return await server.get('api/transaction', { headers })
     },
 
+    async branch(id) {
+      return await server.get(`api/transaction/branch/${id}`, { headers })
+    },
+
     async show(id) {
       return await server.get(`api/transaction/${id}`, { headers })
     },

@@ -110,11 +110,8 @@
 
               <q-card-section id="print-section" class="q-pa-md">
                 <!-- About -->
-                <div class="row justify-center">
-                  <img :src="url + '/settings/' + setting.logo" :style="'width:' + setting.logo_size + 'px'" />
-                </div>
-                <div class="text-h6 text-center text-bold">{{ setting.title }}</div>
-                <div class="text-body2 text-center">{{ setting.address }}</div>
+                <div class="text-h6 text-center text-bold">{{ branch.name }}</div>
+                <div class="text-body2 text-center">{{ branch.address }}</div>
 
                 <q-separator class="q-my-md" />
 
@@ -203,9 +200,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { url } from '/src/boot/axios'
+import { url, currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
-import { useSettingStore } from '/src/stores/setting-store'
+import { useBranchStore } from '/src/stores/main/branch-store'
 
 const { t } = useI18n()
 const { item } = defineProps(['item'])
@@ -224,19 +221,19 @@ const data = ref({
   transactiondetails: item.transactiondetails
 })
 
-// Get Setting
-const setting = ref({})
-const getSetting = async () => {
+// Get Branch
+const branch = ref({})
+const getBranch = async () => {
   try {
-    const res = await useSettingStore().show(1)
+    const res = await useBranchStore().show(currentbranch)
 
-    setting.value = res.data.data
+    branch.value = res.data.data
   } catch (error) {
     console.error('Error fetching data:', error)
   }
 }
 onMounted(() => {
-  getSetting()
+  getBranch()
 })
 
 // Print

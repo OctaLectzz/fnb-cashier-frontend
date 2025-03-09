@@ -8,10 +8,14 @@ const server = axios.create({ baseURL: url })
 // Get Token
 const token = localStorage.getItem('token')
 const employeetoken = localStorage.getItem('employeetoken')
+const currentbranch = parseInt(localStorage.getItem('branch'))
 
 // Headers
 const headers = {
   Authorization: `Bearer ${token}`
+}
+const employeeHeaders = {
+  Authorization: `Bearer ${employeetoken}`
 }
 const headersImage = {
   Authorization: `Bearer ${token}`,
@@ -33,4 +37,4 @@ export default boot(({ app }) => {
   app.config.globalProperties.$server = server
 })
 
-export { axios, server, url, token, employeetoken, headers, headersImage }
+export { axios, server, url, token, employeetoken, currentbranch, headers, employeeHeaders, headersImage }

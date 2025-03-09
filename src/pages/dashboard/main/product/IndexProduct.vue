@@ -224,7 +224,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
-import { url } from '/src/boot/axios'
+import { url, currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useProductStore } from '/src/stores/main/product-store'
 import CreateItem from './CreateProduct.vue'
@@ -238,7 +238,7 @@ const router = useRouter()
 const items = ref([])
 const getItem = async () => {
   try {
-    const res = await useProductStore().all()
+    const res = await useProductStore().branch(currentbranch)
 
     items.value = res.data.data
   } catch (error) {

@@ -143,6 +143,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
+import { currentbranch } from '/src/boot/axios'
 import { useCategoryStore } from '/src/stores/main/category-store'
 import CreateItem from './CreateCategory.vue'
 import EditItem from './EditCategory.vue'
@@ -155,7 +156,7 @@ const router = useRouter()
 const items = ref([])
 const getItem = async () => {
   try {
-    const res = await useCategoryStore().all()
+    const res = await useCategoryStore().branch(currentbranch)
 
     items.value = res.data.data
   } catch (error) {

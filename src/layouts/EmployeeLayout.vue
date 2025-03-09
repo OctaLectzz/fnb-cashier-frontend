@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header :class="$q.dark.isActive ? 'bg-dark text-white' : ''" class="text-dark q-py-sm" style="background-color: #ececf1" elevated>
-      <NavbarComponent @sidebar="toggleDrawer" />
+      <NavbarComponent :profile="profile" :loading="loading" @sidebar="toggleDrawer" />
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" :mini="miniState" :width="250" :class="$q.dark.isActive ? 'bg-dark' : 'bg-grey-10'" class="text-white" bordered show-if-above>
@@ -76,9 +76,35 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
 import NavbarComponent from '/src/components/NavbarComponent.vue'
+import { useEmployeeStore } from '/src/stores/employee/employee-store'
 import { useSettingStore } from '/src/stores/setting-store'
+
+// Profile
+const profile = ref({})
+const loading = ref(false)
+const getProfile = async () => {
+  loading.value = true
+  try {
+    const res = await useEmployeeStore().profile()
+
+    profile.value = res.data.data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+
+    toast.error(t('auth.expiredMsg'))
+    localStorage.removeItem('token')
+    localStorage.removeItem('employeetoken')
+    localStorage.removeItem('branch')
+    window.location.reload()
+  }
+  loading.value = false
+}
+onMounted(() => {
+  getProfile()
+})
 
 // Get Setting
 const setting = ref({})

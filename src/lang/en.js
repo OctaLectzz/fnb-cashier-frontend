@@ -98,6 +98,8 @@ export default {
     warningTitle: 'WARNING!!!',
     warningText: 'Are you sure you want to delete this data?',
     actionTable: 'Action',
+    outletText: 'Outlet',
+    outletListText: 'Outlet List',
     menu: {
       'mainMenu': 'Main',
       'employeeMenu': 'Employee',
@@ -108,7 +110,6 @@ export default {
         mainGroup: 'MAIN',
         managementGroup: 'MANAGEMENT',
         cashierGroup: 'CASHIER',
-        companyGroup: 'COMPANY',
         homeMenu: 'Main Dashboard',
         branchMenu: 'Branches',
         categoryMenu: 'Categories',
@@ -117,8 +118,7 @@ export default {
         discountMenu: 'Discount',
         transactionMenu: 'Transactions',
         transactionHistoryMenu: 'Transaction Histories',
-        salesReportMenu: 'Sales Reports',
-        settingMenu: 'Setting'
+        salesReportMenu: 'Sales Reports'
       },
       home: {
         dashboardText: 'Main Dashboard',
@@ -161,7 +161,7 @@ export default {
         },
         validate: {
           nameRequired: 'Name must be filled in',
-          nameMaxLength: 'Maximum Name is 255 characters',
+          nameMaxLength: 'Maximum Name is 30 characters',
           emailFormat: 'Invalid Email'
         }
       },

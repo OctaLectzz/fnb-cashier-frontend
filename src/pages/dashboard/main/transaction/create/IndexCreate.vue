@@ -117,7 +117,7 @@ import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useQuasar } from 'quasar'
-import { url } from '/src/boot/axios'
+import { url, currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useCategoryStore } from '/src/stores/main/category-store'
 import DetailTransaction from './DetailCreate.vue'
@@ -137,7 +137,7 @@ const detailItemDialog = ref(false)
 const items = ref([])
 const getItem = async () => {
   try {
-    const res = await useCategoryStore().all()
+    const res = await useCategoryStore().branch(currentbranch)
     items.value = res.data.data
   } catch (error) {
     console.error('Error fetching data:', error)

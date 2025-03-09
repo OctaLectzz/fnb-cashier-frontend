@@ -20,11 +20,14 @@ export const useAuthStore = defineStore('auth', {
       const res = await server.post('api/auth/employee', { nip, pin }, { headers })
 
       localStorage.setItem('employeetoken', res.data.data.token)
+      localStorage.setItem('branch', res.data.data.employee.branch.id)
       return res
     },
 
     async logout() {
       localStorage.removeItem('token')
+      localStorage.removeItem('employeetoken')
+      localStorage.removeItem('branch')
       window.location.reload()
 
       return await server.get('api/auth/logout', { headers })

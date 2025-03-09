@@ -47,7 +47,7 @@
           <q-skeleton v-if="loading" type="QAvatar" size="30px" />
 
           <q-avatar v-else size="30px">
-            <img :src="url + '/users/avatars/' + profile.avatar" />
+            <img :src="url + '/employees/avatars/' + profile.avatar" />
           </q-avatar>
         </template>
         <div>
@@ -66,15 +66,6 @@
                 <div>
                   <q-icon name="manage_accounts" size="15px" class="q-pb-xs q-mx-xs" />
                   {{ $t('dashboard.editProfileMenu') }}
-                </div>
-              </q-item-section>
-            </q-item>
-
-            <q-item class="q-pr-lg" @click="navigateTo('main.changepassword')" clickable v-close-popup dense>
-              <q-item-section>
-                <div>
-                  <q-icon name="key" size="15px" class="q-pb-xs q-mx-xs" />
-                  {{ $t('dashboard.changepasswordMenu') }}
                 </div>
               </q-item-section>
             </q-item>
@@ -104,40 +95,18 @@ import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
 import { url, token } from '/src/boot/axios'
 import { lang, languages, languageNames } from '/src/boot/i18n'
-import { useProfileStore } from '/src/stores/profile-store'
 import { useAuthStore } from '/src/stores/auth-store'
 
 const $q = useQuasar()
 const { t } = useI18n()
 const router = useRouter()
+const { profile, loading } = defineProps(['profile', 'loading'])
 const emits = defineEmits(['sidebar'])
 const dashboardmenu = ref('main')
 
 const toggleDrawer = () => {
   emits('sidebar')
 }
-
-// Profile
-const profile = ref({})
-const loading = ref(false)
-const getProfile = async () => {
-  loading.value = true
-  try {
-    const res = await useProfileStore().profile()
-
-    profile.value = res.data.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-
-    toast.error(t('auth.expiredMsg'))
-    localStorage.removeItem('token')
-    window.location.reload()
-  }
-  loading.value = false
-}
-onMounted(() => {
-  if (token) getProfile()
-})
 
 // Change Language
 const changeLanguage = (newLocale) => {

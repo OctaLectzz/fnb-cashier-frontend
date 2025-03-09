@@ -152,7 +152,7 @@ const imageChange = async (e) => {
 
 // Validate
 const rules = ref({
-  name: [(v) => !!v || t('dashboard.main.branch.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.main.branch.validate.nameMaxLength')],
+  name: [(v) => !!v || t('dashboard.main.branch.validate.nameRequired'), (v) => v.length <= 30 || t('dashboard.main.branch.validate.nameMaxLength')],
   email: [(v) => /.+@.+/.test(v) || t('dashboard.main.branch.validate.emailFormat')]
 })
 

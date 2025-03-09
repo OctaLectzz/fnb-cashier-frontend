@@ -183,7 +183,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
-import { url } from '/src/boot/axios'
+import { url, currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useProductStore } from '/src/stores/main/product-store'
 import { useCategoryStore } from '/src/stores/main/category-store'
@@ -214,7 +214,7 @@ const categories = ref([])
 const categoryOptions = ref([])
 const getCategory = async () => {
   try {
-    const res = await useCategoryStore().all()
+    const res = await useCategoryStore().branch(currentbranch)
 
     categories.value = res.data.data.map((category) => ({
       id: category.id,

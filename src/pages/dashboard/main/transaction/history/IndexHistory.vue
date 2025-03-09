@@ -218,6 +218,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
+import { currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useTransactionStore } from '/src/stores/main/transaction-store'
 import EditItem from './EditHistory.vue'
@@ -231,7 +232,7 @@ const router = useRouter()
 const items = ref([])
 const getItem = async () => {
   try {
-    const res = await useTransactionStore().all()
+    const res = await useTransactionStore().branch(currentbranch)
 
     items.value = res.data.data
   } catch (error) {

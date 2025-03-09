@@ -7,6 +7,10 @@ export const useProductStore = defineStore('product', {
       return await server.get('api/product', { headers })
     },
 
+    async branch(id) {
+      return await server.get(`api/product/branch/${id}`, { headers })
+    },
+
     async show(id) {
       return await server.get(`api/product/${id}`, { headers })
     },

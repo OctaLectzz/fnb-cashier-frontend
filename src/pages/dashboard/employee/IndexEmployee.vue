@@ -129,10 +129,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watchEffect } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useSettingStore } from '/src/stores/setting-store'
-import { useProfileStore } from '/src/stores/profile-store'
 
 const route = useRoute()
 const router = useRouter()
@@ -151,21 +150,6 @@ const getSetting = async () => {
 }
 onMounted(() => {
   getSetting()
-})
-
-// Profile
-const profile = ref({})
-const getProfile = async () => {
-  try {
-    const res = await useProfileStore().profile()
-
-    profile.value = res.data.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-onMounted(() => {
-  getProfile()
 })
 
 // Get

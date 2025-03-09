@@ -7,6 +7,10 @@ export const useCategoryStore = defineStore('category', {
       return await server.get('api/category', { headers })
     },
 
+    async branch(id) {
+      return await server.get(`api/category/branch/${id}`, { headers })
+    },
+
     async show(id) {
       return await server.get(`api/category/${id}`, { headers })
     },

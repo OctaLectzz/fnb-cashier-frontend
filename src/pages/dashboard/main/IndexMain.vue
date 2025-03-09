@@ -144,7 +144,6 @@ import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { rupiah } from '/src/boot/rupiah'
 import { useSettingStore } from '/src/stores/setting-store'
-import { useProfileStore } from '/src/stores/profile-store'
 import { useDashboardStore } from '/src/stores/dashboard-store'
 
 const route = useRoute()
@@ -188,21 +187,6 @@ const getSetting = async () => {
 }
 onMounted(() => {
   getSetting()
-})
-
-// Profile
-const profile = ref({})
-const getProfile = async () => {
-  try {
-    const res = await useProfileStore().profile()
-
-    profile.value = res.data.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-onMounted(() => {
-  getProfile()
 })
 
 // Get Today Date
