@@ -118,8 +118,7 @@ export default {
         transactionMenu: 'Transactions',
         transactionHistoryMenu: 'Transaction Histories',
         salesReportMenu: 'Sales Reports',
-        settingMenu: 'Setting',
-        backMenu: 'Return to Main Menu'
+        settingMenu: 'Setting'
       },
       home: {
         dashboardText: 'Main Dashboard',
@@ -299,8 +298,7 @@ export default {
         homeMenu: 'Employee Dashboard',
         roleMenu: 'Access Rights',
         scheduleMenu: 'Schedules',
-        employeeMenu: 'Employees',
-        backMenu: 'Return to Main Menu'
+        employeeMenu: 'Employees'
       },
       role: {
         titleText: 'Access Right',
@@ -420,7 +418,7 @@ export default {
           branchRequired: 'Branch must be filled in',
           scheduleRequired: 'Schedule must be filled in',
           employmentStatusRequired: 'Employment Status must be filled in',
-          dateJoinedRequired: 'Date Joined must be filled in',
+          dateJoinedRequired: 'Date Joined must be filled in'
         }
       }
     }

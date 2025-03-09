@@ -60,14 +60,6 @@
           <div class="menu-text-header q-mx-md q-mb-sm" style="font-size: 11px">
             <span v-if="!miniState">{{ $t('dashboard.employee.sidebar.managementGroup') }}</span>
           </div>
-
-          <!-- Back -->
-          <q-item :to="{ name: 'home' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
-            <q-item-section avatar>
-              <q-icon name="reply" size="20px" />
-            </q-item-section>
-            <q-item-section>{{ $t('dashboard.employee.sidebar.backMenu') }}</q-item-section>
-          </q-item>
         </q-scroll-area>
       </q-list>
     </q-drawer>

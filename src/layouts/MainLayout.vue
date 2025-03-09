@@ -112,14 +112,6 @@
             </q-item-section>
             <q-item-section>{{ $t('dashboard.main.sidebar.settingMenu') }}</q-item-section>
           </q-item>
-
-          <!-- Back -->
-          <q-item :to="{ name: 'home' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
-            <q-item-section avatar>
-              <q-icon name="reply" size="20px" />
-            </q-item-section>
-            <q-item-section>{{ $t('dashboard.main.sidebar.backMenu') }}</q-item-section>
-          </q-item>
         </q-scroll-area>
       </q-list>
     </q-drawer>
