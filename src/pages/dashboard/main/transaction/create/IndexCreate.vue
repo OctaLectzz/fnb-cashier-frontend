@@ -166,7 +166,7 @@ const paymentType = ref([
   }
 ])
 const paymentTypeOptions = ref(paymentType)
-const paymentTypeFilter = (val, update, abort) => {
+const paymentTypeFilter = (val, update) => {
   update(() => {
     const needle = val.toLowerCase()
     paymentTypeOptions.value = paymentType.value.filter((option) => {

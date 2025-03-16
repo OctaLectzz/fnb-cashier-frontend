@@ -6,4 +6,3 @@ export const rupiah = (price) => {
     maximumFractionDigits: 0
   }).format(price)
 }
-

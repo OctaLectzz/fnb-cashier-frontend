@@ -142,7 +142,6 @@ import { toast } from 'vue3-toastify'
 import { currentbranch } from '/src/boot/axios'
 import NavbarComponent from '/src/components/NavbarComponent.vue'
 import { useEmployeeStore } from '/src/stores/employee/employee-store'
-import { useSettingStore } from '/src/stores/setting-store'
 import { useBranchStore } from '/src/stores/main/branch-store'
 
 const { t } = useI18n()
@@ -169,21 +168,6 @@ const getProfile = async () => {
 }
 onMounted(() => {
   getProfile()
-})
-
-// Get Setting
-const setting = ref({})
-const getSetting = async () => {
-  try {
-    const res = await useSettingStore().show(1)
-
-    setting.value = res.data.data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-onMounted(() => {
-  getSetting()
 })
 
 // Sidebar

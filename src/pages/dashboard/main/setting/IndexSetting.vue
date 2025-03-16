@@ -109,7 +109,6 @@ import { useSettingStore } from '/src/stores/setting-store'
 const $q = useQuasar()
 const { t } = useI18n()
 const router = useRouter()
-const emits = defineEmits(['created'])
 const data = ref({
   id: 1,
   title: '',

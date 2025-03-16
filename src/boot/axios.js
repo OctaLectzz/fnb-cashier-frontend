@@ -37,4 +37,4 @@ export default boot(({ app }) => {
   app.config.globalProperties.$server = server
 })
 
-export { axios, server, url, token, employeetoken, currentbranch, headers, employeeHeaders, headersImage }
+export { axios, url, server, token, employeetoken, currentbranch, headers, employeeHeaders, headersImage }

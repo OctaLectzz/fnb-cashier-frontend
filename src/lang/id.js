@@ -93,9 +93,9 @@ export default {
     warningText: 'Apakah Anda yakin ingin menghapus data ini?',
     actionTable: 'Aksi',
     menu: {
-      'mainMenu': 'Utama',
-      'employeeMenu': 'Karyawan',
-      'accountingMenu': 'Akuntansi'
+      mainMenu: 'Utama',
+      employeeMenu: 'Karyawan',
+      accountingMenu: 'Akuntansi'
     },
     main: {
       sidebar: {

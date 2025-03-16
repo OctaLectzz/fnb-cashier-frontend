@@ -3,9 +3,7 @@
     <!-- Hero Section -->
     <div class="hero flex flex-center column">
       <h1 class="text-h3 text-white text-bold text-center">WinePOS: Solusi Kasir Modern</h1>
-      <p class="text-subtitle1 text-white text-center q-mt-sm">
-        Kelola bisnis retail dengan mudah, cepat, dan efisien dengan sistem POS canggih.
-      </p>
+      <p class="text-subtitle1 text-white text-center q-mt-sm">Kelola bisnis retail dengan mudah, cepat, dan efisien dengan sistem POS canggih.</p>
       <q-btn color="primary" glossy size="lg" label="Coba Gratis" class="q-mt-md" @click="goToPricing" />
     </div>
 
@@ -76,22 +74,22 @@ export default {
     return {
       slide: 0,
       fiturList: [
-        { icon: "shopping_cart", title: "Manajemen Produk", description: "Tambah, edit, dan kelola stok dengan mudah." },
-        { icon: "bar_chart", title: "Laporan Penjualan", description: "Pantau transaksi secara real-time." },
-        { icon: "credit_card", title: "Multi Pembayaran", description: "Dukung tunai, e-wallet, kartu kredit." }
+        { icon: 'shopping_cart', title: 'Manajemen Produk', description: 'Tambah, edit, dan kelola stok dengan mudah.' },
+        { icon: 'bar_chart', title: 'Laporan Penjualan', description: 'Pantau transaksi secara real-time.' },
+        { icon: 'credit_card', title: 'Multi Pembayaran', description: 'Dukung tunai, e-wallet, kartu kredit.' }
       ],
       testimoni: [
-        { nama: "Andi Wijaya", pekerjaan: "Pemilik Toko Sembako", komentar: "WinePOS sangat membantu bisnis saya!", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
-        { nama: "Siti Rahma", pekerjaan: "Owner Butik Fashion", komentar: "Sistemnya cepat dan stabil. Rekomendasi banget!", avatar: "https://randomuser.me/api/portraits/women/45.jpg" },
-        { nama: "Budi Santoso", pekerjaan: "Manajer Restoran", komentar: "Fitur laporan penjualannya sangat detail dan akurat.", avatar: "https://randomuser.me/api/portraits/men/50.jpg" }
+        { nama: 'Andi Wijaya', pekerjaan: 'Pemilik Toko Sembako', komentar: 'WinePOS sangat membantu bisnis saya!', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
+        { nama: 'Siti Rahma', pekerjaan: 'Owner Butik Fashion', komentar: 'Sistemnya cepat dan stabil. Rekomendasi banget!', avatar: 'https://randomuser.me/api/portraits/women/45.jpg' },
+        { nama: 'Budi Santoso', pekerjaan: 'Manajer Restoran', komentar: 'Fitur laporan penjualannya sangat detail dan akurat.', avatar: 'https://randomuser.me/api/portraits/men/50.jpg' }
       ],
       pricing: [
-        { name: "Basic", price: "Rp99.000/bulan" },
-        { name: "Pro", price: "Rp199.000/bulan" }
+        { name: 'Basic', price: 'Rp99.000/bulan' },
+        { name: 'Pro', price: 'Rp199.000/bulan' }
       ]
-    };
+    }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -107,19 +105,29 @@ export default {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.feature-card, .pricing-card {
+.feature-card,
+.pricing-card {
   width: 250px;
   text-align: center;
   padding: 20px;
   border-radius: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
-.feature-card:hover, .pricing-card:hover {
+.feature-card:hover,
+.pricing-card:hover {
   transform: translateY(-5px);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }

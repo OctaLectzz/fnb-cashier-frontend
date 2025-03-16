@@ -206,7 +206,6 @@ import { useBranchStore } from '/src/stores/main/branch-store'
 
 const { t } = useI18n()
 const { item } = defineProps(['item'])
-const emits = defineEmits(['created'])
 const data = ref({
   invoice: item.invoice,
   name: item.name,

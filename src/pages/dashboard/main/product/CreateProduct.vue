@@ -225,7 +225,7 @@ const getCategory = async () => {
     console.error('Error fetching data:', error)
   }
 }
-const categoryFilter = (val, update, abort) => {
+const categoryFilter = (val, update) => {
   update(() => {
     const needle = val.toLowerCase()
     categoryOptions.value = categories.value.filter((option) => {

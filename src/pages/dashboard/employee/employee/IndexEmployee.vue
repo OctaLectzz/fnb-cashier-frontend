@@ -114,8 +114,8 @@
               props.row.employment_status === 'permanent'
                 ? $t('dashboard.employee.employee.data.permanentEmploymentStatus')
                 : props.row.employment_status === 'contract'
-                ? $t('dashboard.employee.employee.data.contractEmploymentStatus')
-                : $t('dashboard.employee.employee.data.freelanceEmploymentStatus')
+                  ? $t('dashboard.employee.employee.data.contractEmploymentStatus')
+                  : $t('dashboard.employee.employee.data.freelanceEmploymentStatus')
             "
             class="text-body2"
           />
@@ -213,8 +213,8 @@
                       props.row.employment_status === 'permanent'
                         ? $t('dashboard.employee.employee.data.permanentEmploymentStatus')
                         : props.row.employment_status === 'contract'
-                        ? $t('dashboard.employee.employee.data.contractEmploymentStatus')
-                        : $t('dashboard.employee.employee.data.freelanceEmploymentStatus')
+                          ? $t('dashboard.employee.employee.data.contractEmploymentStatus')
+                          : $t('dashboard.employee.employee.data.freelanceEmploymentStatus')
                     "
                     class="text-body2"
                   />

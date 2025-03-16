@@ -8,399 +8,152 @@
           <q-btn icon="close" flat round dense v-close-popup />
         </q-card-section>
 
-        <q-separator />
-
-        <q-card-section class="scroll">
-          <q-stepper v-model="step" ref="stepper" color="primary" animated>
-            <q-step :name="1" :title="$t('dashboard.employee.employee.step1') + $t('public.requiredText')" icon="settings" :done="step > 1" class="scroll" style="height: 66vh">
-              <div class="row justify-center">
-                <!-- Avatar -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.avatar') }}
-                        <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <div
-                        class="squareDropzone cursor-pointer"
-                        :class="{ 'active-dropzone': avatarActive, 'dropzone-image': data.avatar }"
-                        :style="$q.dark.isActive ? 'border: 2px dashed #fff' : 'border: 2px dashed var(--q-primary)'"
-                        @dragenter.prevent="avatarToggleActive(false)"
-                        @dragleave.prevent="avatarToggleActive(false)"
-                        @dragover.prevent="avatarToggleActive(true)"
-                        @drop.prevent="avatarDrop"
-                      >
-                        <span v-if="!data.avatar" class="text-center cursor-pointer q-pa-md" @click="openAvatarInput">
-                          <q-icon name="upload" size="sm" color="primary" />
-                          <div class="text-primary text-bold q-my-md" style="font-size: 11px">{{ $t('public.chooseFile') }}</div>
-                        </span>
-
-                        <div v-if="data.avatar" class="relative-position">
-                          <q-responsive :ratio="1 / 1" style="width: 170px">
-                            <img :src="data.avatarPreview" alt="Avatar" class="dashboard-image" v-viewer />
-                          </q-responsive>
-
-                          <div class="absolute absolute-top-right">
-                            <q-btn color="negative" icon="clear" @click="data.avatar = ''" flat dense />
-                          </div>
-                        </div>
-
-                        <input type="file" id="avatarFile" class="dropzoneFile" @change="handleAvatarInput" />
-                      </div>
-                      <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.squareRatio') }}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Name -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.name') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-input v-model="data.name" :placeholder="$t('public.exampleText') + 'Octa'" :rules="rules.name" outlined dense required />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- NIP -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.nip') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-input v-model="data.nip" :placeholder="$t('public.exampleText') + '1234567890'" :rules="rules.nip" outlined dense required />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-11 col-xs-12 q-pa-sm">
-                  <q-separator class="q-my-md" />
-                </div>
-
-                <!-- Email -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.email') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-input v-model="data.email" type="email" :placeholder="$t('public.exampleText') + 'email@example.com'" :rules="rules.email" v-lowercase outlined dense required />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Phone Number -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.phoneNumber') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-input
-                        v-model="data.phone_number"
-                        :placeholder="$t('public.exampleText') + '0897 - 1234 - 4444'"
-                        mask="#### - #### - ######"
-                        :rules="rules.phoneNumber"
-                        outlined
-                        dense
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Position -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.position') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-input v-model="data.position" :placeholder="$t('public.exampleText') + 'Manager'" :rules="rules.position" outlined dense required />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Role -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.role') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-select
-                        v-model="data.role"
-                        :options="roleOptions"
-                        :rules="rules.role"
-                        @filter="roleFilter"
-                        input-debounce="0"
-                        use-input
-                        fill-input
-                        emit-value
-                        hide-selected
-                        outlined
-                        dense
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PIN -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.pin') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-input v-model="data.pin" :type="pinVisibility ? 'password' : 'text'" mask="######" :rules="rules.pin" :hint="t('public.defaultText') + '123456'" outlined dense required>
-                        <template v-slot:append>
-                          <q-icon :name="pinVisibility ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="pinVisibility = !pinVisibility" />
-                        </template>
-                      </q-input>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Branch -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.branch') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-select
-                        v-model="data.branch"
-                        :options="branchOptions"
-                        :rules="rules.branch"
-                        @filter="branchFilter"
-                        input-debounce="0"
-                        use-input
-                        fill-input
-                        emit-value
-                        hide-selected
-                        outlined
-                        dense
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Schedule -->
-                <div class="col-md-10 col-xs-12 q-pa-sm">
-                  <div class="row">
-                    <div class="col-md-2 col-xs-12">
-                      <div class="text-body1 text-bold">
-                        {{ $t('dashboard.employee.employee.data.schedule') }}
-                        <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
-                      </div>
-                    </div>
-                    <div class="col-md-10 col-xs-12 q-px-sm">
-                      <q-select
-                        v-model="data.schedule"
-                        :options="scheduleOptions"
-                        :rules="rules.schedule"
-                        @filter="scheduleFilter"
-                        input-debounce="0"
-                        use-input
-                        fill-input
-                        emit-value
-                        hide-selected
-                        outlined
-                        dense
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </q-step>
-
-            <q-step :name="2" :title="$t('dashboard.employee.employee.step2')" :caption="$t('public.optionalText')" icon="create_new_folder" :done="step > 2" class="scroll" style="height: 66vh">
-              <!-- KTP -->
+        <q-stepper v-model="step" ref="stepper" color="primary" animated>
+          <q-step :name="1" :title="$t('dashboard.employee.employee.step1') + $t('public.requiredText')" icon="settings" :done="step > 1" class="scroll" style="height: 77vh">
+            <div class="row justify-center">
+              <!-- Avatar -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.ktp') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.ktp" :placeholder="$t('public.exampleText') + '11 11 11 111111 0001'" mask="## ## ## ###### ####" outlined dense />
-                  </div>
-                </div>
-              </div>
-
-              <!-- KTP Image -->
-              <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.ktpImage') }}
+                      {{ $t('dashboard.employee.employee.data.avatar') }}
                       <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
                     <div
-                      class="rectangleDropzone cursor-pointer"
-                      :class="{ 'active-dropzone': ktpActive, 'dropzone-image': data.ktp }"
+                      class="squareDropzone cursor-pointer"
+                      :class="{ 'active-dropzone': avatarActive, 'dropzone-image': data.avatar }"
                       :style="$q.dark.isActive ? 'border: 2px dashed #fff' : 'border: 2px dashed var(--q-primary)'"
-                      @dragenter.prevent="ktpToggleActive(false)"
-                      @dragleave.prevent="ktpToggleActive(false)"
-                      @dragover.prevent="ktpToggleActive(true)"
-                      @drop.prevent="ktpDrop"
+                      @dragenter.prevent="avatarToggleActive(false)"
+                      @dragleave.prevent="avatarToggleActive(false)"
+                      @dragover.prevent="avatarToggleActive(true)"
+                      @drop.prevent="avatarDrop"
                     >
-                      <span v-if="!data.ktp_image" class="text-center cursor-pointer q-pa-md" @click="openKtpInput">
+                      <span v-if="!data.avatar" class="text-center cursor-pointer q-pa-md" @click="openAvatarInput">
                         <q-icon name="upload" size="sm" color="primary" />
                         <div class="text-primary text-bold q-my-md" style="font-size: 11px">{{ $t('public.chooseFile') }}</div>
                       </span>
 
-                      <div v-if="data.ktp_image" class="relative-position">
-                        <q-responsive :ratio="16 / 9" style="width: 310px">
-                          <img :src="data.ktpPreview" alt="KTP" class="dashboard-image" v-viewer />
+                      <div v-if="data.avatar" class="relative-position">
+                        <q-responsive :ratio="1 / 1" style="width: 170px">
+                          <img :src="data.avatarPreview" alt="Avatar" class="dashboard-image" v-viewer />
                         </q-responsive>
 
                         <div class="absolute absolute-top-right">
-                          <q-btn color="negative" icon="clear" @click="data.ktp_image = ''" flat dense />
+                          <q-btn color="negative" icon="clear" @click="data.avatar = ''" flat dense />
                         </div>
                       </div>
 
-                      <input type="file" id="ktpFile" class="dropzoneFile" @change="handleKtpInput" />
+                      <input type="file" id="avatarFile" class="dropzoneFile" @change="handleAvatarInput" />
                     </div>
-                    <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.rectangleRatio') }}</div>
+                    <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.squareRatio') }}</div>
                   </div>
                 </div>
               </div>
 
-              <!-- DOB -->
+              <!-- Name -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.dob') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                      {{ $t('dashboard.employee.employee.data.name') }}
+                      <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.dob" mask="date" :rules="['date']" outlined dense>
-                      <template v-slot:prepend>
-                        <q-icon name="event" class="cursor-pointer">
-                          <q-popup-proxy transition-show="scale" transition-hide="scale" cover>
-                            <q-date v-model="data.dob">
-                              <div class="row items-center justify-end">
-                                <q-btn label="Close" color="primary" v-close-popup flat />
-                              </div>
-                            </q-date>
-                          </q-popup-proxy>
-                        </q-icon>
-                      </template>
-                    </q-input>
+                    <q-input v-model="data.name" :placeholder="$t('public.exampleText') + 'Octa'" :rules="rules.name" outlined dense required />
                   </div>
                 </div>
               </div>
 
-              <!-- Gender -->
+              <!-- NIP -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.gender') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                      {{ $t('dashboard.employee.employee.data.nip') }}
+                      <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-option-group
-                      v-model="data.gender"
-                      :options="[
-                        { label: $t('dashboard.employee.employee.data.maleGender'), value: 'male' },
-                        { label: $t('dashboard.employee.employee.data.femaleGender'), value: 'female' },
-                        { label: $t('dashboard.employee.employee.data.otherGender'), value: 'other' }
-                      ]"
-                      inline
+                    <q-input v-model="data.nip" :placeholder="$t('public.exampleText') + '1234567890'" :rules="rules.nip" outlined dense required />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-11 col-xs-12 q-pa-sm">
+                <q-separator class="q-my-md" />
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-10 col-xs-12 q-pa-sm">
+                <div class="row">
+                  <div class="col-md-2 col-xs-12">
+                    <div class="text-body1 text-bold">
+                      {{ $t('dashboard.employee.employee.data.email') }}
+                      <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-xs-12 q-px-sm">
+                    <q-input v-model="data.email" type="email" :placeholder="$t('public.exampleText') + 'email@example.com'" :rules="rules.email" v-lowercase outlined dense required />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="col-md-10 col-xs-12 q-pa-sm">
+                <div class="row">
+                  <div class="col-md-2 col-xs-12">
+                    <div class="text-body1 text-bold">
+                      {{ $t('dashboard.employee.employee.data.phoneNumber') }}
+                      <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-xs-12 q-px-sm">
+                    <q-input
+                      v-model="data.phone_number"
+                      :placeholder="$t('public.exampleText') + '0897 - 1234 - 4444'"
+                      mask="#### - #### - ######"
+                      :rules="rules.phoneNumber"
+                      outlined
+                      dense
+                      required
                     />
                   </div>
                 </div>
               </div>
 
-              <!-- Domicile -->
+              <!-- Position -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.domicile') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                      {{ $t('dashboard.employee.employee.data.position') }}
+                      <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.domicile" :placeholder="$t('public.exampleText') + 'Solo'" outlined dense />
+                    <q-input v-model="data.position" :placeholder="$t('public.exampleText') + 'Manager'" :rules="rules.position" outlined dense required />
                   </div>
                 </div>
               </div>
 
-              <!-- Address -->
-              <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.address') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.address" type="textarea" outlined dense />
-                  </div>
-                </div>
-              </div>
-            </q-step>
-
-            <q-step :name="3" :title="$t('dashboard.employee.employee.step3')" :caption="$t('public.optionalText')" icon="add_comment" :done="step > 3" class="scroll" style="height: 66vh">
-              <!-- Employment Status -->
+              <!-- Role -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.employmentStatus') }}
+                      {{ $t('dashboard.employee.employee.data.role') }}
                       <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
                     <q-select
-                      v-model="data.employment_status"
-                      :options="employmentStatusOptions"
-                      :rules="rules.employmentStatus"
-                      @filter="employmentStatusFilter"
+                      v-model="data.role"
+                      :options="roleOptions"
+                      :rules="rules.role"
+                      @filter="roleFilter"
                       input-debounce="0"
                       use-input
                       fill-input
@@ -414,261 +167,498 @@
                 </div>
               </div>
 
-              <!-- Date Joined -->
+              <!-- PIN -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.dateJoined') }}
+                      {{ $t('dashboard.employee.employee.data.pin') }}
                       <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.date_joined" mask="date" :rules="['date', rules.dateJoined]" outlined dense required>
-                      <template v-slot:prepend>
-                        <q-icon name="event" class="cursor-pointer">
-                          <q-popup-proxy transition-show="scale" transition-hide="scale" cover>
-                            <q-date v-model="data.date_joined">
-                              <div class="row items-center justify-end">
-                                <q-btn label="Close" color="primary" v-close-popup flat />
-                              </div>
-                            </q-date>
-                          </q-popup-proxy>
-                        </q-icon>
+                    <q-input v-model="data.pin" :type="pinVisibility ? 'password' : 'text'" mask="######" :rules="rules.pin" :hint="t('public.defaultText') + '123456'" outlined dense required>
+                      <template v-slot:append>
+                        <q-icon :name="pinVisibility ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="pinVisibility = !pinVisibility" />
                       </template>
                     </q-input>
                   </div>
                 </div>
               </div>
 
-              <!-- Status -->
+              <!-- Branch -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.status') }}
+                      {{ $t('dashboard.employee.employee.data.branch') }}
                       <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-toggle v-model="data.status" :color="data.status === false ? 'red' : 'green'" size="lg" checked-icon="check" unchecked-icon="clear" :keep-color="data.status === false" />
-                    <span class="q-mx-md" :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'">{{ $t('dashboard.employee.employee.data.statusPlaceholder') }}</span>
+                    <q-select
+                      v-model="data.branch"
+                      :options="branchOptions"
+                      :rules="rules.branch"
+                      @filter="branchFilter"
+                      input-debounce="0"
+                      use-input
+                      fill-input
+                      emit-value
+                      hide-selected
+                      outlined
+                      dense
+                      required
+                    />
                   </div>
                 </div>
               </div>
 
-              <!-- End Date -->
-              <div v-if="data.employment_status !== 'permanent'" class="col-md-10 col-xs-12 q-pa-sm">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.endDate') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.end_date" mask="date" :rules="['date']" outlined dense required>
-                      <template v-slot:prepend>
-                        <q-icon name="event" class="cursor-pointer">
-                          <q-popup-proxy transition-show="scale" transition-hide="scale" cover>
-                            <q-date v-model="data.end_date">
-                              <div class="row items-center justify-end">
-                                <q-btn label="Close" color="primary" v-close-popup flat />
-                              </div>
-                            </q-date>
-                          </q-popup-proxy>
-                        </q-icon>
-                      </template>
-                    </q-input>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-11 col-xs-12 q-pa-sm">
-                <q-separator class="q-my-md" />
-              </div>
-
-              <!-- BPJS TK Number -->
+              <!-- Schedule -->
               <div class="col-md-10 col-xs-12 q-pa-sm">
                 <div class="row">
                   <div class="col-md-2 col-xs-12">
                     <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.bpjsTkNumber') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                      {{ $t('dashboard.employee.employee.data.schedule') }}
+                      <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
                     </div>
                   </div>
                   <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.bpjs_tk_number" :placeholder="$t('public.exampleText') + '0001234567891'" mask="#############" outlined dense />
+                    <q-select
+                      v-model="data.schedule"
+                      :options="scheduleOptions"
+                      :rules="rules.schedule"
+                      @filter="scheduleFilter"
+                      input-debounce="0"
+                      use-input
+                      fill-input
+                      emit-value
+                      hide-selected
+                      outlined
+                      dense
+                      required
+                    />
                   </div>
                 </div>
               </div>
+            </div>
+          </q-step>
 
-              <!-- BPJS TK Card -->
-              <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.bpjsTkCard') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
+          <q-step :name="2" :title="$t('dashboard.employee.employee.step2')" :caption="$t('public.optionalText')" icon="create_new_folder" :done="step > 2" class="scroll" style="height: 77vh">
+            <!-- KTP -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.ktp') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
                   </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <div
-                      class="rectangleDropzone cursor-pointer"
-                      :class="{ 'active-dropzone': bpjsTkActive, 'dropzone-image': data.bpjsTk }"
-                      :style="$q.dark.isActive ? 'border: 2px dashed #fff' : 'border: 2px dashed var(--q-primary)'"
-                      @dragenter.prevent="bpjsTkToggleActive(false)"
-                      @dragleave.prevent="bpjsTkToggleActive(false)"
-                      @dragover.prevent="bpjsTkToggleActive(true)"
-                      @drop.prevent="bpjsTkDrop"
-                    >
-                      <span v-if="!data.bpjs_tk_image" class="text-center cursor-pointer q-pa-md" @click="openBpjsTkInput">
-                        <q-icon name="upload" size="sm" color="primary" />
-                        <div class="text-primary text-bold q-my-md" style="font-size: 11px">{{ $t('public.chooseFile') }}</div>
-                      </span>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.ktp" :placeholder="$t('public.exampleText') + '11 11 11 111111 0001'" mask="## ## ## ###### ####" outlined dense />
+                </div>
+              </div>
+            </div>
 
-                      <div v-if="data.bpjs_tk_image" class="relative-position">
-                        <q-responsive :ratio="16 / 9" style="width: 310px">
-                          <img :src="data.bpjsTkPreview" alt="BPJS TK Card" class="dashboard-image" v-viewer />
-                        </q-responsive>
+            <!-- KTP Image -->
+            <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.ktpImage') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <div
+                    class="rectangleDropzone cursor-pointer"
+                    :class="{ 'active-dropzone': ktpActive, 'dropzone-image': data.ktp }"
+                    :style="$q.dark.isActive ? 'border: 2px dashed #fff' : 'border: 2px dashed var(--q-primary)'"
+                    @dragenter.prevent="ktpToggleActive(false)"
+                    @dragleave.prevent="ktpToggleActive(false)"
+                    @dragover.prevent="ktpToggleActive(true)"
+                    @drop.prevent="ktpDrop"
+                  >
+                    <span v-if="!data.ktp_image" class="text-center cursor-pointer q-pa-md" @click="openKtpInput">
+                      <q-icon name="upload" size="sm" color="primary" />
+                      <div class="text-primary text-bold q-my-md" style="font-size: 11px">{{ $t('public.chooseFile') }}</div>
+                    </span>
 
-                        <div class="absolute absolute-top-right">
-                          <q-btn color="negative" icon="clear" @click="data.bpjs_tk_image = ''" flat dense />
-                        </div>
+                    <div v-if="data.ktp_image" class="relative-position">
+                      <q-responsive :ratio="16 / 9" style="width: 310px">
+                        <img :src="data.ktpPreview" alt="KTP" class="dashboard-image" v-viewer />
+                      </q-responsive>
+
+                      <div class="absolute absolute-top-right">
+                        <q-btn color="negative" icon="clear" @click="data.ktp_image = ''" flat dense />
                       </div>
-
-                      <input type="file" id="bpjsTkFile" class="dropzoneFile" @change="handleBpjsTkInput" />
                     </div>
-                    <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.rectangleRatio') }}</div>
+
+                    <input type="file" id="ktpFile" class="dropzoneFile" @change="handleKtpInput" />
                   </div>
+                  <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.rectangleRatio') }}</div>
                 </div>
               </div>
+            </div>
 
-              <!-- BPJS Health Number -->
-              <div class="col-md-10 col-xs-12 q-pa-sm">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.bpjsHealthNumber') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.bpjs_health_number" :placeholder="$t('public.exampleText') + '0001234567891'" mask="#############" outlined dense />
+            <!-- DOB -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.dob') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
                   </div>
                 </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.dob" mask="date" :rules="['date']" outlined dense>
+                    <template v-slot:prepend>
+                      <q-icon name="event" class="cursor-pointer">
+                        <q-popup-proxy transition-show="scale" transition-hide="scale" cover>
+                          <q-date v-model="data.dob">
+                            <div class="row items-center justify-end">
+                              <q-btn label="Close" color="primary" v-close-popup flat />
+                            </div>
+                          </q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
               </div>
+            </div>
 
-              <!-- BPJS Health Card -->
-              <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.bpjsHealthCard') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
+            <!-- Gender -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.gender') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
                   </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <div
-                      class="rectangleDropzone cursor-pointer"
-                      :class="{ 'active-dropzone': bpjsHealthActive, 'dropzone-image': data.bpjsHealth }"
-                      :style="$q.dark.isActive ? 'border: 2px dashed #fff' : 'border: 2px dashed var(--q-primary)'"
-                      @dragenter.prevent="bpjsHealthToggleActive(false)"
-                      @dragleave.prevent="bpjsHealthToggleActive(false)"
-                      @dragover.prevent="bpjsHealthToggleActive(true)"
-                      @drop.prevent="bpjsHealthDrop"
-                    >
-                      <span v-if="!data.bpjs_health_image" class="text-center cursor-pointer q-pa-md" @click="openBpjsHealthInput">
-                        <q-icon name="upload" size="sm" color="primary" />
-                        <div class="text-primary text-bold q-my-md" style="font-size: 11px">{{ $t('public.chooseFile') }}</div>
-                      </span>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-option-group
+                    v-model="data.gender"
+                    :options="[
+                      { label: $t('dashboard.employee.employee.data.maleGender'), value: 'male' },
+                      { label: $t('dashboard.employee.employee.data.femaleGender'), value: 'female' },
+                      { label: $t('dashboard.employee.employee.data.otherGender'), value: 'other' }
+                    ]"
+                    inline
+                  />
+                </div>
+              </div>
+            </div>
 
-                      <div v-if="data.bpjs_health_image" class="relative-position">
-                        <q-responsive :ratio="16 / 9" style="width: 310px">
-                          <img :src="data.bpjsHealthPreview" alt="BPJS Health Card" class="dashboard-image" v-viewer />
-                        </q-responsive>
+            <!-- Domicile -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.domicile') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.domicile" :placeholder="$t('public.exampleText') + 'Solo'" outlined dense />
+                </div>
+              </div>
+            </div>
 
-                        <div class="absolute absolute-top-right">
-                          <q-btn color="negative" icon="clear" @click="data.bpjs_health_image = ''" flat dense />
-                        </div>
+            <!-- Address -->
+            <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.address') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.address" type="textarea" outlined dense />
+                </div>
+              </div>
+            </div>
+          </q-step>
+
+          <q-step :name="3" :title="$t('dashboard.employee.employee.step3')" :caption="$t('public.optionalText')" icon="add_comment" :done="step > 3" class="scroll" style="height: 77vh">
+            <!-- Employment Status -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.employmentStatus') }}
+                    <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-select
+                    v-model="data.employment_status"
+                    :options="employmentStatusOptions"
+                    :rules="rules.employmentStatus"
+                    @filter="employmentStatusFilter"
+                    input-debounce="0"
+                    use-input
+                    fill-input
+                    emit-value
+                    hide-selected
+                    outlined
+                    dense
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Date Joined -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.dateJoined') }}
+                    <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.date_joined" mask="date" :rules="['date', rules.dateJoined]" outlined dense required>
+                    <template v-slot:prepend>
+                      <q-icon name="event" class="cursor-pointer">
+                        <q-popup-proxy transition-show="scale" transition-hide="scale" cover>
+                          <q-date v-model="data.date_joined">
+                            <div class="row items-center justify-end">
+                              <q-btn label="Close" color="primary" v-close-popup flat />
+                            </div>
+                          </q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
+              </div>
+            </div>
+
+            <!-- Status -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.status') }}
+                    <span class="text-subtitle2 text-red">{{ $t('public.requiredText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-toggle v-model="data.status" :color="data.status === false ? 'red' : 'green'" size="lg" checked-icon="check" unchecked-icon="clear" :keep-color="data.status === false" />
+                  <span class="q-mx-md" :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'">{{ $t('dashboard.employee.employee.data.statusPlaceholder') }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- End Date -->
+            <div v-if="data.employment_status !== 'permanent'" class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.endDate') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.end_date" mask="date" :rules="['date']" outlined dense required>
+                    <template v-slot:prepend>
+                      <q-icon name="event" class="cursor-pointer">
+                        <q-popup-proxy transition-show="scale" transition-hide="scale" cover>
+                          <q-date v-model="data.end_date">
+                            <div class="row items-center justify-end">
+                              <q-btn label="Close" color="primary" v-close-popup flat />
+                            </div>
+                          </q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-11 col-xs-12 q-pa-sm">
+              <q-separator class="q-my-md" />
+            </div>
+
+            <!-- BPJS TK Number -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.bpjsTkNumber') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.bpjs_tk_number" :placeholder="$t('public.exampleText') + '0001234567891'" mask="#############" outlined dense />
+                </div>
+              </div>
+            </div>
+
+            <!-- BPJS TK Card -->
+            <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.bpjsTkCard') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <div
+                    class="rectangleDropzone cursor-pointer"
+                    :class="{ 'active-dropzone': bpjsTkActive, 'dropzone-image': data.bpjsTk }"
+                    :style="$q.dark.isActive ? 'border: 2px dashed #fff' : 'border: 2px dashed var(--q-primary)'"
+                    @dragenter.prevent="bpjsTkToggleActive(false)"
+                    @dragleave.prevent="bpjsTkToggleActive(false)"
+                    @dragover.prevent="bpjsTkToggleActive(true)"
+                    @drop.prevent="bpjsTkDrop"
+                  >
+                    <span v-if="!data.bpjs_tk_image" class="text-center cursor-pointer q-pa-md" @click="openBpjsTkInput">
+                      <q-icon name="upload" size="sm" color="primary" />
+                      <div class="text-primary text-bold q-my-md" style="font-size: 11px">{{ $t('public.chooseFile') }}</div>
+                    </span>
+
+                    <div v-if="data.bpjs_tk_image" class="relative-position">
+                      <q-responsive :ratio="16 / 9" style="width: 310px">
+                        <img :src="data.bpjsTkPreview" alt="BPJS TK Card" class="dashboard-image" v-viewer />
+                      </q-responsive>
+
+                      <div class="absolute absolute-top-right">
+                        <q-btn color="negative" icon="clear" @click="data.bpjs_tk_image = ''" flat dense />
                       </div>
-
-                      <input type="file" id="bpjsHealthFile" class="dropzoneFile" @change="handleBpjsHealthInput" />
                     </div>
-                    <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.rectangleRatio') }}</div>
+
+                    <input type="file" id="bpjsTkFile" class="dropzoneFile" @change="handleBpjsTkInput" />
                   </div>
+                  <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.rectangleRatio') }}</div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-md-11 col-xs-12 q-pa-sm">
-                <q-separator class="q-my-md" />
-              </div>
-
-              <!-- Bank Name -->
-              <div class="col-md-10 col-xs-12 q-pa-sm">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.bankName') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.bank_name" :placeholder="$t('public.exampleText') + 'Bank Negara Indonesia'" outlined dense />
+            <!-- BPJS Health Number -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.bpjsHealthNumber') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
                   </div>
                 </div>
-              </div>
-
-              <!-- Bank Account Number -->
-              <div class="col-md-10 col-xs-12 q-pa-sm">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.bankAccountNumber') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.bank_account_number" :placeholder="$t('public.exampleText') + '3778 - 04 - 007383 - 57 - 0'" outlined dense />
-                  </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.bpjs_health_number" :placeholder="$t('public.exampleText') + '0001234567891'" mask="#############" outlined dense />
                 </div>
               </div>
+            </div>
 
-              <!-- Account Holder Name -->
-              <div class="col-md-10 col-xs-12 q-pa-sm">
-                <div class="row">
-                  <div class="col-md-2 col-xs-12">
-                    <div class="text-body1 text-bold">
-                      {{ $t('dashboard.employee.employee.data.accountHolderName') }}
-                      <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-10 col-xs-12 q-px-sm">
-                    <q-input v-model="data.account_holder_name" :placeholder="$t('public.exampleText') + 'Ilyas'" outlined dense />
+            <!-- BPJS Health Card -->
+            <div class="col-md-10 col-xs-12 q-pa-sm q-my-md">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.bpjsHealthCard') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
                   </div>
                 </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <div
+                    class="rectangleDropzone cursor-pointer"
+                    :class="{ 'active-dropzone': bpjsHealthActive, 'dropzone-image': data.bpjsHealth }"
+                    :style="$q.dark.isActive ? 'border: 2px dashed #fff' : 'border: 2px dashed var(--q-primary)'"
+                    @dragenter.prevent="bpjsHealthToggleActive(false)"
+                    @dragleave.prevent="bpjsHealthToggleActive(false)"
+                    @dragover.prevent="bpjsHealthToggleActive(true)"
+                    @drop.prevent="bpjsHealthDrop"
+                  >
+                    <span v-if="!data.bpjs_health_image" class="text-center cursor-pointer q-pa-md" @click="openBpjsHealthInput">
+                      <q-icon name="upload" size="sm" color="primary" />
+                      <div class="text-primary text-bold q-my-md" style="font-size: 11px">{{ $t('public.chooseFile') }}</div>
+                    </span>
+
+                    <div v-if="data.bpjs_health_image" class="relative-position">
+                      <q-responsive :ratio="16 / 9" style="width: 310px">
+                        <img :src="data.bpjsHealthPreview" alt="BPJS Health Card" class="dashboard-image" v-viewer />
+                      </q-responsive>
+
+                      <div class="absolute absolute-top-right">
+                        <q-btn color="negative" icon="clear" @click="data.bpjs_health_image = ''" flat dense />
+                      </div>
+                    </div>
+
+                    <input type="file" id="bpjsHealthFile" class="dropzoneFile" @change="handleBpjsHealthInput" />
+                  </div>
+                  <div class="text-grey-7 q-my-sm">{{ $t('public.recomendedFile') + $t('public.rectangleRatio') }}</div>
+                </div>
               </div>
-            </q-step>
+            </div>
 
-            <template v-slot:navigation>
-              <q-stepper-navigation>
-                <q-btn color="primary" :label="$t('dashboard.employee.employee.backBtn')" class="q-mt-md" :disable="step == 1" @click="$refs.stepper.previous()" />
-                <q-btn color="primary" :label="$t('dashboard.employee.employee.continueBtn')" class="float-right q-mt-md" :disable="step == 3" @click="$refs.stepper.next()" />
-              </q-stepper-navigation>
-            </template>
-          </q-stepper>
-        </q-card-section>
+            <div class="col-md-11 col-xs-12 q-pa-sm">
+              <q-separator class="q-my-md" />
+            </div>
 
-        <q-separator />
+            <!-- Bank Name -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.bankName') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.bank_name" :placeholder="$t('public.exampleText') + 'Bank Negara Indonesia'" outlined dense />
+                </div>
+              </div>
+            </div>
 
-        <q-card-actions align="right" class="text-primary">
-          <q-btn color="primary" :label="t('public.cancelText')" flat v-close-popup />
-          <q-btn type="submit" color="primary" :label="t('public.createText')" :loading="loading" :disable="disabledButton">
-            <template v-slot:loading>
-              <q-spinner-gears />
-            </template>
-          </q-btn>
-        </q-card-actions>
+            <!-- Bank Account Number -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.bankAccountNumber') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.bank_account_number" :placeholder="$t('public.exampleText') + '3778 - 04 - 007383 - 57 - 0'" outlined dense />
+                </div>
+              </div>
+            </div>
+
+            <!-- Account Holder Name -->
+            <div class="col-md-10 col-xs-12 q-pa-sm">
+              <div class="row">
+                <div class="col-md-2 col-xs-12">
+                  <div class="text-body1 text-bold">
+                    {{ $t('dashboard.employee.employee.data.accountHolderName') }}
+                    <span class="text-subtitle2 text-grey">{{ $t('public.optionalText') }}</span>
+                  </div>
+                </div>
+                <div class="col-md-10 col-xs-12 q-px-sm">
+                  <q-input v-model="data.account_holder_name" :placeholder="$t('public.exampleText') + 'Ilyas'" outlined dense />
+                </div>
+              </div>
+            </div>
+          </q-step>
+
+          <template v-slot:navigation>
+            <q-stepper-navigation class="q-mt-sm">
+              <q-btn color="primary" :label="$t('dashboard.employee.employee.backBtn')" :disable="step == 1" @click="$refs.stepper.previous()" />
+              <q-btn v-if="step !== 3" color="primary" :label="$t('dashboard.employee.employee.continueBtn')" class="float-right" :disable="step == 3" @click="$refs.stepper.next()" />
+              <q-btn v-if="step === 3" type="submit" color="primary" :label="t('public.createText')" class="float-right" :loading="loading" :disable="disabledButton">
+                <template v-slot:loading>
+                  <q-spinner-gears />
+                </template>
+              </q-btn>
+            </q-stepper-navigation>
+          </template>
+        </q-stepper>
       </q-card>
     </q-form>
   </div>
@@ -766,7 +756,7 @@ const getRole = async () => {
     console.error('Error fetching data:', error)
   }
 }
-const roleFilter = (val, update, abort) => {
+const roleFilter = (val, update) => {
   update(() => {
     const needle = val.toLowerCase()
     roleOptions.value = roles.value.filter((option) => {
@@ -795,7 +785,7 @@ const getBranch = async () => {
     console.error('Error fetching data:', error)
   }
 }
-const branchFilter = (val, update, abort) => {
+const branchFilter = (val, update) => {
   update(() => {
     const needle = val.toLowerCase()
     branchOptions.value = branches.value.filter((option) => {
@@ -824,7 +814,7 @@ const getSchedule = async () => {
     console.error('Error fetching data:', error)
   }
 }
-const scheduleFilter = (val, update, abort) => {
+const scheduleFilter = (val, update) => {
   update(() => {
     const needle = val.toLowerCase()
     scheduleOptions.value = schedules.value.filter((option) => {
@@ -877,7 +867,7 @@ const employmentStatus = ref([
   }
 ])
 const employmentStatusOptions = ref(employmentStatus)
-const employmentStatusFilter = (val, update, abort) => {
+const employmentStatusFilter = (val, update) => {
   update(() => {
     const needle = val.toLowerCase()
     employmentStatusOptions.value = employmentStatus.value.filter((option) => {

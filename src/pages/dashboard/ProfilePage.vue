@@ -461,9 +461,6 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
 import { useEmployeeStore } from '/src/stores/employee/employee-store'
-import { useRoleStore } from '/src/stores/employee/role-store'
-import { useBranchStore } from '/src/stores/main/branch-store'
-import { useScheduleStore } from '/src/stores/employee/schedule-store'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -559,93 +556,6 @@ const handleAvatar = (file) => {
   data.value.avatar = file
 }
 
-// Role
-const roles = ref([])
-const roleOptions = ref([])
-const getRole = async () => {
-  try {
-    const res = await useRoleStore().all()
-
-    roles.value = res.data.data.map((role) => ({
-      id: role.id,
-      label: role.name,
-      value: role.name
-    }))
-    roleOptions.value = [...roles.value]
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-const roleFilter = (val, update, abort) => {
-  update(() => {
-    const needle = val.toLowerCase()
-    roleOptions.value = roles.value.filter((option) => {
-      return option.value.toLowerCase().indexOf(needle) > -1
-    })
-  })
-}
-onMounted(() => {
-  getRole()
-})
-
-// Branch
-const branches = ref([])
-const branchOptions = ref([])
-const getBranch = async () => {
-  try {
-    const res = await useBranchStore().all()
-
-    branches.value = res.data.data.map((branch) => ({
-      id: branch.id,
-      label: branch.name,
-      value: branch.name
-    }))
-    branchOptions.value = [...branches.value]
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-const branchFilter = (val, update, abort) => {
-  update(() => {
-    const needle = val.toLowerCase()
-    branchOptions.value = branches.value.filter((option) => {
-      return option.value.toLowerCase().indexOf(needle) > -1
-    })
-  })
-}
-onMounted(() => {
-  getBranch()
-})
-
-// Schedule
-const schedules = ref([])
-const scheduleOptions = ref([])
-const getSchedule = async () => {
-  try {
-    const res = await useScheduleStore().all()
-
-    schedules.value = res.data.data.map((schedule) => ({
-      id: schedule.id,
-      label: schedule.name + ' (' + schedule.start_time + ' - ' + schedule.end_time + ')',
-      value: schedule.name + ' (' + schedule.start_time + ' - ' + schedule.end_time + ')'
-    }))
-    scheduleOptions.value = [...schedules.value]
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-const scheduleFilter = (val, update, abort) => {
-  update(() => {
-    const needle = val.toLowerCase()
-    scheduleOptions.value = schedules.value.filter((option) => {
-      return option.value.toLowerCase().indexOf(needle) > -1
-    })
-  })
-}
-onMounted(() => {
-  getSchedule()
-})
-
 // KTP Image
 const ktpActive = ref(false)
 const ktpToggleActive = (state) => {
@@ -669,31 +579,6 @@ const handleKtp = (file) => {
 
   data.value.ktpPreview = URL.createObjectURL(file)
   data.value.ktp_image = file
-}
-
-// Employment Status
-const employmentStatus = ref([
-  {
-    label: t('dashboard.employee.employee.data.permanentEmploymentStatus'),
-    value: 'permanent'
-  },
-  {
-    label: t('dashboard.employee.employee.data.contractEmploymentStatus'),
-    value: 'contract'
-  },
-  {
-    label: t('dashboard.employee.employee.data.freelanceEmploymentStatus'),
-    value: 'freelance'
-  }
-])
-const employmentStatusOptions = ref(employmentStatus)
-const employmentStatusFilter = (val, update, abort) => {
-  update(() => {
-    const needle = val.toLowerCase()
-    employmentStatusOptions.value = employmentStatus.value.filter((option) => {
-      return option.value.toLowerCase().indexOf(needle) > -1
-    })
-  })
 }
 
 // NPJS TK Image
@@ -753,45 +638,17 @@ const rules = ref({
   email: [(v) => !!v || t('dashboard.employee.employee.validate.emailRequired'), (v) => /.+@.+/.test(v) || t('dashboard.employee.employee.validate.emailFormat')],
   phoneNumber: [(v) => !!v || t('dashboard.employee.employee.validate.phoneNumberRequired')],
   position: [(v) => !!v || t('dashboard.employee.employee.validate.positionRequired')],
-  role: [(v) => !!v || t('dashboard.employee.employee.validate.roleRequired')],
-  pin: [(v) => !!v || t('dashboard.employee.employee.validate.pinRequired')],
-  branch: [(v) => !!v || t('dashboard.employee.employee.validate.branchRequired')],
-  schedule: [(v) => !!v || t('dashboard.employee.employee.validate.scheduleRequired')],
-  employmentStatus: [(v) => !!v || t('dashboard.employee.employee.validate.employmentStatusRequired')],
-  dateJoined: [(v) => !!v || t('dashboard.employee.employee.validate.dateJoinedRequired')]
+  pin: [(v) => !!v || t('dashboard.employee.employee.validate.pinRequired')]
 })
 
 // Disabled Button
 const loading = ref(false)
-const disabledButton = computed(
-  () =>
-    loading.value ||
-    !data.value.name ||
-    !data.value.nip ||
-    !data.value.email ||
-    !data.value.phone_number ||
-    !data.value.position ||
-    !data.value.role ||
-    !data.value.pin ||
-    !data.value.branch ||
-    !data.value.schedule ||
-    !data.value.employment_status ||
-    !data.value.date_joined
-)
+const disabledButton = computed(() => loading.value || !data.value.name || !data.value.nip || !data.value.email || !data.value.phone_number || !data.value.position || !data.value.pin)
 
 // Edit
 const editProfile = async () => {
   loading.value = true
   try {
-    if (data.value.role) {
-      data.value.role_id = roles.value.find((role) => role.label === data.value.role).id
-    }
-    if (data.value.branch) {
-      data.value.branch_id = branches.value.find((branch) => branch.label === data.value.branch).id
-    }
-    if (data.value.schedule) {
-      data.value.schedule_id = schedules.value.find((schedule) => schedule.label === data.value.schedule).id
-    }
     data.value.status = data.value.status === true ? 1 : 0
 
     await useEmployeeStore().edit(data.value)

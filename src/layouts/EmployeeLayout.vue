@@ -9,7 +9,7 @@
         <!-- Brand -->
         <q-item class="row justify-center">
           <q-item-section avatar>
-            <div v-if="!miniState" class="text-h4 text-center text-bold text-uppercase q-py-lg" style="letter-spacing: 5px">{{ setting.title }}</div>
+            <div v-if="!miniState" class="text-h5 text-center text-bold text-uppercase q-py-md" style="letter-spacing: 5px">{{ setting.title }}</div>
             <img v-if="miniState" :src="url + '/settings/' + setting.logo" width="50" class="q-pa-xs" />
           </q-item-section>
         </q-item>
@@ -76,11 +76,14 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
 import NavbarComponent from '/src/components/NavbarComponent.vue'
 import { useEmployeeStore } from '/src/stores/employee/employee-store'
 import { useSettingStore } from '/src/stores/setting-store'
+
+const { t } = useI18n()
 
 // Profile
 const profile = ref({})

@@ -88,12 +88,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
-import { url, token } from '/src/boot/axios'
+import { url } from '/src/boot/axios'
 import { lang, languages, languageNames } from '/src/boot/i18n'
 import { useAuthStore } from '/src/stores/auth-store'
 

@@ -9,7 +9,6 @@ const lang = localStorage.getItem('lang') || 'en'
 
 // Switch Language
 const languages = ['en', 'id']
-
 const languageNames = {
   en: 'English',
   id: 'Indonesia'
@@ -33,4 +32,4 @@ export default ({ app }) => {
   app.use(i18n)
 }
 
-export { lang, messages, languages, languageNames }
+export { lang, languages, languageNames, messages }

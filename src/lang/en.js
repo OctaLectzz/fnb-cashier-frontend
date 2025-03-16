@@ -13,7 +13,6 @@ export default {
     descriptionText: 'Description',
     searchText: 'Search...',
     logoutText: 'Logout',
-    imageType: 'JPG or PNG no larger than 5 MB',
     uploadBtn: 'Upload a new Image',
     viewsText: 'k',
     showMore: 'Show More',
@@ -101,9 +100,9 @@ export default {
     outletText: 'Outlet',
     outletListText: 'Outlet List',
     menu: {
-      'mainMenu': 'Main',
-      'employeeMenu': 'Employee',
-      'accountingMenu': 'Accounting'
+      mainMenu: 'Main',
+      employeeMenu: 'Employee',
+      accountingMenu: 'Accounting'
     },
     main: {
       sidebar: {

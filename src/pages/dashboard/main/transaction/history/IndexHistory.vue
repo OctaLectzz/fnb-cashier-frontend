@@ -86,8 +86,8 @@
               props.row.payment_type == 'cash'
                 ? $t('dashboard.main.transaction.data.cash')
                 : props.row.payment_type == 'qris'
-                ? $t('dashboard.main.transaction.data.qris')
-                : $t('dashboard.main.transaction.data.others')
+                  ? $t('dashboard.main.transaction.data.qris')
+                  : $t('dashboard.main.transaction.data.others')
             }}
           </div>
         </q-td>
@@ -168,8 +168,8 @@
                   props.row.payment_type == 'cash'
                     ? $t('dashboard.main.transaction.data.cash')
                     : props.row.payment_type == 'qris'
-                    ? $t('dashboard.main.transaction.data.qris')
-                    : $t('dashboard.main.transaction.data.others')
+                      ? $t('dashboard.main.transaction.data.qris')
+                      : $t('dashboard.main.transaction.data.others')
                 }}
               </div>
 
