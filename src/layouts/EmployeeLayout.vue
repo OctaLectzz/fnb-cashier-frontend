@@ -32,7 +32,7 @@
           </q-item>
 
           <!-- Role -->
-          <q-item :to="{ name: 'employee.role' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'employee.role' }" v-if="hasPermission('view roles')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="switch_access_shortcut" size="20px" />
             </q-item-section>
@@ -40,7 +40,7 @@
           </q-item>
 
           <!-- Schedule -->
-          <q-item :to="{ name: 'employee.schedule' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'employee.schedule' }" v-if="hasPermission('view schedules')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="schedule" size="20px" />
             </q-item-section>
@@ -48,7 +48,7 @@
           </q-item>
 
           <!-- Employee -->
-          <q-item :to="{ name: 'employee.employee' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'employee.employee' }" v-if="hasPermission('view employees')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="badge" size="20px" />
             </q-item-section>
@@ -80,10 +80,14 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
 import NavbarComponent from '/src/components/NavbarComponent.vue'
+import { useAuthStore } from '/src/stores/auth-store'
 import { useEmployeeStore } from '/src/stores/employee/employee-store'
 import { useSettingStore } from '/src/stores/setting-store'
 
 const { t } = useI18n()
+
+// Permissions
+const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 // Profile
 const profile = ref({})

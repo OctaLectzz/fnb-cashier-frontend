@@ -129,18 +129,18 @@
               <ShowItem :item="props.row" />
             </q-dialog>
           </q-btn>
-          <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+          <q-btn v-if="hasPermission('edit transactions')" color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
             <q-dialog v-model="props.row.editItemDialog" persistent>
               <EditItem @edited="itemEdited(props.row)" :item="props.row" />
             </q-dialog>
           </q-btn>
-          <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+          <q-btn v-if="hasPermission('delete transactions')" color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
         </q-td>
       </template>
 
       <!-- Grid -->
       <template v-slot:item="props">
-        <div class="dashboard-card q-pa-md col-xs-12 col-sm-4 col-md-4 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
+        <div class="dashboard-card q-pa-md col-xs-12 col-sm-6 col-md-6 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
           <q-card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
             <q-card-section class="q-pb-xl">
               <!-- Invoice -->
@@ -176,7 +176,7 @@
               <!-- Notes -->
               <div class="text-body1 q-my-sm">
                 <span class="text-bold">{{ $t('dashboard.main.transaction.data.notes') }} :</span>
-                <span class="text-long">
+                <span class="text-long q-mx-xs">
                   {{ isExpanded[props.row.id] ? props.row.notes : truncatedText(props.row.notes) }}
                   <span v-if="wordCount(props.row.notes) > 10" class="cursor-pointer text-primary text-link" @click="toggleExpand(props.row.id)">
                     {{ isExpanded[props.row.id] ? $t('public.showLess') : $t('public.showMore') }}
@@ -198,12 +198,12 @@
                   <ShowItem :item="props.row" />
                 </q-dialog>
               </q-btn>
-              <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+              <q-btn v-if="hasPermission('edit transactions')" color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
                 <q-dialog v-model="props.row.editItemDialog" persistent>
                   <EditItem @edited="itemEdited(props.row)" :item="props.row" />
                 </q-dialog>
               </q-btn>
-              <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+              <q-btn v-if="hasPermission('delete transactions')" color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
             </div>
           </q-card>
         </div>
@@ -220,6 +220,7 @@ import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
 import { currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
+import { useAuthStore } from '/src/stores/auth-store'
 import { useTransactionStore } from '/src/stores/main/transaction-store'
 import EditItem from './EditHistory.vue'
 import ShowItem from './ShowHistory.vue'
@@ -227,6 +228,7 @@ import ShowItem from './ShowHistory.vue'
 const $q = useQuasar()
 const { t } = useI18n()
 const router = useRouter()
+const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 // Get
 const items = ref([])

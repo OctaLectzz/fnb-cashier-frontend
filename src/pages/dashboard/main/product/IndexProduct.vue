@@ -39,7 +39,7 @@
 
       <!-- Create -->
       <template v-slot:top-left>
-        <q-btn color="primary" :label="$t('dashboard.main.product.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
+        <q-btn v-if="hasPermission('create products')" color="primary" :label="$t('dashboard.main.product.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
         <q-dialog v-model="createItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
           <CreateItem @created="itemCreated" />
         </q-dialog>
@@ -142,12 +142,12 @@
       <!-- Action -->
       <template #body-cell-action="props">
         <q-td :props="props">
-          <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+          <q-btn v-if="hasPermission('edit products')" color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
             <q-dialog v-model="props.row.editItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
               <EditItem @edited="itemEdited(props.row)" :item="props.row" />
             </q-dialog>
           </q-btn>
-          <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+          <q-btn v-if="hasPermission('delete products')" color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
         </q-td>
       </template>
 
@@ -203,12 +203,12 @@
 
               <!-- Action -->
               <div class="absolute absolute-bottom-left">
-                <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+                <q-btn v-if="hasPermission('edit products')" color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
                   <q-dialog v-model="props.row.editItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
                     <EditItem @edited="itemEdited(props.row)" :item="props.row" />
                   </q-dialog>
                 </q-btn>
-                <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+                <q-btn v-if="hasPermission('delete products')" color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
               </div>
             </q-card-section>
           </q-card>
@@ -226,6 +226,7 @@ import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
 import { url, currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
+import { useAuthStore } from '/src/stores/auth-store'
 import { useProductStore } from '/src/stores/main/product-store'
 import CreateItem from './CreateProduct.vue'
 import EditItem from './EditProduct.vue'
@@ -233,6 +234,7 @@ import EditItem from './EditProduct.vue'
 const $q = useQuasar()
 const { t } = useI18n()
 const router = useRouter()
+const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 // Get
 const items = ref([])

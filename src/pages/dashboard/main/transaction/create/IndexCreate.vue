@@ -191,7 +191,7 @@ const addToCart = (product) => {
       product_id: product.id,
       name: product.name,
       image: product.image,
-      purchase_price: product.purchase_price,
+      product_price: product.purchase_price,
       total_price: product.purchase_price,
       quantity: 1
     })

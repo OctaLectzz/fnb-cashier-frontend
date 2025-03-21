@@ -55,7 +55,7 @@
           </q-item>
 
           <!-- Branch -->
-          <q-item :to="{ name: 'main.branch' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'main.branch' }" v-if="hasPermission('view branches')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="business" size="20px" />
             </q-item-section>
@@ -69,7 +69,7 @@
           </div>
 
           <!-- Category -->
-          <q-item :to="{ name: 'main.category' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'main.category' }" v-if="hasPermission('view categories')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="category" size="20px" />
             </q-item-section>
@@ -77,7 +77,7 @@
           </q-item>
 
           <!-- Product -->
-          <q-item :to="{ name: 'main.product' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'main.product' }" v-if="hasPermission('view products')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="restaurant_menu" size="20px" />
             </q-item-section>
@@ -85,7 +85,7 @@
           </q-item>
 
           <!-- Discount -->
-          <!-- <q-item :to="{ name: 'main.discount' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <!-- <q-item :to="{ name: 'main.discount' }" v-if="hasPermission('view discounts')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="discount" size="20px" />
             </q-item-section>
@@ -99,7 +99,7 @@
           </div>
 
           <!-- Transaction -->
-          <q-item :to="{ name: 'main.transaction' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'main.transaction' }" v-if="hasPermission('create transactions')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="point_of_sale" size="20px" />
             </q-item-section>
@@ -107,7 +107,7 @@
           </q-item>
 
           <!-- Transaction History -->
-          <q-item :to="{ name: 'main.transactionhistory' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <q-item :to="{ name: 'main.transactionhistory' }" v-if="hasPermission('view transactions')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="receipt_long" size="20px" />
             </q-item-section>
@@ -115,7 +115,7 @@
           </q-item>
 
           <!-- Sales Report -->
-          <!-- <q-item :to="{ name: 'main.salesreport' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+          <!-- <q-item :to="{ name: 'main.salesreport' }" v-if="hasPermission('view salesreports')" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
             <q-item-section avatar>
               <q-icon name="pie_chart" size="20px" />
             </q-item-section>
@@ -141,10 +141,14 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { currentbranch } from '/src/boot/axios'
 import NavbarComponent from '/src/components/NavbarComponent.vue'
+import { useAuthStore } from '/src/stores/auth-store'
 import { useEmployeeStore } from '/src/stores/employee/employee-store'
 import { useBranchStore } from '/src/stores/main/branch-store'
 
 const { t } = useI18n()
+
+// Permissions
+const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 // Profile
 const profile = ref({})

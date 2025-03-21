@@ -153,16 +153,6 @@ const permissionGroups = ref([
           { value: 'delete transactions', label: 'dashboard.employee.role.data.deleteText' }
         ],
         selectAll: false
-      },
-      {
-        name: t('dashboard.main.sidebar.transactionHistoryMenu'),
-        permissions: [
-          { value: 'view transactionhistories', label: 'dashboard.employee.role.data.viewText' },
-          { value: 'create transactionhistories', label: 'dashboard.employee.role.data.createText' },
-          { value: 'edit transactionhistories', label: 'dashboard.employee.role.data.editText' },
-          { value: 'delete transactionhistories', label: 'dashboard.employee.role.data.deleteText' }
-        ],
-        selectAll: false
       }
     ]
   },

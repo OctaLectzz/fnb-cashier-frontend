@@ -40,7 +40,7 @@
 
       <!-- Create -->
       <template v-slot:top-left>
-        <q-btn color="primary" :label="$t('dashboard.main.category.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
+        <q-btn v-if="hasPermission('create categories')" color="primary" :label="$t('dashboard.main.category.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
         <q-dialog v-model="createItemDialog" persistent>
           <CreateItem @created="itemCreated" />
         </q-dialog>
@@ -88,12 +88,12 @@
       <!-- Action -->
       <template #body-cell-action="props">
         <q-td :props="props">
-          <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+          <q-btn v-if="hasPermission('edit categories')" color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
             <q-dialog v-model="props.row.editItemDialog" persistent>
               <EditItem @edited="itemEdited(props.row)" :item="props.row" />
             </q-dialog>
           </q-btn>
-          <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+          <q-btn v-if="hasPermission('delete categories')" color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
         </q-td>
       </template>
 
@@ -123,12 +123,12 @@
 
             <!-- Action -->
             <div class="absolute absolute-bottom-right q-pa-md">
-              <q-btn color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
+              <q-btn v-if="hasPermission('edit categories')" color="warning" field="edit" icon="edit" class="q-mx-xs" @click="props.row.editItemDialog = true" dense round>
                 <q-dialog v-model="props.row.editItemDialog" persistent>
                   <EditItem @edited="itemEdited(props.row)" :item="props.row" />
                 </q-dialog>
               </q-btn>
-              <q-btn color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
+              <q-btn v-if="hasPermission('delete categories')" color="red" field="delete" icon="delete" class="q-mx-xs" @click="deleteItemDialog(props.row)" dense round />
             </div>
           </q-card>
         </div>
@@ -144,6 +144,7 @@ import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
 import { currentbranch } from '/src/boot/axios'
+import { useAuthStore } from '/src/stores/auth-store'
 import { useCategoryStore } from '/src/stores/main/category-store'
 import CreateItem from './CreateCategory.vue'
 import EditItem from './EditCategory.vue'
@@ -151,6 +152,7 @@ import EditItem from './EditCategory.vue'
 const $q = useQuasar()
 const { t } = useI18n()
 const router = useRouter()
+const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 // Get
 const items = ref([])
