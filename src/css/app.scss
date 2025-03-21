@@ -6,6 +6,18 @@ html {
   background: #f3f4fe;
 }
 
+// Quasar Define
+.q-btn {
+  border-radius: 7px;
+}
+
+.q-input {
+  border-radius: 10px !important;
+}
+.q-field__control {
+  border-radius: 10px !important;
+}
+
 // Scrollbar
 *::-webkit-scrollbar-track {
   background: #b6b6b63e;
@@ -69,44 +81,35 @@ html {
   }
 }
 
+// Dashboard Navbar
 .nav-link {
   position: relative;
-  color: #000;
   text-decoration: none;
-  font-size: 18px;
   font-weight: 500;
-  transition: color 0.3s;
+  padding: 5px 10px;
 }
-.nav-link::after {
-  content: '';
-  width: 0;
-  height: 2px;
+.nav-link:hover:not(.active-tab) {
+  background-color: var(--q-accent);
+  color: var(--q-secondary) !important;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+.active-tab {
   background-color: var(--q-primary);
-  position: absolute;
-  left: 0;
-  bottom: -0.5rem;
-  transition: width 0.3s;
-}
-.nav-link:hover {
-  color: var(--q-primary);
-}
-.nav-link:hover::after {
-  width: 25%;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
 }
 
-.about {
-  background: linear-gradient(to right, var(--q-primary), rgba(255, 255, 255, 0));
-}
-
-// Sidebar
+// Dashboard Sidebar
 .menu-click:hover {
-  background: linear-gradient(to left, #0b1783, rgba(255, 255, 255, 0));
-  border-right: solid 0.313rem #000636;
+  background: linear-gradient(to left, var(--q-primary), rgba(255, 255, 255, 0));
+  border-right: solid 0.313rem var(--q-secondary);
   box-shadow: none;
 }
 .menu-active {
-  background: linear-gradient(to left, #0b1783, rgba(255, 255, 255, 0));
-  border-right: solid 0.313rem #000636;
+  background: linear-gradient(to left, var(--q-primary), rgba(255, 255, 255, 0));
+  border-right: solid 0.313rem var(--q-secondary);
   box-shadow: none;
 }
 .menu-text {
@@ -118,9 +121,9 @@ html {
   font-size: 13px;
 }
 
-// Dashboard
+// Dashboard Table
 .dashboard-table {
-  max-height: 90vh;
+  border-radius: 15px;
 }
 thead tr th {
   position: sticky;
@@ -136,6 +139,7 @@ tbody {
   scroll-margin-top: 48px;
 }
 
+// Dashboard Image
 .dashboard-image {
   cursor: pointer;
   border-radius: 10px;
@@ -143,13 +147,6 @@ tbody {
 }
 .dashboard-image:hover {
   transform: scale(1.01);
-}
-
-.dashboard-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-radius: 10px;
 }
 
 .dashboard-transaction-image {
@@ -167,12 +164,20 @@ tbody {
   transform: scale(1.01);
 }
 
+// Dashboard Card
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 10px;
+}
+
+// Dashboard Text
 .text-long {
   min-width: 300px;
   word-wrap: break-word;
   white-space: normal;
 }
-
 .separator-text {
   text-align: center;
   font-weight: bold;

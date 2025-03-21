@@ -3,10 +3,21 @@
     <q-btn flat dense round @click="toggleDrawer" icon="menu" aria-label="Menu" />
 
     <!-- Menu -->
-    <q-tabs v-model="dashboardmenu" class="q-mx-lg">
-      <q-route-tab :to="{ name: 'main.home' }" name="main" :label="$t('dashboard.menu.mainMenu')" exact replace />
-      <q-route-tab :to="{ name: 'employee.home' }" name="employee" :label="$t('dashboard.menu.employeeMenu')" exact replace />
-    </q-tabs>
+    <div class="q-mx-md">
+      <router-link
+        :to="{ name: 'main.home' }"
+        class="nav-link q-mx-xs"
+        :class="{ 'active-tab': isMainRoute, 'text-white': !isMainRoute && $q.dark.isActive, 'text-black': !isMainRoute && !$q.dark.isActive }">
+        {{ $t('dashboard.menu.mainMenu') }}
+      </router-link>
+
+      <router-link
+        :to="{ name: 'employee.home' }"
+        class="nav-link q-mx-xs"
+        :class="{ 'active-tab': isEmployeeRoute, 'text-white': !isEmployeeRoute && $q.dark.isActive, 'text-black': !isEmployeeRoute && !$q.dark.isActive }">
+        {{ $t('dashboard.menu.employeeMenu') }}
+      </router-link>
+    </div>
 
     <q-space />
 
@@ -88,8 +99,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
@@ -99,14 +110,18 @@ import { useAuthStore } from '/src/stores/auth-store'
 
 const $q = useQuasar()
 const { t } = useI18n()
+const route = useRoute()
 const router = useRouter()
 const { profile, loading } = defineProps(['profile', 'loading'])
 const emits = defineEmits(['sidebar'])
-const dashboardmenu = ref('main')
 
 const toggleDrawer = () => {
   emits('sidebar')
 }
+
+// Menu
+const isMainRoute = computed(() => route.path.startsWith('/main'))
+const isEmployeeRoute = computed(() => route.path.startsWith('/employee'))
 
 // Change Language
 const changeLanguage = (newLocale) => {

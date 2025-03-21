@@ -6,7 +6,7 @@
     <q-form @submit="editProfile">
       <div class="row justify-center">
         <!-- Account details card -->
-        <div class="col-md-8 col-xs-12 q-ma-md">
+        <div class="col-sm-8 col-xs-12 q-ma-md">
           <q-card style="height: 100%">
             <q-card-section class="bg-blue-grey-1">
               <div class="text-body1 text-bold">{{ $t('profile.changePasswordCard') }}</div>

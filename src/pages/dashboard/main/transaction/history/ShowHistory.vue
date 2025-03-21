@@ -11,7 +11,7 @@
 
       <q-card-section class="scroll" style="height: 77vh">
         <div class="row justify-center">
-          <div class="col-lg-8 col-md-7 col-xs-12 q-pa-md">
+          <div class="col-lg-8 col-sm-7 col-xs-12 q-pa-md">
             <!-- Details card -->
             <q-card class="q-mb-md">
               <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
@@ -24,7 +24,7 @@
                 <!-- Transaction Details -->
                 <div class="text-body1 text-bold">{{ $t('dashboard.main.transaction.data.transactiondetails') }}</div>
                 <div class="row">
-                  <div v-for="(item, index) in data.transactiondetails" :key="index" class="col-md-6 col-xs-12 q-pa-xs">
+                  <div v-for="(item, index) in data.transactiondetails" :key="index" class="col-sm-6 col-xs-12 q-pa-xs">
                     <q-card :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'" class="q-my-xs" style="border-radius: 8px" flat>
                       <q-card-section class="q-pa-sm" horizontal>
                         <!-- Image -->
@@ -99,7 +99,7 @@
             </q-card>
           </div>
 
-          <div class="col-lg-3 col-md-4 col-xs-12 q-pa-md">
+          <div class="col-lg-3 col-sm-4 col-xs-12 q-pa-md">
             <!-- Note card -->
             <q-card class="q-pb-xl" style="height: 100%">
               <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">

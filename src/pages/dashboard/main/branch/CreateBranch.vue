@@ -13,7 +13,7 @@
         <q-card-section class="scroll" style="height: 77vh">
           <div class="row justify-center">
             <!-- Image card -->
-            <div class="col-lg-2 col-md-3 q-pa-md">
+            <div class="col-lg-2 col-sm-3 q-pa-md">
               <q-card class="q-pb-xl">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
                   <div class="text-body1 text-bold">{{ $t('dashboard.main.branch.data.image') }}</div>
@@ -39,7 +39,7 @@
             </div>
 
             <!-- Details card -->
-            <div class="col-lg-9 col-md-8 q-pa-md">
+            <div class="col-lg-9 col-sm-8 q-pa-md">
               <q-card class="q-pb-xl" style="height: 100%">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
                   <div class="text-body1 text-bold">{{ $t('dashboard.main.branch.detailCard') }}</div>
@@ -50,7 +50,7 @@
                 <q-card-section class="q-pa-sm">
                   <div class="row justify-center">
                     <!-- Name -->
-                    <div class="col-md-5 col-xs-12 q-pa-sm">
+                    <div class="col-sm-5 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.branch.data.name') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -59,7 +59,7 @@
                     </div>
 
                     <!-- Email -->
-                    <div class="col-md-5 col-xs-12 q-pa-sm">
+                    <div class="col-sm-5 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.branch.data.email') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -68,7 +68,7 @@
                     </div>
 
                     <!-- Phone Number -->
-                    <div class="col-md-5 col-xs-12 q-pa-sm">
+                    <div class="col-sm-5 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.branch.data.phoneNumber') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -77,7 +77,7 @@
                     </div>
 
                     <!-- Status -->
-                    <div class="col-md-5 col-xs-12 q-pa-sm">
+                    <div class="col-sm-5 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.branch.data.status') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -87,7 +87,7 @@
                     </div>
 
                     <!-- Address -->
-                    <div class="col-md-10 col-xs-12 q-pa-sm">
+                    <div class="col-sm-10 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.branch.data.address') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>

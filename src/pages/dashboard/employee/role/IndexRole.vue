@@ -1,16 +1,38 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page class="q-pa-lg">
+    <!-- Breadcrumbs -->
+    <q-breadcrumbs>
+      <template v-slot:separator>
+        <q-icon name="chevron_right" size="1.1rem" />
+      </template>
+      <q-breadcrumbs-el :label="$t('dashboard.employee.sidebar.homeMenu')" icon="home" :to="{ name: 'employee.home' }" :class="$q.dark.isActive ? 'text-white' : 'text-black'" class="text-bold" />
+      <q-breadcrumbs-el :label="$t('dashboard.employee.sidebar.roleMenu')" />
+    </q-breadcrumbs>
+
+    <div class="row justify-between q-mt-xs q-mb-lg">
+      <!-- Title -->
+      <div class="col-sm-6 col-xs-12 flex items-center">
+        <div class="text-h4 text-weight-bolder">{{ $t('dashboard.employee.sidebar.roleMenu') }}</div>
+      </div>
+
+      <!-- Create -->
+      <div class="col-sm-6 col-xs-12">
+        <q-btn v-if="hasPermission('create roles')" color="primary" :label="$t('dashboard.employee.role.createText')" class="float-right" @click="createItemDialog = true" no-caps />
+        <q-dialog v-model="createItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
+          <CreateItem @created="itemCreated" />
+        </q-dialog>
+      </div>
+    </div>
+
     <q-table
       v-model:pagination="pagination"
       :rows-per-page-options="[10, 20, 30]"
-      :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'"
       :rows="currencyData"
       :columns="currencyColumns"
       :hide-header="grid"
       :grid="grid"
       :filter="filter"
       separator="cell"
-      :title="$t('dashboard.employee.role.titleText')"
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
@@ -35,14 +57,6 @@
             <q-icon name="search" />
           </template>
         </q-input>
-      </template>
-
-      <!-- Create -->
-      <template v-slot:top-left>
-        <q-btn v-if="hasPermission('create roles')" color="primary" :label="$t('dashboard.employee.role.createText')" class="shadow-3 q-my-sm" @click="createItemDialog = true" no-caps />
-        <q-dialog v-model="createItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
-          <CreateItem @created="itemCreated" />
-        </q-dialog>
       </template>
 
       <!-- Table -->
@@ -102,7 +116,7 @@
       <!-- Grid -->
       <template v-slot:item="props">
         <div class="dashboard-card q-pa-md col-xs-12 col-sm-4 col-md-4 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
-          <q-card :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-9'" class="dashboard-card q-pa-md">
+          <q-card class="dashboard-card q-pa-md">
             <q-card-section class="q-pb-xl">
               <!-- Name -->
               <div class="text-body1 q-my-md">

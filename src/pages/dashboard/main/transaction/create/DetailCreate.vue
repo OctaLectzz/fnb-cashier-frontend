@@ -12,7 +12,7 @@
 
         <q-card-section class="scroll" style="height: 77vh">
           <div class="row justify-center">
-            <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-pa-md">
+            <div class="col-lg-8 col-sm-7 col-sm-6 col-xs-12 q-pa-md">
               <!-- Details card -->
               <q-card class="q-mb-md">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
@@ -24,7 +24,7 @@
                 <q-card-section class="q-pa-md">
                   <div class="row justify-center">
                     <!-- Money Amount -->
-                    <div class="col-md-6 col-xs-12 q-pa-sm">
+                    <div class="col-sm-6 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.transaction.data.moneyAmount') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -33,7 +33,7 @@
                     </div>
 
                     <!-- Discount -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.transaction.data.discount') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -46,7 +46,7 @@
                     </div>
 
                     <!-- Notes -->
-                    <div class="col-md-10 col-xs-12 q-pa-sm">
+                    <div class="col-sm-10 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.transaction.data.notes') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>

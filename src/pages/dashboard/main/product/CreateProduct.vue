@@ -13,7 +13,7 @@
         <q-card-section class="scroll" style="height: 77vh">
           <div class="row justify-center">
             <!-- Image card -->
-            <div class="col-lg-2 col-md-3 q-pa-md">
+            <div class="col-lg-3 col-md-4 q-pa-md">
               <q-card class="q-pb-xl">
                 <q-card-section :class="$q.dark.isActive ? 'bg-blue-grey-10' : 'bg-blue-grey-1'">
                   <div class="text-body1 text-bold">{{ $t('dashboard.main.product.data.image') }}</div>
@@ -59,7 +59,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col-md-6 col-xs-12 q-pa-sm">
+                    <div class="col-sm-6 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.category') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -68,7 +68,7 @@
                     </div>
 
                     <!-- SKU -->
-                    <div class="col-md-6 col-xs-12 q-pa-sm">
+                    <div class="col-sm-6 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.sku') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -77,7 +77,7 @@
                     </div>
 
                     <!-- Min Purchase -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.minPurchase') }}
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -86,16 +86,16 @@
                     </div>
 
                     <!-- Selling Price -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.sellingPrice') }}
-                        <span class="text-grey">{{ $t('public.optionalText') }}</span>
+                        <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
-                      <q-input v-model="format.selling_price" @input="updateRupiah('selling_price')" outlined dense />
+                      <q-input v-model="format.selling_price" :rules="rules.selling_price" @input="updateRupiah('selling_price')" outlined dense required />
                     </div>
 
                     <!-- Purchase Price -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.purchasePrice') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -104,7 +104,7 @@
                     </div>
 
                     <!-- Length -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.length') }}(cm)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -113,7 +113,7 @@
                     </div>
 
                     <!-- Width -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.width') }}(cm)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -122,7 +122,7 @@
                     </div>
 
                     <!-- Height -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.height') }}(cm)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -131,7 +131,7 @@
                     </div>
 
                     <!-- Unit -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.unit') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -140,7 +140,7 @@
                     </div>
 
                     <!-- Weight -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.weight') }}(gram)
                         <span class="text-grey">{{ $t('public.optionalText') }}</span>
@@ -149,13 +149,13 @@
                     </div>
 
                     <!-- Status -->
-                    <div class="col-md-4 col-xs-12 q-pa-sm q-pb-lg">
+                    <div class="col-sm-4 col-xs-12 q-pa-sm q-pb-lg">
                       <div class="text-bold">
                         {{ $t('dashboard.main.product.data.status') }}
                         <span class="text-red">{{ $t('public.requiredText') }}</span>
                       </div>
-                      <q-btn v-model="data.status" color="green" :label="$t('dashboard.main.product.data.statusActive')" :outline="data.status == 0" class="q-mx-xs" @click="data.status = 1" />
-                      <q-btn v-model="data.status" color="red" :label="$t('dashboard.main.product.data.statusInactive')" :outline="data.status == 1" class="q-mx-xs" @click="data.status = 0" />
+                      <q-btn v-model="data.status" color="green" size="sm" :label="$t('dashboard.main.product.data.statusActive')" :outline="data.status == 0" class="q-mx-xs" @click="data.status = 1" />
+                      <q-btn v-model="data.status" color="red" size="sm" :label="$t('dashboard.main.product.data.statusInactive')" :outline="data.status == 1" class="q-mx-xs" @click="data.status = 0" />
                     </div>
                   </div>
                 </q-card-section>
@@ -258,13 +258,14 @@ const rules = ref({
   name: [(v) => !!v || t('dashboard.main.product.validate.nameRequired'), (v) => v.length <= 255 || t('dashboard.main.product.validate.nameMaxLength')],
   category: [(v) => !!v || t('dashboard.main.product.validate.categoryRequired')],
   sku: [(v) => !!v || t('dashboard.main.product.validate.skuRequired'), (v) => v.length <= 10 || t('dashboard.main.product.validate.skuMaxLength')],
+  selling_price: [(v) => !!v || t('dashboard.main.product.validate.sellingPriceRequired')],
   purchase_price: [(v) => !!v || t('dashboard.main.product.validate.purchasePriceRequired')],
   unit: [(v) => !!v || t('dashboard.main.product.validate.unitRequired'), (v) => v.length <= 10 || t('dashboard.main.product.validate.unitMaxLength')]
 })
 
 // Disabled Button
 const loading = ref(false)
-const disabledButton = computed(() => loading.value || !data.value.name || !data.value.sku || !data.value.category || !data.value.purchase_price)
+const disabledButton = computed(() => loading.value || !data.value.name || !data.value.sku || !data.value.category || !data.value.selling_price || !data.value.purchase_price)
 
 // Create
 const createData = async () => {

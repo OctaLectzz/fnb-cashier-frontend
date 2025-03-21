@@ -44,7 +44,7 @@
 
               <!-- Permissions -->
               <div class="row">
-                <div v-for="(permissionMenu, index) in permissionGroup.permissionMenus" :key="index" class="col-md-4 col-xs-12 q-pa-sm">
+                <div v-for="(permissionMenu, index) in permissionGroup.permissionMenus" :key="index" class="col-sm-4 col-xs-12 q-pa-sm">
                   <q-list bordered class="rounded-borders">
                     <q-expansion-item default-opened>
                       <template v-slot:header>

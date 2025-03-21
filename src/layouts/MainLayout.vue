@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header :class="$q.dark.isActive ? 'bg-dark text-white' : ''" class="text-dark q-py-sm" style="background-color: #ececf1" elevated>
+    <q-header :class="$q.dark.isActive ? 'bg-dark text-white' : ''" class="text-dark q-py-sm" style="background-color: #ececf1" :elevated="!$q.dark.isActive">
       <NavbarComponent :profile="profile" :loading="loading" @sidebar="toggleDrawer" />
     </q-header>
 
@@ -8,20 +8,20 @@
       <q-list>
         <!-- Branch -->
         <div class="flex flex-center q-pa-sm">
-          <q-btn-dropdown rounded dense flat push no-caps>
+          <q-btn-dropdown :dropdown-icon="miniState ? 'none' : undefined" :style="miniState ? 'max-width: 40px' : ''" rounded dense flat push no-caps>
             <template v-slot:label>
-              <q-avatar icon="store" text-color="white" class="q-mx-sm" />
-
-              <div class="text-left q-mx-sm">
+              <q-avatar v-if="!miniState" icon="store" text-color="white" class="q-mx-sm" />
+              <div v-if="!miniState" class="text-left q-mx-sm">
                 <div style="font-size: 11px">{{ $t('dashboard.outletText') }}</div>
-                <div>{{ selectedBranch.length > 14 ? selectedBranch.slice(0, 14) + '...' : selectedBranch }}</div>
+                <q-skeleton v-if="branchLoading" width="80px" height="18px" />
+                <div v-else>{{ selectedBranch.length > 14 ? selectedBranch.slice(0, 14) + '...' : selectedBranch }}</div>
               </div>
+              <q-icon v-else name="store" text-color="white" size="35px" style="margin-left: 30px" />
             </template>
+
             <div class="q-pa-md">
-              <!-- Title -->
               <div class="text-h6">{{ $t('dashboard.outletListText') }}</div>
 
-              <!-- Search Branch -->
               <q-input v-model="branchFilter" :placeholder="$t('public.searchText')" class="q-my-sm" debounce="300" outlined dense>
                 <template v-slot:append>
                   <q-icon name="search" />
@@ -29,7 +29,7 @@
               </q-input>
 
               <q-separator class="q-my-md" />
-              <!-- Branch List -->
+
               <div v-for="branch in branches" :key="branch.id">
                 <q-radio v-model="selectBranch" :val="branch.id" :label="branch.name" @click="changeBranch(branch)" />
               </div>
@@ -125,7 +125,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container :class="$q.dark.isActive ? 'bg-grey-10' : 'bg-grey-3'" style="min-height: 100vh">
+    <q-page-container :class="$q.dark.isActive ? 'bg-dark-page' : 'bg-grey-3'" style="min-height: 100vh">
       <router-view v-slot="{ Component }">
         <keep-alive>
           <component :is="Component" />
@@ -197,11 +197,13 @@ onBeforeUnmount(() => {
 })
 
 // Branch
+const branchLoading = ref(false)
 const branchFilter = ref('')
 const selectBranch = ref(currentbranch)
 const selectedBranch = ref('')
 const branches = ref([])
 const getBranch = async () => {
+  branchLoading.value = true
   try {
     const res = await useBranchStore().all()
 
@@ -210,6 +212,7 @@ const getBranch = async () => {
   } catch (error) {
     console.error('Error fetching data:', error)
   }
+  branchLoading.value = false
 }
 onMounted(() => {
   getBranch()

@@ -221,6 +221,7 @@ export default {
           categoryRequired: 'Category must be filled in',
           skuRequired: 'SKU must be filled in',
           skuMaxLength: 'Maximum SKU is 10 characters',
+          sellingPriceRequired: 'Selling Price must be filled in',
           purchasePriceRequired: 'Purchase Price must be filled in',
           unitRequired: 'Unit must be filled in',
           unitMaxLength: 'Maximum Unit is 255 characters'
@@ -228,6 +229,7 @@ export default {
       },
       transaction: {
         titleText: 'Transaction',
+        createText: 'Create Transaction',
         editText: 'Edit Transaction',
         noProductText: 'Product not available.',
         checkoutBtn: 'Checkout',

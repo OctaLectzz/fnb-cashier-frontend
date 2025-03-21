@@ -12,7 +12,7 @@
 
         <q-card-section class="scroll" style="max-height: 77vh">
           <!-- Name -->
-          <div class="col-md-10 col-xs-12 q-pa-sm">
+          <div class="col-sm-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.main.transaction.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -21,7 +21,7 @@
           </div>
 
           <!-- Payment Type -->
-          <div class="col-md-10 col-xs-12 q-pa-sm">
+          <div class="col-sm-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.main.transaction.data.paymentType') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -43,7 +43,7 @@
           </div>
 
           <!-- Notes -->
-          <div class="col-md-10 col-xs-12 q-pa-sm">
+          <div class="col-sm-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.main.transaction.data.notes') }}
               <span class="text-grey">{{ $t('public.optionalText') }}</span>

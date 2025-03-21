@@ -12,7 +12,7 @@
 
         <q-card-section class="scroll" style="max-height: 77vh">
           <!-- Name -->
-          <div class="col-md-10 col-xs-12 q-pa-sm">
+          <div class="col-sm-10 col-xs-12 q-pa-sm">
             <div class="text-bold">
               {{ $t('dashboard.employee.schedule.data.name') }}
               <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -20,10 +20,10 @@
             <q-input v-model="data.name" :placeholder="$t('public.exampleText') + $t('dashboard.employee.schedule.data.namePlaceholder')" :rules="rules.name" outlined dense required autofocus />
           </div>
 
-          <div class="col-md-10 col-xs-12 q-pa-sm">
+          <div class="col-sm-10 col-xs-12 q-pa-sm">
             <div class="row justify-center">
               <!-- Start Time -->
-              <div class="col-md-6 col-xs-12 q-pa-sm">
+              <div class="col-sm-6 col-xs-12 q-pa-sm">
                 <div class="text-bold">
                   {{ $t('dashboard.employee.schedule.data.startTime') }}
                   <span class="text-red">{{ $t('public.requiredText') }}</span>
@@ -44,7 +44,7 @@
               </div>
 
               <!-- End Time -->
-              <div class="col-md-6 col-xs-12 q-pa-sm">
+              <div class="col-sm-6 col-xs-12 q-pa-sm">
                 <div class="text-bold">
                   {{ $t('dashboard.employee.schedule.data.endTime') }}
                   <span class="text-red">{{ $t('public.requiredText') }}</span>
