@@ -24,7 +24,11 @@
       </div>
     </div>
 
+    <!-- Loading -->
+    <TableLoading v-if="loading" />
+
     <q-table
+      v-else
       v-model:pagination="pagination"
       :rows-per-page-options="[10, 20, 30]"
       :rows="currencyData"
@@ -36,8 +40,7 @@
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
-      flat
-      bordered
+      v-viewer
     >
       <!-- Top -->
       <template v-slot:top-right="props">
@@ -234,6 +237,7 @@ import { url, currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useAuthStore } from '/src/stores/auth-store'
 import { useProductStore } from '/src/stores/main/product-store'
+import TableLoading from '/src/components/TableLoading.vue'
 import CreateItem from './CreateProduct.vue'
 import EditItem from './EditProduct.vue'
 
@@ -244,7 +248,9 @@ const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 // Get
 const items = ref([])
+const loading = ref(false)
 const getItem = async () => {
+  loading.value = true
   try {
     const res = await useProductStore().branch(currentbranch)
 
@@ -256,6 +262,7 @@ const getItem = async () => {
       router.push('/notfound')
     }
   }
+  loading.value = false
 }
 onMounted(() => {
   getItem()

@@ -24,7 +24,11 @@
       </div>
     </div>
 
+    <!-- Loading -->
+    <TableLoading v-if="loading" />
+
     <q-table
+      v-else
       v-model:pagination="pagination"
       :rows-per-page-options="[10, 20, 30]"
       :rows="currencyData"
@@ -36,8 +40,6 @@
       row-key="__index"
       class="dashboard-table"
       virtual-scroll
-      flat
-      bordered
       v-viewer
     >
       <!-- Top -->
@@ -210,6 +212,7 @@ import { useQuasar } from 'quasar'
 import { url } from '/src/boot/axios'
 import { useAuthStore } from '/src/stores/auth-store'
 import { useBranchStore } from '/src/stores/main/branch-store'
+import TableLoading from '/src/components/TableLoading.vue'
 import CreateItem from './CreateBranch.vue'
 import EditItem from './EditBranch.vue'
 
@@ -220,7 +223,9 @@ const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 // Get
 const items = ref([])
+const loading = ref(false)
 const getItem = async () => {
+  loading.value = true
   try {
     const res = await useBranchStore().all()
 
@@ -232,6 +237,7 @@ const getItem = async () => {
       router.push('/notfound')
     }
   }
+  loading.value = false
 }
 onMounted(() => {
   getItem()

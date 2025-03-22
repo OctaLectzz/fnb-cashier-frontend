@@ -18,7 +18,7 @@
 
     <div class="row justify-center">
       <div class="col-sm-8 col-xs-12 q-pa-sm">
-        <q-card  class="dashboard-card q-pa-md">
+        <q-card class="dashboard-card q-pa-md">
           <div class="row justify-center">
             <!-- Name -->
             <div class="col-sm-6 col-xs-12 q-pa-sm">
@@ -92,7 +92,7 @@
       </div>
 
       <div class="col-sm-4 col-xs-12 q-pa-sm">
-        <q-card  class="dashboard-card q-pa-md">
+        <q-card class="dashboard-card q-pa-md">
           <!-- Reset Button -->
           <q-btn color="red" :label="t('dashboard.main.transaction.resetBtn')" :disable="data.transactiondetails == 0" class="full-width q-my-sm" no-caps @click="resetCart" />
 
