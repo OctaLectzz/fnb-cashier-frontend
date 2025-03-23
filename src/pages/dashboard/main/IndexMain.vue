@@ -48,7 +48,7 @@
 
               <q-item-section>
                 <div class="text-h6 text-bold text-primary" style="line-height: 18px">{{ $t('dashboard.main.home.todayTransactionText') }}</div>
-                <div class="text-h5 text-bold q-mt-xs">{{ rupiah(item.total_today) }}</div>
+                <div class="text-body1 text-bold q-mt-xs">{{ rupiah(item.total_today) }}</div>
               </q-item-section>
             </q-item>
           </q-card>

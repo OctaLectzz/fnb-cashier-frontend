@@ -6,13 +6,13 @@
         <q-icon name="chevron_right" size="1.1rem" />
       </template>
       <q-breadcrumbs-el :label="$t('dashboard.main.sidebar.homeMenu')" icon="home" :to="{ name: 'main.home' }" :class="$q.dark.isActive ? 'text-white' : 'text-black'" class="text-bold" />
-      <q-breadcrumbs-el :label="$t('dashboard.main.sidebar.transactionMenu')" />
+      <q-breadcrumbs-el :label="$t('dashboard.main.sidebar.cashierMenu')" />
     </q-breadcrumbs>
 
     <div class="row justify-between q-mt-xs q-mb-sm">
       <!-- Title -->
       <div class="col-sm-6 col-xs-12 flex items-center">
-        <div class="text-h4 text-weight-bolder">{{ $t('dashboard.main.sidebar.transactionMenu') }}</div>
+        <div class="text-h4 text-weight-bolder">{{ $t('dashboard.main.sidebar.cashierMenu') }}</div>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
               <!-- Checkout Button -->
               <q-btn color="primary" :label="t('dashboard.main.transaction.checkoutBtn')" :disable="disabledButton" class="full-width q-my-md" @click="detailItemDialog = true" no-caps>
                 <q-dialog v-model="detailItemDialog" transition-show="slide-up" transition-hide="slide-down" full-width full-height persistent>
-                  <DetailTransaction @created="itemCreated" :item="data" />
+                  <DetailCashier @created="itemCreated" :item="data" />
                 </q-dialog>
               </q-btn>
             </div>
@@ -138,7 +138,7 @@ import { useQuasar } from 'quasar'
 import { url, currentbranch } from '/src/boot/axios'
 import { rupiah } from '/src/boot/rupiah'
 import { useCategoryStore } from '/src/stores/main/category-store'
-import DetailTransaction from './DetailCreate.vue'
+import DetailCashier from './DetailCashier.vue'
 
 const $q = useQuasar()
 const { t } = useI18n()

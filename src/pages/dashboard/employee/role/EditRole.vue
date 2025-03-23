@@ -31,49 +31,65 @@
               <div class="text-body2">{{ $t('dashboard.employee.role.data.permissionsPlaceholder') }}</div>
             </div>
 
-            <div class="col-12">
-              <q-separator class="q-my-md" />
-              <div class="q-my-sm">Data : {{ data.permissions }}</div>
-              <q-separator class="q-my-md" />
+            <div class="col-12">{{ data.permissions }}</div>
+          </div>
+
+          <q-separator class="q-my-md" />
+
+          <!-- Pages -->
+          <div class="text-h5 text-weight-bolder">{{ $t('dashboard.employee.role.data.pagesSection') }}</div>
+          <div v-for="(permissionPage, index) in permissionPages" :key="index" class="q-pa-sm">
+            <span class="text-h6 text-bold">{{ permissionPage.title }}</span>
+            <q-checkbox v-model="permissionPage.selectAll" :label="$t('dashboard.employee.role.data.selectAll')" @click="selectPermissionPages(permissionPage)" />
+
+            <!-- Permissions -->
+            <div class="row">
+              <div v-for="(permission, index) in permissionPage.permissions" :key="index" class="col-sm-3 col-xs-12 q-pa-sm">
+                <q-checkbox v-model="data.permissions" :val="permission.value" :label="$t(permission.label)" class="col-6" @update:model-value="updateSelections" />
+              </div>
             </div>
+          </div>
 
-            <!-- Permission Groups -->
-            <div v-for="(permissionGroup, index) in permissionGroups" :key="index" class="col-12 q-pa-sm">
-              <span class="text-h6 text-bold">{{ permissionGroup.title }}</span>
-              <q-checkbox v-model="permissionGroup.selectAll" :label="$t('dashboard.employee.role.data.selectAll')" @click="selectGroupPermissions(permissionGroup)" />
+          <q-separator class="q-my-md" />
 
-              <!-- Permissions -->
-              <div class="row">
-                <div v-for="(permissionMenu, index) in permissionGroup.permissionMenus" :key="index" class="col-sm-4 col-xs-12 q-pa-sm">
-                  <q-list bordered class="rounded-borders">
-                    <q-expansion-item default-opened>
-                      <template v-slot:header>
-                        <q-item-section class="text-h6">{{ permissionMenu.name }}</q-item-section>
+          <!-- Resources -->
+          <div class="text-h5 text-weight-bolder">{{ $t('dashboard.employee.role.data.resourcesSection') }}</div>
+          <div v-for="(permissionResource, index) in permissionResources" :key="index" class="q-pa-sm">
+            <span class="text-h6 text-bold">{{ permissionResource.title }}</span>
+            <q-checkbox v-model="permissionResource.selectAll" :label="$t('dashboard.employee.role.data.selectAll')" @click="selectPermissionResources(permissionResource)" />
 
-                        <q-item-section side>
-                          <div class="row items-center">
-                            <q-checkbox v-model="permissionMenu.selectAll" :label="$t('dashboard.employee.role.data.selectAll')" @click="selectMenuPermissions(permissionMenu)" />
-                          </div>
-                        </q-item-section>
-                      </template>
+            <!-- Permissions -->
+            <div class="row">
+              <div v-for="(permissionMenu, index) in permissionResource.permissionMenus" :key="index" class="col-md-4 col-sm-6 col-xs-12 q-pa-sm">
+                <q-list bordered class="rounded-borders">
+                  <q-expansion-item default-opened>
+                    <template v-slot:header>
+                      <q-item-section class="text-body1 text-bold">{{ permissionMenu.name }}</q-item-section>
 
-                      <q-separator />
+                      <q-item-section side>
+                        <div class="row items-center">
+                          <q-checkbox v-model="permissionMenu.selectAll" :label="$t('dashboard.employee.role.data.selectAll')" @click="selectPermissionResourceMenus(permissionMenu)" />
+                        </div>
+                      </q-item-section>
+                    </template>
 
-                      <q-card class="q-py-lg">
-                        <q-card-section class="row">
-                          <q-checkbox
-                            v-for="(permission, subIndex) in permissionMenu.permissions"
-                            :key="subIndex"
-                            v-model="data.permissions"
-                            :val="permission.value"
-                            :label="$t(permission.label)"
-                            class="col"
-                          />
-                        </q-card-section>
-                      </q-card>
-                    </q-expansion-item>
-                  </q-list>
-                </div>
+                    <q-separator />
+
+                    <q-card>
+                      <q-card-section class="row">
+                        <q-checkbox
+                          v-for="(permission, subIndex) in permissionMenu.permissions"
+                          :key="subIndex"
+                          v-model="data.permissions"
+                          :val="permission.value"
+                          :label="$t(permission.label)"
+                          class="col-6"
+                          @update:model-value="updateSelections"
+                        />
+                      </q-card-section>
+                    </q-card>
+                  </q-expansion-item>
+                </q-list>
               </div>
             </div>
           </div>
@@ -95,7 +111,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useRoleStore } from '/src/stores/employee/role-store'
@@ -110,8 +126,33 @@ const data = ref({
   selectAll: false
 })
 
-// Permissions
-const permissionGroups = ref([
+// Permission Pages
+const permissionPages = ref([
+  {
+    title: t('dashboard.employee.role.data.homeMenu'),
+    selectAll: false,
+    permissions: [
+      { value: 'home attendance', label: 'dashboard.employee.role.data.attendanceText' },
+      { value: 'home cashier', label: 'dashboard.employee.role.data.cashierText' },
+      { value: 'home sales', label: 'dashboard.employee.role.data.salesText' },
+      { value: 'home report', label: 'dashboard.employee.role.data.reportText' }
+    ]
+  },
+  {
+    title: t('dashboard.employee.role.data.dashboardMenu'),
+    selectAll: false,
+    permissions: [
+      { value: 'change branches', label: 'dashboard.employee.role.data.changeBranchesText' },
+      { value: 'dashboard main', label: 'dashboard.menu.mainMenu' },
+      { value: 'dashboard employee', label: 'dashboard.menu.employeeMenu' },
+      { value: 'dashboard inventory', label: 'dashboard.menu.inventoryMenu' },
+      { value: 'dashboard accounting', label: 'dashboard.menu.accountingMenu' }
+    ]
+  }
+])
+
+// Permission Resources
+const permissionResources = ref([
   {
     title: t('dashboard.menu.mainMenu'),
     selectAll: false,
@@ -124,6 +165,11 @@ const permissionGroups = ref([
           { value: 'edit branches', label: 'dashboard.employee.role.data.editText' },
           { value: 'delete branches', label: 'dashboard.employee.role.data.deleteText' }
         ],
+        selectAll: false
+      },
+      {
+        name: t('dashboard.main.sidebar.cashierMenu'),
+        permissions: [{ value: 'view cashier', label: 'dashboard.employee.role.data.viewText' }],
         selectAll: false
       },
       {
@@ -153,16 +199,6 @@ const permissionGroups = ref([
           { value: 'create transactions', label: 'dashboard.employee.role.data.createText' },
           { value: 'edit transactions', label: 'dashboard.employee.role.data.editText' },
           { value: 'delete transactions', label: 'dashboard.employee.role.data.deleteText' }
-        ],
-        selectAll: false
-      },
-      {
-        name: t('dashboard.main.sidebar.transactionHistoryMenu'),
-        permissions: [
-          { value: 'view transactionhistories', label: 'dashboard.employee.role.data.viewText' },
-          { value: 'create transactionhistories', label: 'dashboard.employee.role.data.createText' },
-          { value: 'edit transactionhistories', label: 'dashboard.employee.role.data.editText' },
-          { value: 'delete transactionhistories', label: 'dashboard.employee.role.data.deleteText' }
         ],
         selectAll: false
       }
@@ -209,8 +245,10 @@ const permissionGroups = ref([
 // Select All Permissions
 const selectAllPermissions = () => {
   if (data.value.selectAll) {
-    permissionGroups.value.forEach((group) => {
-      group.permissionMenus.forEach((menu) => {
+    // Permission Resources
+    permissionResources.value.forEach((permissionResource) => {
+      permissionResource.selectAll = true
+      permissionResource.permissionMenus.forEach((menu) => {
         menu.selectAll = true
         menu.permissions.forEach((permission) => {
           if (!data.value.permissions.includes(permission.value)) {
@@ -219,9 +257,21 @@ const selectAllPermissions = () => {
         })
       })
     })
+
+    // Permission Pages
+    permissionPages.value.forEach((permissionPage) => {
+      permissionPage.selectAll = true
+      permissionPage.permissions.forEach((permission) => {
+        if (!data.value.permissions.includes(permission.value)) {
+          data.value.permissions.push(permission.value)
+        }
+      })
+    })
   } else {
-    permissionGroups.value.forEach((group) => {
-      group.permissionMenus.forEach((menu) => {
+    // Permission Resources
+    permissionResources.value.forEach((permissionResource) => {
+      permissionResource.selectAll = false
+      permissionResource.permissionMenus.forEach((menu) => {
         menu.selectAll = false
         menu.permissions.forEach((permission) => {
           const index = data.value.permissions.indexOf(permission.value)
@@ -231,13 +281,72 @@ const selectAllPermissions = () => {
         })
       })
     })
+
+    // Permission Pages
+    permissionPages.value.forEach((permissionPage) => {
+      permissionPage.selectAll = false
+      permissionPage.permissions.forEach((permission) => {
+        const index = data.value.permissions.indexOf(permission.value)
+        if (index > -1) {
+          data.value.permissions.splice(index, 1)
+        }
+      })
+    })
   }
 }
 
-// Select Permissions per Group
-const selectGroupPermissions = (permissionGroup) => {
-  if (permissionGroup.selectAll) {
-    permissionGroup.permissionMenus.forEach((menu) => {
+// Update Selections
+const updateSelections = () => {
+  // Permission Resources
+  permissionResources.value.forEach((permissionResource) => {
+    permissionResource.permissionMenus.forEach((menu) => {
+      menu.selectAll = menu.permissions.every((permission) => data.value.permissions.includes(permission.value))
+    })
+    permissionResource.selectAll = permissionResource.permissionMenus.every((menu) => menu.selectAll)
+  })
+  data.value.selectAll = permissionResources.value.every((permissionResource) => permissionResource.selectAll)
+
+  // Permission Pages
+  permissionPages.value.forEach((permissionPage) => {
+    permissionPage.selectAll = permissionPage.permissions.every((permission) => data.value.permissions.includes(permission.value))
+  })
+
+  data.value.selectAll = permissionPages.value.every((permissionPage) => permissionPage.selectAll) && permissionResources.value.every((permissionResource) => permissionResource.selectAll)
+}
+onMounted(() => {
+  updateSelections()
+})
+
+// Select Permission Pages
+const selectPermissionPages = (permissionPage) => {
+  if (permissionPage.selectAll) {
+    permissionPage.selectAll = true
+    permissionPage.permissions.forEach((permission) => {
+      if (!data.value.permissions.includes(permission.value)) {
+        data.value.permissions.push(permission.value)
+      }
+    })
+  } else {
+    permissionPage.selectAll = false
+    permissionPage.permissions.forEach((permission) => {
+      const index = data.value.permissions.indexOf(permission.value)
+      if (index > -1) {
+        data.value.permissions.splice(index, 1)
+      }
+    })
+  }
+
+  data.value.selectAll =
+    permissionPages.value.length > 0 &&
+    permissionResources.value.length > 0 &&
+    permissionPages.value.every((permissionPage) => permissionPage.selectAll) &&
+    permissionResources.value.every((permissionResource) => permissionResource.selectAll)
+}
+
+// Select Permission Resources
+const selectPermissionResources = (permissionResource) => {
+  if (permissionResource.selectAll) {
+    permissionResource.permissionMenus.forEach((menu) => {
       menu.selectAll = true
       menu.permissions.forEach((permission) => {
         if (!data.value.permissions.includes(permission.value)) {
@@ -246,7 +355,7 @@ const selectGroupPermissions = (permissionGroup) => {
       })
     })
   } else {
-    permissionGroup.permissionMenus.forEach((menu) => {
+    permissionResource.permissionMenus.forEach((menu) => {
       menu.selectAll = false
       menu.permissions.forEach((permission) => {
         const index = data.value.permissions.indexOf(permission.value)
@@ -257,13 +366,15 @@ const selectGroupPermissions = (permissionGroup) => {
     })
   }
 
-  data.value.selectAll = permissionGroups.value.every((group) => {
-    return group.selectAll
-  })
+  data.value.selectAll =
+    permissionPages.value.length > 0 &&
+    permissionResources.value.length > 0 &&
+    permissionPages.value.every((permissionPage) => permissionPage.selectAll) &&
+    permissionResources.value.every((permissionResource) => permissionResource.selectAll)
 }
 
-// Select Permissions per Menu
-const selectMenuPermissions = (permissionMenu) => {
+// Select Permission Resources per Menu
+const selectPermissionResourceMenus = (permissionMenu) => {
   if (permissionMenu.selectAll) {
     permissionMenu.permissions.forEach((permission) => {
       if (!data.value.permissions.includes(permission.value)) {
@@ -280,12 +391,14 @@ const selectMenuPermissions = (permissionMenu) => {
   }
 
   permissionMenu.selectAll = permissionMenu.permissions.every((permission) => data.value.permissions.includes(permission.value))
-  permissionGroups.value.forEach((permissionGroup) => {
-    permissionGroup.selectAll = permissionGroup.permissionMenus.every((menu) => menu.selectAll)
+  permissionResources.value.forEach((permissionResource) => {
+    permissionResource.selectAll = permissionResource.permissionMenus.every((menu) => menu.selectAll)
   })
-  data.value.selectAll = permissionGroups.value.every((group) => {
-    return group.permissionMenus.every((menu) => menu.selectAll)
-  })
+  data.value.selectAll =
+    permissionPages.value.length > 0 &&
+    permissionResources.value.length > 0 &&
+    permissionPages.value.every((permissionPage) => permissionPage.selectAll) &&
+    permissionResources.value.every((permissionResource) => permissionResource.selectAll)
 }
 
 // Validate

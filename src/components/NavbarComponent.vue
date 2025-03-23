@@ -5,16 +5,20 @@
     <!-- Menu -->
     <div class="q-mx-md">
       <router-link
+        v-if="hasPermission('dashboard main')"
         :to="{ name: 'main.home' }"
         class="nav-link q-mx-xs"
-        :class="{ 'active-tab': isMainRoute, 'text-white': !isMainRoute && $q.dark.isActive, 'text-black': !isMainRoute && !$q.dark.isActive }">
+        :class="{ 'active-tab': isMainRoute, 'text-white': !isMainRoute && $q.dark.isActive, 'text-black': !isMainRoute && !$q.dark.isActive }"
+      >
         {{ $t('dashboard.menu.mainMenu') }}
       </router-link>
 
       <router-link
+        v-if="hasPermission('dashboard employee')"
         :to="{ name: 'employee.home' }"
         class="nav-link q-mx-xs"
-        :class="{ 'active-tab': isEmployeeRoute, 'text-white': !isEmployeeRoute && $q.dark.isActive, 'text-black': !isEmployeeRoute && !$q.dark.isActive }">
+        :class="{ 'active-tab': isEmployeeRoute, 'text-white': !isEmployeeRoute && $q.dark.isActive, 'text-black': !isEmployeeRoute && !$q.dark.isActive }"
+      >
         {{ $t('dashboard.menu.employeeMenu') }}
       </router-link>
     </div>
@@ -114,6 +118,7 @@ const route = useRoute()
 const router = useRouter()
 const { profile, loading } = defineProps(['profile', 'loading'])
 const emits = defineEmits(['sidebar'])
+const hasPermission = (permission) => useAuthStore().hasPermission(permission)
 
 const toggleDrawer = () => {
   emits('sidebar')

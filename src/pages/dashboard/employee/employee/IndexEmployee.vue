@@ -113,6 +113,14 @@
         </q-td>
       </template>
 
+      <!-- Position -->
+      <template #body-cell-position="props">
+        <q-td :props="props">
+          <div class="text-body1 text-bold">{{ props.row.position }}</div>
+          <div><span class="text-bold">{{ $t('dashboard.employee.employee.data.role') }}</span> : {{ props.row.role.name }}</div>
+        </q-td>
+      </template>
+
       <!-- Schedule -->
       <template #body-cell-schedule="props">
         <q-td :props="props">
@@ -168,7 +176,7 @@
 
       <!-- Grid -->
       <template v-slot:item="props">
-        <div class="dashboard-card q-pa-md col-xs-12 col-sm-4 col-md-4 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
+        <div class="dashboard-card q-pa-md col-xs-12 col-sm-6 col-md-6 col-lg-4 grid-style-transition" :style="props.selected ? 'transform: scale(0.95);' : ''">
           <q-card class="dashboard-card q-pa-md">
             <q-card-section class="q-pb-xl">
               <div class="row justify-center q-mb-xl">
@@ -199,6 +207,12 @@
               <div class="text-body1 q-my-sm">
                 <div class="text-bold">{{ $t('dashboard.employee.employee.data.position') }} :</div>
                 <div class="text-body1">{{ props.row.position }}</div>
+              </div>
+
+              <!-- Role -->
+              <div class="text-body1 q-my-sm">
+                <div class="text-bold">{{ $t('dashboard.employee.employee.data.role') }} :</div>
+                <div class="text-body1">{{ props.row.role.name }}</div>
               </div>
 
               <!-- Schedule -->

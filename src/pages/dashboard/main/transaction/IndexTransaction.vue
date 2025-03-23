@@ -6,18 +6,18 @@
         <q-icon name="chevron_right" size="1.1rem" />
       </template>
       <q-breadcrumbs-el :label="$t('dashboard.main.sidebar.homeMenu')" icon="home" :to="{ name: 'main.home' }" :class="$q.dark.isActive ? 'text-white' : 'text-black'" class="text-bold" />
-      <q-breadcrumbs-el :label="$t('dashboard.main.sidebar.transactionHistoryMenu')" />
+      <q-breadcrumbs-el :label="$t('dashboard.main.sidebar.transactionMenu')" />
     </q-breadcrumbs>
 
     <div class="row justify-between q-mt-xs q-mb-lg">
       <!-- Title -->
       <div class="col-sm-6 col-xs-12 flex items-center">
-        <div class="text-h4 text-weight-bolder">{{ $t('dashboard.main.sidebar.transactionHistoryMenu') }}</div>
+        <div class="text-h4 text-weight-bolder">{{ $t('dashboard.main.sidebar.transactionMenu') }}</div>
       </div>
 
       <!-- Create -->
       <div class="col-sm-6 col-xs-12">
-        <q-btn v-if="hasPermission('create transactions')" :to="{ name: 'main.transaction' }" color="primary" :label="$t('dashboard.main.transaction.createText')" class="float-right" no-caps />
+        <q-btn v-if="hasPermission('view cashier')" :to="{ name: 'main.cashier' }" color="primary" :label="$t('dashboard.main.transaction.createText')" class="float-right" no-caps />
       </div>
     </div>
 
@@ -243,8 +243,8 @@ import { rupiah } from '/src/boot/rupiah'
 import { useAuthStore } from '/src/stores/auth-store'
 import { useTransactionStore } from '/src/stores/main/transaction-store'
 import TableLoading from '/src/components/TableLoading.vue'
-import EditItem from './EditHistory.vue'
-import ShowItem from './ShowHistory.vue'
+import EditItem from './EditTransaction.vue'
+import ShowItem from './ShowTransaction.vue'
 
 const $q = useQuasar()
 const { t } = useI18n()

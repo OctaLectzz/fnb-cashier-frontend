@@ -23,15 +23,10 @@ const routes = [
       { path: 'profile', name: 'main.profile', component: () => import('/src/pages/dashboard/ProfilePage.vue') },
       { path: 'changepassword', name: 'main.changepassword', component: () => import('/src/pages/dashboard/ChangePasswordPage.vue') },
       { path: 'branch', name: 'main.branch', component: () => import('/src/pages/dashboard/main/branch/IndexBranch.vue'), meta: { permission: 'view branches' } },
+      { path: 'cashier', name: 'main.cashier', component: () => import('/src/pages/dashboard/main/cashier/IndexCashier.vue'), meta: { permission: 'view cashier' } },
       { path: 'category', name: 'main.category', component: () => import('/src/pages/dashboard/main/category/IndexCategory.vue'), meta: { permission: 'view categories' } },
       { path: 'product', name: 'main.product', component: () => import('/src/pages/dashboard/main/product/IndexProduct.vue'), meta: { permission: 'view products' } },
-      { path: 'transaction', name: 'main.transaction', component: () => import('/src/pages/dashboard/main/transaction/create/IndexCreate.vue'), meta: { permission: 'create transactions' } },
-      {
-        path: 'transaction-history',
-        name: 'main.transactionhistory',
-        component: () => import('/src/pages/dashboard/main/transaction/history/IndexHistory.vue'),
-        meta: { permission: 'view transactions' }
-      }
+      { path: 'transaction', name: 'main.transaction', component: () => import('/src/pages/dashboard/main/transaction/IndexTransaction.vue'), meta: { permission: 'view transactions' } }
     ]
   },
 

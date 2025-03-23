@@ -1,10 +1,14 @@
 import { defineStore } from 'pinia'
-import { server, headers, headersImage } from '/src/boot/axios'
+import { server, headers, employeeHeaders, headersImage } from '/src/boot/axios'
 
 export const useProfileStore = defineStore('profile', {
   actions: {
     async profile() {
       return await server.get('api/profile', { headers })
+    },
+
+    async employeeprofile() {
+      return await server.get('api/profile/employee', { headers: employeeHeaders })
     },
 
     async editprofile(data) {

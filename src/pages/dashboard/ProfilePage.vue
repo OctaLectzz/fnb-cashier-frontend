@@ -460,6 +460,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { url } from '/src/boot/axios'
+import { useProfileStore } from '/src/stores/profile-store'
 import { useEmployeeStore } from '/src/stores/employee/employee-store'
 
 const { t } = useI18n()
@@ -509,7 +510,7 @@ const employeeLoading = ref(false)
 const getProfile = async () => {
   employeeLoading.value = true
   try {
-    const res = await useEmployeeStore().profile()
+    const res = await useProfileStore().employeeprofile()
 
     data.value = {
       ...res.data.data,

@@ -111,8 +111,14 @@
             <q-card-section class="q-pb-xl">
               <!-- Name -->
               <div class="text-body1 q-my-md">
-                <span class="text-bold">{{ $t('dashboard.employee.schedule.data.name') }} :</span>
-                <span class="text-body1 q-mx-sm">{{ props.row.name }}</span>
+                <div class="text-bold">{{ $t('dashboard.employee.schedule.data.name') }} :</div>
+                <div class="text-body1">{{ props.row.name }}</div>
+              </div>
+
+              <!-- Time -->
+              <div class="text-body1 q-my-md">
+                <div class="text-bold">{{ $t('dashboard.employee.schedule.data.time') }} :</div>
+                <div class="text-body1">{{ props.row.start_time }} - {{ props.row.end_time }}</div>
               </div>
             </q-card-section>
 

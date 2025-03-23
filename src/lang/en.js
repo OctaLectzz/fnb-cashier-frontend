@@ -102,21 +102,21 @@ export default {
     menu: {
       mainMenu: 'Main',
       employeeMenu: 'Employee',
+      inventoryMenu: 'Inventory',
       accountingMenu: 'Accounting'
     },
     main: {
       sidebar: {
         mainGroup: 'MAIN',
         managementGroup: 'MANAGEMENT',
-        cashierGroup: 'CASHIER',
         homeMenu: 'Main Dashboard',
         branchMenu: 'Branches',
+        cashierMenu: 'Cashier',
         categoryMenu: 'Categories',
         productMenu: 'Products',
         contactMenu: 'Contact',
         discountMenu: 'Discount',
         transactionMenu: 'Transactions',
-        transactionHistoryMenu: 'Transaction Histories',
         salesReportMenu: 'Sales Reports'
       },
       home: {
@@ -317,6 +317,15 @@ export default {
           permissions: 'Permissions',
           permissionsPlaceholder: 'Enables/Disables all Permissions for this role',
           selectAll: 'Select All',
+          pagesSection: 'Pages',
+          homeMenu: 'Home',
+          dashboardMenu: 'Dashboard',
+          cashierText: 'Cashier',
+          salesText: 'Sales',
+          reportText: 'Report',
+          attendanceText: 'Attendance',
+          changeBranchesText: 'Change Branches',
+          resourcesSection: 'Resources',
           viewText: 'view',
           createText: 'create',
           editText: 'edit',
@@ -340,6 +349,7 @@ export default {
         data: {
           name: 'Name',
           namePlaceholder: 'Morning Shift',
+          time: 'Time',
           startTime: 'Start Time',
           endTime: 'End Time'
         },
