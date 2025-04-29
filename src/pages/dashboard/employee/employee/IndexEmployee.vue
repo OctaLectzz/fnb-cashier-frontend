@@ -117,7 +117,10 @@
       <template #body-cell-position="props">
         <q-td :props="props">
           <div class="text-body1 text-bold">{{ props.row.position }}</div>
-          <div><span class="text-bold">{{ $t('dashboard.employee.employee.data.role') }}</span> : {{ props.row.role.name }}</div>
+          <div>
+            <span class="text-bold">{{ $t('dashboard.employee.employee.data.role') }}</span>
+            : {{ props.row.role.name }}
+          </div>
         </q-td>
       </template>
 
@@ -291,7 +294,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { toast } from 'vue3-toastify'
 import { useQuasar } from 'quasar'
-import { url } from '/src/boot/axios'
+import { url, currentbranch } from '/src/boot/axios'
 import { useAuthStore } from '/src/stores/auth-store'
 import { useEmployeeStore } from '/src/stores/employee/employee-store'
 import TableLoading from '/src/components/TableLoading.vue'
@@ -309,7 +312,7 @@ const loading = ref(false)
 const getItem = async () => {
   loading.value = true
   try {
-    const res = await useEmployeeStore().all()
+    const res = await useEmployeeStore().branch(currentbranch)
 
     items.value = res.data.data
   } catch (error) {

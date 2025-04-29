@@ -7,6 +7,10 @@ export const useEmployeeStore = defineStore('employee', {
       return await server.get('api/employee', { headers })
     },
 
+    async branch(id) {
+      return await server.get(`api/employee/branch/${id}`, { headers })
+    },
+
     async show(id) {
       return await server.get(`api/employee/${id}`, { headers })
     },
