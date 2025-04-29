@@ -24,7 +24,7 @@
       <div v-else class="row justify-center">
         <!-- Product -->
         <div class="col-md-4 col-sm-12 q-pa-sm">
-          <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
+          <q-card class="dashboard-card q-pa-sm" :style="{ borderRight: `5px solid ${$q.dark.isActive ? '#fff' : '#000'}` }" flat bordered>
             <q-item>
               <q-item-section avatar>
                 <q-avatar text-color="white" icon="restaurant_menu" size="70px" class="badge-color" rounded />
@@ -40,7 +40,7 @@
 
         <!-- Transaction -->
         <div class="col-md-4 col-sm-12 q-pa-sm">
-          <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
+          <q-card class="dashboard-card q-pa-sm" :style="{ borderRight: `5px solid ${$q.dark.isActive ? '#fff' : '#000'}` }" flat bordered>
             <q-item>
               <q-item-section avatar>
                 <q-avatar text-color="white" icon="point_of_sale" size="70px" class="badge-color" rounded />
@@ -56,7 +56,7 @@
 
         <!-- Category -->
         <div class="col-md-4 col-sm-12 q-pa-sm">
-          <q-card class="dashboard-card q-pa-sm" style="border-right: 5px solid #000" flat bordered>
+          <q-card class="dashboard-card q-pa-sm" :style="{ borderRight: `5px solid ${$q.dark.isActive ? '#fff' : '#000'}` }" flat bordered>
             <q-item>
               <q-item-section avatar>
                 <q-avatar text-color="white" icon="category" size="70px" class="badge-color" rounded />

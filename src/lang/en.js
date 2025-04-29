@@ -437,6 +437,40 @@ export default {
           employmentStatusRequired: 'Employment Status must be filled in',
           dateJoinedRequired: 'Date Joined must be filled in'
         }
+      },
+      attendance: {
+        titleText: 'Attendance',
+        createText: 'Create Attendance',
+        editText: 'Edit Attendance',
+        successCreateMsg: 'Attendance created successfully',
+        failedCreateMsg: 'Attendance failed to create, Please try again later',
+        successEditMsg: 'Attendance edited successfully',
+        failedEditMsg: 'Attendance failed to edit, Please try again later',
+        successDeleteMsg: 'Attendance deleted successfully',
+        failedDeleteMsg: 'Attendance failed to delete, please try again later',
+        data: {
+          employee: 'Employee',
+          date: 'Date',
+          entry_time: 'Entry Time',
+          entry_location: 'Entry Location',
+          entry_photo: 'Entry Photo',
+          entry_status: 'Entry Status',
+          late_minutes: 'Late Minutes',
+          late_reason: 'Late Reason',
+          exit_time: 'Exit Time',
+          exit_location: 'Exit Location',
+          exit_photo: 'Exit Photo',
+          exit_status: 'Exit Status',
+          early_leave_minutes: 'Early Leave Minutes',
+          early_leave_reason: 'Early Leave Reason',
+          status: 'Status',
+          verified_by: 'Verified By'
+        },
+        validate: {
+          dateRequired: 'Date must be filled in',
+          entryTimeRequired: 'Entry Time must be filled in',
+          entryLocationRequired: 'Entry Location must be filled in'
+        }
       }
     }
   }
