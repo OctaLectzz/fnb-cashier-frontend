@@ -24,7 +24,7 @@
     </thead>
 
     <tbody>
-      <tr v-for="n in 8" :key="n">
+      <tr v-for="n in 15" :key="n">
         <td class="text-left">
           <q-skeleton animation="blink" type="text" width="85px" />
         </td>

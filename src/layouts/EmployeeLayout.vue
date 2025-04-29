@@ -55,6 +55,52 @@
           <div class="menu-text-header q-mx-md q-mb-sm" style="font-size: 11px">
             <span v-if="!miniState">{{ $t('dashboard.employee.sidebar.managementGroup') }}</span>
           </div>
+
+          <!-- Attendance -->
+          <q-item v-if="hasPermission('view employees')" :to="{ name: 'employee.attendance' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+            <q-item-section avatar>
+              <q-icon name="history" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.employee.sidebar.attendanceMenu') }}</q-item-section>
+          </q-item>
+
+          <!-- Leave -->
+          <q-item v-if="hasPermission('view employees')" :to="{ name: 'employee.leave' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+            <q-item-section avatar>
+              <q-icon name="logout" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.employee.sidebar.leaveMenu') }}</q-item-section>
+          </q-item>
+
+          <!-- Overtime -->
+          <q-item v-if="hasPermission('view employees')" :to="{ name: 'employee.overtime' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+            <q-item-section avatar>
+              <q-icon name="alarm" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.employee.sidebar.overtimeMenu') }}</q-item-section>
+          </q-item>
+
+          <!-- SALARY -->
+          <q-separator class="q-mb-md q-mt-sm" />
+          <div class="menu-text-header q-mx-md q-mb-sm" style="font-size: 11px">
+            <span v-if="!miniState">{{ $t('dashboard.employee.sidebar.salaryGroup') }}</span>
+          </div>
+
+          <!-- Salary Setting -->
+          <q-item v-if="hasPermission('view employees')" :to="{ name: 'employee.salary-setting' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+            <q-item-section avatar>
+              <q-icon name="attach_money" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.employee.sidebar.salarySettingMenu') }}</q-item-section>
+          </q-item>
+
+          <!-- Calculate Salary -->
+          <q-item v-if="hasPermission('view employees')" :to="{ name: 'employee.calculate-salary' }" active-class="q-item-no-link-highlighting menu-active" class="menu-click menu-text">
+            <q-item-section avatar>
+              <q-icon name="calculate" size="20px" />
+            </q-item-section>
+            <q-item-section>{{ $t('dashboard.employee.sidebar.calculateSalaryMenu') }}</q-item-section>
+          </q-item>
         </q-scroll-area>
       </q-list>
     </q-drawer>

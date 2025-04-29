@@ -296,10 +296,16 @@ export default {
       sidebar: {
         mainGroup: 'MAIN',
         managementGroup: 'MANAGEMENT',
+        salaryGroup: 'SALARY',
         homeMenu: 'Employee Dashboard',
         roleMenu: 'Access Rights',
         scheduleMenu: 'Schedules',
-        employeeMenu: 'Employees'
+        employeeMenu: 'Employees',
+        attendanceMenu: 'Attendance',
+        leaveMenu: 'Leave',
+        overtimeMenu: 'Overtime',
+        salarySettingMenu: 'Salary Setting',
+        calculateSalaryMenu: 'Calculate Salary'
       },
       role: {
         titleText: 'Access Right',
